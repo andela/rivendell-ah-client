@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/andela/rivendell-ah-client/issues"
   },
-  "homepage": "https://github.com/andela/rivendell-ah-client#readme"
+  "homepage": "https://github.com/andela/rivendell-ah-client#readme",
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
 }
