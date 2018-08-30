@@ -1,8 +1,13 @@
 import React, {Component} from 'react'; 
-  
+import Header from './component/Header';
+import Footer from './component/Footer';
+import Main from './views/Main';
+
 const App = () => (
   <div>
-    <h1> Welcome, This should work! </h1>
+    <Header />
+    <Main />
+    <Footer />
   </div>
 );
 
