@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Switch } from 'react-router-dom';
 import routes from '../configs/routes';
 
@@ -11,6 +12,7 @@ const Main = () => (
           exact={route.exact}
           path={route.path}
           component={route.component}
+          location={location}
         />
         ))
       }

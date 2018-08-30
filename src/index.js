@@ -24,3 +24,9 @@ render(
   </Provider>,
   document.getElementById('index')
 );
+
+
+render((
+  <Router>
+    <App />
+  </Router>), document.getElementById('index'));
