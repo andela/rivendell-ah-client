@@ -1,0 +1,16 @@
+$body-color : red;
+$body-background: rgb(218, 216, 216);
+
+
+.primary{
+    background-color: blue;
+} 
+
+
+body{
+    color: $body-color;
+    background-color: $body-background;
+    background-image: url('../assets/beverage-books.jpg') ;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
