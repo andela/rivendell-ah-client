@@ -1,8 +1,9 @@
+import React, {Component} from 'react'; 
 import Header from './component/Header';
 import Footer from './component/Footer';
 import Main from './views/Main';
 
-App = () => (
+const App = () => (
   <div>
     <Header />
     <Main />

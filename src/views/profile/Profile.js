@@ -1,3 +1,4 @@
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import articlesPages from '../articles';
 import EditProfile from './EditProfile';
