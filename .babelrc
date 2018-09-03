@@ -1,10 +1,5 @@
 {
-  "presets": [
-      "env",
-      "react",
-      "stage-3"
-  ],
-  "plugins": [
-      "transform-class-properties"
-  ]
+    "presets": [
+        "env", "react", "stage-3"
+    ]
 }
