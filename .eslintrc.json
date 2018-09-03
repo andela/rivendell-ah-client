@@ -45,6 +45,7 @@
         "react/jsx-filename-extension": "off",
         "react/prefer-stateless-function":"off",
         "react/no-array-index-key":"off",
-        "react/no-unescaped-entities":"off"
+        "react/no-unescaped-entities":"off",
+        "object-curly-newline": "off"
       }
 }

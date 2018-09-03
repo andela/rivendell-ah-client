@@ -1,13 +1,28 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
+import createSagaMiddleware from 'redux-saga';
+import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import rootReducer from './reducers';
+import errorMiddleware from './middleware/errorMiddleware';
+import rootSaga from './sagas';
 
+const promiseTypeSuffixes = ['LOADING', 'SUCCESS', 'FAILURE'];
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [
+  createLogger({ collapsed: true }), thunk, errorMiddleware,
+  promiseMiddleware({ promiseTypeSuffixes }), sagaMiddleware,
+];
 const initialState = {};
-const middleware = [thunk];
 
 const store = createStore(
   rootReducer,
   initialState,
-  applyMiddleware(...middleware)
+  composeWithDevTools(applyMiddleware(...middleware))
 );
+
+sagaMiddleware.run(rootSaga);
 
 export default store;
