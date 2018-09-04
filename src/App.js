@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Button, Input } from 'semantic-ui-react';
-
+import '../public/styles/App.scss';
 
 /**
  *This class is the main entry point for the application

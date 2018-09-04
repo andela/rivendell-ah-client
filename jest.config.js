@@ -9,4 +9,7 @@ module.exports = {
     '<rootDir>/src/index.js',
   ],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  moduleNameMapper: {
+    '\\.(css|scss)$': 'identity-obj-proxy',
+  },
 };

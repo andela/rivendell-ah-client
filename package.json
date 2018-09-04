@@ -32,6 +32,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "enzyme": "^3.5.1",
@@ -44,6 +45,8 @@
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.5.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "scss-loader": "0.0.1",
@@ -52,7 +55,6 @@
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7",
-    "webpack-merge": "^4.1.4",
-    "jest": "^23.5.0"
+    "webpack-merge": "^4.1.4"
   }
 }
