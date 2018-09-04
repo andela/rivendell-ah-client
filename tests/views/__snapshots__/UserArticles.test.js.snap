@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing NewArticle Copmonent basic components it renders should render an EditArticleControls component  1`] = `
+<div>
+  <h2>
+    Articles of a particular user
+  </h2>
+</div>
+`;

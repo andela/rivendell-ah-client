@@ -106,17 +106,21 @@ export default Header;
     }
 
     return (
-      <div>
-        <ForgotPasswordForm
-          handleSubmit={this.handleSubmit}
-          handleInput={this.handleInput}
-          isLoading={isLoading}
-          serverResponse={serverResponse}
-          emailErrorMessage={emailErrorMessage}
-          email={email}
-          success={success.status}
-        />
+      <div id="forgot-password">
+
+        <div>
+          <ForgotPasswordForm
+            handleSubmit={this.handleSubmit}
+            handleInput={this.handleInput}
+            isLoading={isLoading}
+            serverResponse={serverResponse}
+            emailErrorMessage={emailErrorMessage}
+            email={email}
+            success={success.status}
+          />
+        </div>
       </div>
+
     );
   }
 }

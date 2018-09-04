@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SocialLogin = ({ socialMedia }) => {
-  let host = 'https://authorhaven.herokuapp.com';
+  const host = 'https://authorhaven.herokuapp.com';
   return (
     socialMedia.map(platform => (
       <div key={platform.id} className={platform.divClass}>
