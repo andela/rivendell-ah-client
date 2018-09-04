@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing NewArticle Copmonent basic components it renders should render an EditArticleControls component  1`] = `
+<Connect(ArticleView)
+  slug=""
+/>
+`;

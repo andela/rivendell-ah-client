@@ -11,6 +11,7 @@ const Main = () => (
           exact={route.exact}
           path={route.path}
           component={route.component}
+          location={route.location}
         />
         ))
       }

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
   const common = {
@@ -9,9 +10,6 @@ module.exports = (env) => {
       path: path.join(__dirname, './dist'),
       filename: 'bundle.js',
       publicPath: '/',
-    },
-    resolve: {
-      extensions: ['.js', '.jsx']
     },
     module: {
       rules: [
@@ -25,13 +23,16 @@ module.exports = (env) => {
           use: ['style-loader', 'css-loader', 'sass-loader'],
         },
         {
-          test: /\.(png|jpg|jpeg)$/,
+          test: /\.(png|jpg|jpeg|gif)$/,
           use: [{
             loader: 'url-loader',
             options: { limit: 30000 },
           }],
         },
       ],
+    },
+    node: {
+      fs: 'empty'
     },
     resolve: {
       modules: [path.resolve(__dirname), 'node_modules'],
@@ -45,7 +46,8 @@ module.exports = (env) => {
         root: path.join(__dirname, 'src', 'dist'),
         dry: false,
         verbose: true,
-      })
+      }),
+      new Dotenv(),
     ],
   };
   if (env.mode === 'development') {
@@ -65,4 +67,3 @@ module.exports = (env) => {
   }
   return common;
 };
-

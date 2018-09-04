@@ -10,3 +10,4 @@ exclude_patterns:
   - public/**/*
   - webpack.config.js
   - jest.config.js
+  

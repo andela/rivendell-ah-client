@@ -1,0 +1,57 @@
+import types from '../actions/actionTypes';
+
+const initialState = {
+  editing: true,
+  isLoading: false,
+  success: false,
+  article: {},
+  errors: {}
+};
+
+const updateArticleReducer = (state = initialState, action = {}) => {
+  switch (action.type) {
+  case `${types.UPDATE_ARTICLE}_EDITING`:
+    return {
+      ...state,
+      isLoading: false,
+      editing: true,
+      errors: {},
+    };
+  case `${types.UPDATE_ARTICLE}_LOADING`:
+    return {
+      ...state,
+      isLoading: true,
+      editing: false,
+      errors: {},
+    };
+  case `${types.UPDATE_ARTICLE}_SUCCESS`: {
+    const { data } = action.payload;
+    return {
+      ...state,
+      success: true,
+      article: data.article,
+      editing: false,
+      isLoading: false,
+      errors: {}
+    };
+  }
+
+  case `${types.UPDATE_ARTICLE}_FAILURE`: {
+    const { response } = action.payload;
+    const { errors } = response.data;
+    return {
+      ...state,
+      isLoading: false,
+      errors: {
+        ...errors,
+        status: response.status,
+      },
+      editing: true,
+    };
+  }
+  default:
+    return state;
+  }
+};
+
+export default updateArticleReducer;

@@ -1,12 +1,12 @@
 import 'babel-polyfill';
+import { BrowserRouter as Router } from 'react-router-dom';
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import decode from 'jwt-decode';
-import App from './App';
 import store from './store';
 import '../public/styles/App.scss';
+import App from './App.jsx';
 import types from './actions/actionTypes';
 
 if (localStorage.token) {
@@ -23,7 +23,7 @@ if (localStorage.token) {
 render(
   <Provider store={store}>
     <Router>
-      <Route component={App} />
+      <App />
     </Router>
   </Provider>,
   document.getElementById('index')

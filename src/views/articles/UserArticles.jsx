@@ -1,8 +1,7 @@
 import React from 'react';
+import ArticleView from '../../components/ArticleView';
 
 const UserArticles = () => (
-  <div>
-    <h2>Articles of a particular user</h2>
-  </div>
+  <ArticleView slug="currentSlug" />
 );
 export default UserArticles;
