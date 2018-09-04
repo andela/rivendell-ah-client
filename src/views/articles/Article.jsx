@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { Item, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import Like from '../../components/Like';
 import articleAction from '../../actions/articleAction';
 import likeAction from '../../actions/likeAction';
-
+import ArticleView from '../../components/ArticleView';
 /**
  * Article Component
  */
@@ -267,46 +266,18 @@ export class Article extends React.Component {
  */
   render() {
     const { likeAttributes } = this.state;
-    const { article, likesCount, likes } = this.props;
-
+    const { likesCount, likes, match: { params } } = this.props;
+    const likeProps = {
+      likeAttributes,
+      likesCount,
+      handleClick: this.handleClick,
+      likes,
+      renderLikeBy: this.renderLikeBy,
+      onLoadMore: this.onLoadMore,
+    };
     return (
       <div>
-        <div>
-          <h2>
-            Title:
-            {article.title}
-          </h2>
-        </div>
-        <br />
-        <div>
-          <h3>
-            Body:
-            {article.body}
-          </h3>
-        </div>
-        <br />
-        <div>
-          <h3>
-            Description:
-            {article.description}
-          </h3>
-        </div>
-        <br />
-        <div>
-          <h3>
-            Published:
-            {article.createdAt}
-          </h3>
-        </div>
-        <br />
-        <Like
-          likeAttributes={likeAttributes}
-          likesCount={likesCount}
-          handleClick={this.handleClick}
-          likes={likes}
-          renderLikeBy={this.renderLikeBy}
-          onLoadMore={this.onLoadMore}
-        />
+        <ArticleView slug={params.slug} likeProps={likeProps} />
       </div>
     );
   }
@@ -348,6 +319,7 @@ Article.propTypes = {
   }),
   likeArticle: PropTypes.func,
   unlikeArticle: PropTypes.func,
+
 };
 Article.defaultProps = {
   likesCount: 0,

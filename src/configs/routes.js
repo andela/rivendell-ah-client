@@ -1,5 +1,6 @@
 import { Route } from 'react-router-dom';
-import Home from '../views/Home';
+import Home from // eslint-disable-line import/no-named-as-default
+  '../views/Home';
 import NotFound from '../views/NotFound';
 import authPages from '../views/auth';
 import routePages from '../components/routes';
@@ -16,7 +17,7 @@ const {
   ForgotPassword, ResetPassword,
 } = userPages;
 const { Signup, Login } = authPages;
-const { PrivateRoute, GuestRoute } = routePages;
+const { PrivateRoute, GuestRoute, ProfileRoute } = routePages;
 
 export default [
   {
@@ -62,15 +63,21 @@ export default [
     exact: true,
   },
   {
-    type: Route,
+    type: GuestRoute,
     path: '/forgot-password',
     component: ForgotPassword,
     exact: true,
   },
   {
-    type: Route,
+    type: GuestRoute,
     path: '/reset-password',
     component: ResetPassword,
+    exact: true,
+  },
+  {
+    type: Route,
+    path: '/not-found',
+    component: NotFound,
     exact: true,
   },
   {
@@ -80,7 +87,7 @@ export default [
     exact: true,
   },
   {
-    type: PrivateRoute,
+    type: ProfileRoute,
     path: '/@:username/edit',
     component: EditProfilePage,
     exact: true,
