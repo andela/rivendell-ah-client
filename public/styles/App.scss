@@ -3,8 +3,10 @@
 @import 'partials/base';
 @import 'partials/mixins';
 @import 'partials/reusables';
+@import 'reset-password';
 @import 'header';
 @import 'login';
 @import 'socialLogin';
-
-
+@import 'editArticleControls';
+@import 'smartEditor.scss';
+@import 'articleView';

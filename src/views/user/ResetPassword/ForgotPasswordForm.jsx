@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Form, Icon } from 'semantic-ui-react';
 import ServerResponse from '../../../components/items/ServerResponse';
-import '../../../../public/styles/reset-password.scss';
 
 /**
  * ForgotPassword form
@@ -38,6 +37,8 @@ export function ForgotPasswordForm(props) {
   );
 
   return (
+
+
     <div className={isLoading ? 'wait' : 'pointer'}>
 
       <div className="user-form">
@@ -94,6 +95,7 @@ export function ForgotPasswordForm(props) {
       </div>
 
     </div>
+
 
   );
 }

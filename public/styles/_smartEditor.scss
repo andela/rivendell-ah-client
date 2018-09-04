@@ -1,0 +1,59 @@
+
+
+
+#smart-editor, #article-page{
+    margin-top: 40px;
+    p,[data-block="true"], .align-center, .align-left,.align-right,
+    .align-justify{
+        margin-bottom: 10px;
+        line-height: 1.5;
+        margin-top: 5%;
+    }
+
+    h1{
+        text-align: center;
+        font-size: 1.6em;
+    }
+
+    h3{
+
+        font-size: 1em;
+    }
+    .align-center{
+        text-align: center;
+    }
+
+    .align-left{
+        text-align: left;
+    }
+
+    .align-right{
+        text-align: right;
+    }
+    .align-justify{
+        text-align: justify;
+    }
+    .quote{
+        margin: 0;
+        border: solid 0px  rgba(128, 128, 128, 0.548);
+        border-left-width: 14px;
+        padding: 3% 10px;
+        font-style: italic;
+       
+    }
+    .articleView{
+        @import url('https://fonts.googleapis.com/css?family=Dancing+Script');;
+        border: 2px rgba(0, 0, 0, 0.068) solid;       
+        padding: 2% 10%;
+        min-height: 80vh;
+        margin: 20px 0 ;
+        
+        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Dancing Script';
+        font-size: 22px;
+
+        
+    }
+}
+
+

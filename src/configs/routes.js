@@ -111,7 +111,7 @@ export default [
   },
   {
     type: Route,
-    path: '*',
+    path: 'not-found',
     component: NotFound,
     exact: true,
   },

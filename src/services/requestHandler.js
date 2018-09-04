@@ -15,13 +15,18 @@ const axiosInstance = () => {
   if (localStorage.getItem('token')) {
     token = localStorage.getItem('token');
   }
-  const instanceCreate = axios.create({
-    baseURL: apiUrl,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
-  });
+  // const headers = new Headers();
+  // // headers.append('Content-Type', 'application/json');
+  // // headers.append('Authorization', token);
+  const instanceCreate = axios
+    .create({
+      baseURL: apiUrl,
+
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token
+      }
+    });
   return instanceCreate;
 };
 

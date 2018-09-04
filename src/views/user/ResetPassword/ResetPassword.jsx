@@ -269,24 +269,28 @@ export default Header;
     }
 
     return isValidToken ? (
-      <div>
-        <ResetPasswordForm
-          handleSubmit={this.handleSubmit}
-          handleInput={this.handleInput}
-          isLoading={isLoading}
-          serverResponse={serverResponse}
-          success={success.status}
-          handleMouseLeave={this.handleMouseLeave}
-          disabled={disabled}
-          password={password}
-          confirm={confirm}
-          disableAction={this.disableAction}
-          handlePasswordVisibility={this.handlePasswordVisibility}
-          frontendValidations={
-            { passwordErrorMessage, confirmErrorMessage }
-          }
-        />
+      <div id="reset-password">
+        <div>
+          <ResetPasswordForm
+            handleSubmit={this.handleSubmit}
+            handleInput={this.handleInput}
+            isLoading={isLoading}
+            serverResponse={serverResponse}
+            success={success.status}
+            handleMouseLeave={this.handleMouseLeave}
+            disabled={disabled}
+            password={password}
+            confirm={confirm}
+            disableAction={this.disableAction}
+            handlePasswordVisibility={this.handlePasswordVisibility}
+            frontendValidations={
+              { passwordErrorMessage, confirmErrorMessage }
+            }
+          />
+        </div>
+
       </div>
+
     )
       : (<div><InvalidTokenMessage /></div>);
   }
