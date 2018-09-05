@@ -6,20 +6,8 @@ jobs:
     steps:
       - checkout 
       - run:
-        name: Setup dependencies
-        command: |
-            sudo composer self-update
-            composer install -n --prefer-dist npm install
-      
-      - run: 
-          name: Setup Code Climate test-reporter
+          name: Setup dependencies
           command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      # - run:
-      #     name: Run tests
-      #     command: |
-      #       sudo docker-php-ext-enable xdebug
-      #       ./cc-test-reporter before-build
-      #       sudo vendor/bin/phpunit --coverage-clover clover.xml
-      #       ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+            npm install
+      - run: npm run test
+    
