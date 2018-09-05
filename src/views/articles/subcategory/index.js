@@ -1,4 +1,4 @@
-import SubcategoryArticles from './SubcategoryArticles';
+import SubcategoryArticles from './SubcategoryArticles.jsx';
 
 export default {
   SubcategoryArticles,

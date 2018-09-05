@@ -1,0 +1,99 @@
+%form-styles {
+  padding-top: 20px;
+  .content {
+    width: 100%;
+    margin: 0 auto;
+    background-color: $white;
+    box-shadow: 3px 3px 3px $shadow-ash;
+  }
+  Form {
+    padding: 20px;
+    ul {
+      margin: 10px 0 0 30px;
+    }
+  }
+  h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+  i.top {
+    display: table-cell;
+    vertical-align: middle;
+    color: $white;
+    text-align: center;
+    font-size: 130%;
+  }
+  .icon-border {
+    margin: 0 auto 15px auto;
+    border: 1px solid $primary-blue;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 150%;
+    display: table;
+    background-color: $primary-blue;
+    box-shadow: 3px 3px 3px $shadow-ash;
+  }
+  .form-field {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .form-icon-wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      color: $text-color;
+      border-right: 1px solid $border-ash;
+      text-align: center;
+      width: 10%;
+    }
+    i.form {
+      padding-top: 10px;
+      font-size: 150%;
+      opacity: 0.6;
+    }
+    input {
+      padding-left: 11%;
+    }
+  }
+  .error .form-field .form-icon-wrapper {
+    color: $error-red;
+    border-right: 1px solid $error-border-red;
+  }
+  Button {
+    background-color: $primary-blue;
+    color: $white;
+    box-shadow: 2px 2px 2px $shadow-ash;
+    &:hover {
+      box-shadow: 3px 3px 3px $shadow-ash;
+      background-color: darken($primary-blue, 5);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+  }
+  .form-footer {
+    background-color: $form-footer-ash;
+    padding: 20px 10px;
+    margin-top: 5px;
+    text-align: center;
+  }
+  @include media-query-above(sm) {
+    padding-top: 40px;
+    .content {
+      width: 50%;
+    }
+    i.top {
+      font-size: 150%;
+    }
+    .icon-border {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  @include media-query-above(md) {
+    .content {
+      width: 40%;
+    }
+  }
+}
+

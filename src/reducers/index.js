@@ -4,5 +4,5 @@ import redirect from './redirectReducer';
 
 export default combineReducers({
   auth,
-  redirect
+  redirect,
 });
