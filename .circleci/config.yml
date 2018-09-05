@@ -10,12 +10,17 @@ jobs:
           name: Update version of npm
           command: 'sudo npm install -g npm@latest'
       - run:
-          name: install-npm-wee
+          name: install project dependencies
           command: npm install
       - save_cache: 
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+       - run: 
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - run: 
           name: run tests
           command: npm test
@@ -28,8 +33,4 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
-      - run: 
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
+     
