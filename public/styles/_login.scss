@@ -1,0 +1,9 @@
+#login {
+  @extend %form-styles;
+  .forget-password {
+    float: right;
+  }
+  Button {
+    margin-bottom: 10px;
+  }
+}
