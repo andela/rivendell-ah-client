@@ -1,14 +1,15 @@
 version: 2
+
 jobs:
   build:
     docker: 
       - image: circleci/node:8.11.3
     working_directory: ~/repo
     steps:
-      - checkout 
-      - run:
-          name: Update version of npm
-          command: 'sudo npm install -g npm@latest'
+      - checkout
+      # - run:
+      #     name: Update version of npm
+      #     command: 'sudo npm install -g npm@latest'
       - run:
           name: install project dependencies
           command: npm install
@@ -16,21 +17,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-       - run: 
+      - run: 
           name: Setup Code Climate test-reporter
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
       - run: 
-          name: run tests
-          command: npm test
-      - run: 
           name: contains code coverage report
-          command: npm test
-      - store_artifacts: 
-          path: test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-     
+          command: |
+            ./cc-test-reporter before-build
+            npm run coverage
+            ./cc-test-reporter after-build 
+

@@ -1,0 +1,12 @@
+version: "2"
+plugins:
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - javascript
+exclude_patterns:
+  - test/**/*
+  - public/**/*
+  - webppack.config.js
+  
