@@ -11,7 +11,7 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run:
           name: install-npm-wee
-          command: npm instal
+          command: npm install
       - save_cache: 
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -33,4 +33,3 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-            
