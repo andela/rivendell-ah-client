@@ -1,14 +1,14 @@
 import 'babel-polyfill';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from './App';
 import store from './store';
 import helloWorld from './actions/helloWorld';
 import '../public/styles/App.scss';
 import types from './actions/actionTypes';
+
+import App from './App';
 
 // testing redux-promise-middleware and redux-saga
 setTimeout(() => {
@@ -24,9 +24,3 @@ render(
   </Provider>,
   document.getElementById('index')
 );
-
-
-render((
-  <Router>
-    <App />
-  </Router>), document.getElementById('index'));
