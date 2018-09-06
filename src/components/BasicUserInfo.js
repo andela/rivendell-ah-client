@@ -1,9 +1,16 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Image } from 'semantic-ui-react';
 
 const BasicUserInfo = ({ username, image }) => (
   <div>
-    <img src={image} alt={username} />
+    <Image
+      src={typeof image === 'string' ? image : 'defaultImageUrl'}
+      alt={username}
+      circular
+      verticalAlign="middle"
+      size="small"
+    />
     <strong>{username}</strong>
   </div>
 );

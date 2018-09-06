@@ -27,6 +27,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-3": "^6.24.1",
     "dotenv": "^6.0.0",
+    "draft-js": "^0.10.5",
     "is-promise": "^2.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
