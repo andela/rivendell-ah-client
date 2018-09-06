@@ -1,33 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Main from './views/Main';
 
-import { Button, Input } from 'semantic-ui-react';
-
-
-/**
- *This class is the main entry point for the application
- */
-class App extends Component {
-  /**
-   *Returns JSX of that is used to test the app
-   @returns {ReactElement} returns a JSX
-   */
-  render() {
-    return (
-      <div>
-        <p>Rivendell Author's Haven frontend project </p>
-        <Button content="Primary" primary />
-        <Button content="Secondary" secondary />
-        <Input
-          loading
-          icon="user"
-          iconPosition="left"
-          placeholder="Search..."
-        />
-        <Input loading icon="user" placeholder="Search..." />
-      </div>
-    );
-  }
-}
-
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+    <Footer />
+  </div>
+);
 
 export default App;
