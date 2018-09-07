@@ -35,7 +35,7 @@ describe('Testing the BasicUserInfo Component', () => {
       chai.expect(divContainer.find(Image).prop('verticalAlign')).eql('middle');
     });
     it('the rendered Image should be small ', () => {
-      chai.expect(divContainer.find(Image).prop('size')).eql('small');
+      chai.expect(divContainer.find(Image).prop('size')).eql('tiny');
     });
   });
 

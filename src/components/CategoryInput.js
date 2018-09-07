@@ -10,13 +10,10 @@ const CategoryInput = ({ categories }) => (
       {categoryInputHelper(categories)}
     </Dropdown.Menu>
   </Dropdown>
-
-
 );
 
 
 CategoryInput.defaultProps = {
-  options: [],
-  currentValues: []
+  categories: []
 };
 export default CategoryInput;
