@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import chai from 'chai';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import CategoryInput from '../../src/components/CategoryInput';
 
 
@@ -18,7 +18,7 @@ describe('TagInput Component', () => {
         .to.equal(1);
     });
     it('should contain a Menu.Item', () => {
-      chai.expect(mountedObj.find(Menu.Item).length)
+      chai.expect(mountedObj.find(Dropdown.Menu).length)
         .to.equal(1);
     });
   });

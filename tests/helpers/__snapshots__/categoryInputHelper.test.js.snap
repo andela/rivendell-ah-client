@@ -1,0 +1,965 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the pure function categoryInputHelper the values in the array that is rendered should contain a Dropdown.Item(s) 1`] = `
+<div>
+  <DropdownItem
+    key="OTHERS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="OTHER"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="1"
+          value="OTHERS"
+        >
+          OTHERS
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="TECH"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="TECH"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="2"
+          value="ENGINEERING"
+        >
+          ENGINEERI
+        </DropdownItem>
+        <DropdownItem
+          key="3"
+          value="SOFTWARE DEVELOPMENT"
+        >
+          SOFTWARE 
+        </DropdownItem>
+        <DropdownItem
+          key="4"
+          value="ARTIFICIAL INTELLIGENCE"
+        >
+          ARTIFICIA
+        </DropdownItem>
+        <DropdownItem
+          key="5"
+          value="BIOTECHNOLOGY"
+        >
+          BIOTECHNO
+        </DropdownItem>
+        <DropdownItem
+          key="6"
+          value="NANO TECHNOLOGY"
+        >
+          NANO TECH
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="ENTERPRENEURSHIP"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="ENTER"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="7"
+          value="SME"
+        >
+          SME
+        </DropdownItem>
+        <DropdownItem
+          key="8"
+          value="STARTUPS"
+        >
+          STARTUPS
+        </DropdownItem>
+        <DropdownItem
+          key="9"
+          value="BUSINESS GROWTH"
+        >
+          BUSINESS 
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="SCIENCE"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="SCIEN"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="17"
+          value="HEALTH SCIENCE"
+        >
+          HEALTH SC
+        </DropdownItem>
+        <DropdownItem
+          key="18"
+          value="CHEMICAL SCIENCE"
+        >
+          CHEMICAL 
+        </DropdownItem>
+        <DropdownItem
+          key="19"
+          value="AGRICULTURAL SCIENCE"
+        >
+          AGRICULTU
+        </DropdownItem>
+        <DropdownItem
+          key="20"
+          value="SOCIAL SCIENCE"
+        >
+          SOCIAL SC
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="CULTURE"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="CULTU"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="21"
+          value="ASIA"
+        >
+          ASIA
+        </DropdownItem>
+        <DropdownItem
+          key="22"
+          value="AFRICA"
+        >
+          AFRICA
+        </DropdownItem>
+        <DropdownItem
+          key="23"
+          value="EUROPE"
+        >
+          EUROPE
+        </DropdownItem>
+        <DropdownItem
+          key="24"
+          value="US"
+        >
+          US
+        </DropdownItem>
+        <DropdownItem
+          key="25"
+          value="UK"
+        >
+          UK
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="ART"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="ART"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="26"
+          value="FASHION"
+        >
+          FASHION
+        </DropdownItem>
+        <DropdownItem
+          key="27"
+          value="FINE ART"
+        >
+          FINE ART
+        </DropdownItem>
+        <DropdownItem
+          key="28"
+          value="PERFORMING ART"
+        >
+          PERFORMIN
+        </DropdownItem>
+        <DropdownItem
+          key="29"
+          value="MUSEUMS"
+        >
+          MUSEUMS
+        </DropdownItem>
+        <DropdownItem
+          key="30"
+          value="BROADCASTING"
+        >
+          BROADCAST
+        </DropdownItem>
+        <DropdownItem
+          key="31"
+          value="GRAPHICS"
+        >
+          GRAPHICS
+        </DropdownItem>
+        <DropdownItem
+          key="32"
+          value="INTERIOR ART"
+        >
+          INTERIOR 
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="MUSIC"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="MUSIC"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="33"
+          value="HIP HOP"
+        >
+          HIP HOP
+        </DropdownItem>
+        <DropdownItem
+          key="34"
+          value="R&B"
+        >
+          R&B
+        </DropdownItem>
+        <DropdownItem
+          key="35"
+          value="ROCK"
+        >
+          ROCK
+        </DropdownItem>
+        <DropdownItem
+          key="36"
+          value="CLASSIC"
+        >
+          CLASSIC
+        </DropdownItem>
+        <DropdownItem
+          key="37"
+          value="LEARNING"
+        >
+          LEARNING
+        </DropdownItem>
+        <DropdownItem
+          key="38"
+          value="OLDIES"
+        >
+          OLDIES
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="SPORTS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="SPORT"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="39"
+          value="BALL GAMES"
+        >
+          BALL GAME
+        </DropdownItem>
+        <DropdownItem
+          key="40"
+          value="AQUATIC SPORTS"
+        >
+          AQUATIC S
+        </DropdownItem>
+        <DropdownItem
+          key="41"
+          value="AIR SPORTS"
+        >
+          AIR SPORT
+        </DropdownItem>
+        <DropdownItem
+          key="42"
+          value="RACING"
+        >
+          RACING
+        </DropdownItem>
+        <DropdownItem
+          key="43"
+          value="CLIMBING"
+        >
+          CLIMBING
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="FOODS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="FOODS"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="44"
+          value="NUTRITION"
+        >
+          NUTRITION
+        </DropdownItem>
+        <DropdownItem
+          key="45"
+          value="CUISINES"
+        >
+          CUISINES
+        </DropdownItem>
+        <DropdownItem
+          key="46"
+          value="HEALTH AND DIET"
+        >
+          HEALTH AN
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+</div>
+`;
+
+exports[`the pure function categoryInputHelper the values in the array that is rendered should match the existing snapshot 1`] = `
+<div>
+  <DropdownItem
+    key="OTHERS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="OTHER"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="1"
+          value="OTHERS"
+        >
+          OTHERS
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="TECH"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="TECH"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="2"
+          value="ENGINEERING"
+        >
+          ENGINEERI
+        </DropdownItem>
+        <DropdownItem
+          key="3"
+          value="SOFTWARE DEVELOPMENT"
+        >
+          SOFTWARE 
+        </DropdownItem>
+        <DropdownItem
+          key="4"
+          value="ARTIFICIAL INTELLIGENCE"
+        >
+          ARTIFICIA
+        </DropdownItem>
+        <DropdownItem
+          key="5"
+          value="BIOTECHNOLOGY"
+        >
+          BIOTECHNO
+        </DropdownItem>
+        <DropdownItem
+          key="6"
+          value="NANO TECHNOLOGY"
+        >
+          NANO TECH
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="ENTERPRENEURSHIP"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="ENTER"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="7"
+          value="SME"
+        >
+          SME
+        </DropdownItem>
+        <DropdownItem
+          key="8"
+          value="STARTUPS"
+        >
+          STARTUPS
+        </DropdownItem>
+        <DropdownItem
+          key="9"
+          value="BUSINESS GROWTH"
+        >
+          BUSINESS 
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="SCIENCE"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="SCIEN"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="17"
+          value="HEALTH SCIENCE"
+        >
+          HEALTH SC
+        </DropdownItem>
+        <DropdownItem
+          key="18"
+          value="CHEMICAL SCIENCE"
+        >
+          CHEMICAL 
+        </DropdownItem>
+        <DropdownItem
+          key="19"
+          value="AGRICULTURAL SCIENCE"
+        >
+          AGRICULTU
+        </DropdownItem>
+        <DropdownItem
+          key="20"
+          value="SOCIAL SCIENCE"
+        >
+          SOCIAL SC
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="CULTURE"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="CULTU"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="21"
+          value="ASIA"
+        >
+          ASIA
+        </DropdownItem>
+        <DropdownItem
+          key="22"
+          value="AFRICA"
+        >
+          AFRICA
+        </DropdownItem>
+        <DropdownItem
+          key="23"
+          value="EUROPE"
+        >
+          EUROPE
+        </DropdownItem>
+        <DropdownItem
+          key="24"
+          value="US"
+        >
+          US
+        </DropdownItem>
+        <DropdownItem
+          key="25"
+          value="UK"
+        >
+          UK
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="ART"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="ART"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="26"
+          value="FASHION"
+        >
+          FASHION
+        </DropdownItem>
+        <DropdownItem
+          key="27"
+          value="FINE ART"
+        >
+          FINE ART
+        </DropdownItem>
+        <DropdownItem
+          key="28"
+          value="PERFORMING ART"
+        >
+          PERFORMIN
+        </DropdownItem>
+        <DropdownItem
+          key="29"
+          value="MUSEUMS"
+        >
+          MUSEUMS
+        </DropdownItem>
+        <DropdownItem
+          key="30"
+          value="BROADCASTING"
+        >
+          BROADCAST
+        </DropdownItem>
+        <DropdownItem
+          key="31"
+          value="GRAPHICS"
+        >
+          GRAPHICS
+        </DropdownItem>
+        <DropdownItem
+          key="32"
+          value="INTERIOR ART"
+        >
+          INTERIOR 
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="MUSIC"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="MUSIC"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="33"
+          value="HIP HOP"
+        >
+          HIP HOP
+        </DropdownItem>
+        <DropdownItem
+          key="34"
+          value="R&B"
+        >
+          R&B
+        </DropdownItem>
+        <DropdownItem
+          key="35"
+          value="ROCK"
+        >
+          ROCK
+        </DropdownItem>
+        <DropdownItem
+          key="36"
+          value="CLASSIC"
+        >
+          CLASSIC
+        </DropdownItem>
+        <DropdownItem
+          key="37"
+          value="LEARNING"
+        >
+          LEARNING
+        </DropdownItem>
+        <DropdownItem
+          key="38"
+          value="OLDIES"
+        >
+          OLDIES
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="SPORTS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="SPORT"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="39"
+          value="BALL GAMES"
+        >
+          BALL GAME
+        </DropdownItem>
+        <DropdownItem
+          key="40"
+          value="AQUATIC SPORTS"
+        >
+          AQUATIC S
+        </DropdownItem>
+        <DropdownItem
+          key="41"
+          value="AIR SPORTS"
+        >
+          AIR SPORT
+        </DropdownItem>
+        <DropdownItem
+          key="42"
+          value="RACING"
+        >
+          RACING
+        </DropdownItem>
+        <DropdownItem
+          key="43"
+          value="CLIMBING"
+        >
+          CLIMBING
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+  <DropdownItem
+    key="FOODS"
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      openOnFocus={true}
+      renderLabel={[Function]}
+      scrolling={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      text="FOODS"
+      wrapSelection={true}
+    >
+      <DropdownMenu>
+        <DropdownHeader>
+          SubCatg
+        </DropdownHeader>
+        <DropdownItem
+          key="44"
+          value="NUTRITION"
+        >
+          NUTRITION
+        </DropdownItem>
+        <DropdownItem
+          key="45"
+          value="CUISINES"
+        >
+          CUISINES
+        </DropdownItem>
+        <DropdownItem
+          key="46"
+          value="HEALTH AND DIET"
+        >
+          HEALTH AN
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </DropdownItem>
+</div>
+`;

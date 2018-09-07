@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react';
-import categoryInputHelper from '../categoryInputHelper';
+import { Dropdown } from 'semantic-ui-react';
+import categoryInputHelper from '../helpers/categoryInputHelper';
 
 const CategoryInput = ({ categories }) => (
 

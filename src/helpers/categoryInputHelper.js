@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 
 
 /**
@@ -11,7 +11,7 @@ import { Dropdown, Menu } from 'semantic-ui-react';
  */
 function categoryInputHelper(categories) {
   return categories.map(category => (
-    <Dropdown.Item>
+    <Dropdown.Item key={category.name}>
       <Dropdown text={category.name.substring(0, 5)} scrolling>
         <Dropdown.Menu>
           <Dropdown.Header>SubCatg</Dropdown.Header>
