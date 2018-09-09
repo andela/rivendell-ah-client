@@ -10,7 +10,7 @@
     "coverage": "jest --coverage",
     "test-watch": "jest --coverage --watch",
     "build": "webpack --mode production --env.mode=production",
-    "update-snapshot":"jest --updateSnapshot"
+    "update-snapshot": "jest --updateSnapshot"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "babel-preset-stage-3": "^6.24.1",
     "dotenv": "^6.0.0",
     "draft-js": "^0.10.5",
+    "draft-js-emoji-plugin": "^2.1.1",
+    "draft-js-plugins-editor": "^2.1.1",
     "is-promise": "^2.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

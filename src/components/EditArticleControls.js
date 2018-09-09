@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 
 import CategoryInput from './CategoryInput';
 import TagInput from './TagInput';
-
+import SmartEditor from './SmartEditor';
 
 /**
  * This component manages the state of the input elements
@@ -107,6 +107,7 @@ class EditControls extends Component {
         />
         <CategoryInput categories={this.categories} />
         <Button primary content="Create Article" />
+        <SmartEditor />
       </div>
     );
   }
