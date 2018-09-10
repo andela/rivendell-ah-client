@@ -1,9 +1,4 @@
+coverage
 node_modules
-<<<<<<< HEAD
 dist
 .env
-
-=======
-.env
-dist/
->>>>>>> chore(setup redux): integrate redux into the app
