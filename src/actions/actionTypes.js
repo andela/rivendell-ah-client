@@ -1,4 +1,5 @@
 export default {
   HELLO_WORLD: 'HELLO_WORLD',
   SAGA_WORLD: 'SAGA_WORLD',
+  EDIT_ARTICLE: 'EDIT_ARTICLE'
 };

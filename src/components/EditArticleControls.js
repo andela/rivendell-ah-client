@@ -1,10 +1,47 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 
+import { connect } from 'react-redux';
 import CategoryInput from './CategoryInput';
 import TagInput from './TagInput';
 import SmartEditor from './SmartEditor';
 
+const categories = [
+  {
+    name: 'OTHERS',
+    subcategories: [
+      {
+        id: 1,
+        name: 'OTHERS'
+      }
+    ]
+  },
+  {
+    name: 'TECH',
+    subcategories: [
+      {
+        id: 2,
+        name: 'ENGINEERING'
+      },
+      {
+        id: 3,
+        name: 'SOFTWARE DEVELOPMENT'
+      },
+      {
+        id: 4,
+        name: 'ARTIFICIAL INTELLIGENCE'
+      },
+      {
+        id: 5,
+        name: 'BIOTECHNOLOGY'
+      },
+      {
+        id: 6,
+        name: 'NANO TECHNOLOGY'
+      }
+    ]
+  },
+];
 /**
  * This component manages the state of the input elements
  * to the edit Articles
@@ -19,53 +56,37 @@ class EditControls extends Component {
    */
   constructor(props) {
     super(props);
-    this.state = {
-      currentValues: [],
-      tags: [
-        { key: 'English', text: 'English', value: 'English' },
-        { key: 'French', text: 'French', value: 'French' },
-        { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
-      ],
-    };
 
-    this.categories = [
-      {
-        name: 'OTHERS',
-        subcategories: [
-          {
-            id: 1,
-            name: 'OTHERS'
-          }
-        ]
-      },
-      {
-        name: 'TECH',
-        subcategories: [
-          {
-            id: 2,
-            name: 'ENGINEERING'
-          },
-          {
-            id: 3,
-            name: 'SOFTWARE DEVELOPMENT'
-          },
-          {
-            id: 4,
-            name: 'ARTIFICIAL INTELLIGENCE'
-          },
-          {
-            id: 5,
-            name: 'BIOTECHNOLOGY'
-          },
-          {
-            id: 6,
-            name: 'NANO TECHNOLOGY'
-          }
-        ]
-      },
+    this.initialTagOptions = [
+      { key: 'Art', text: 'Art', value: 'Art' },
+      { key: 'Science', text: 'Science', value: 'Science' },
+      { key: 'Life', text: 'Life', value: 'Life' },
     ];
+
+    this.state = {
+      tags: [],
+      articleBody: '',
+      title: '',
+      category: ''
+    };
+    this.categories = categories;
+    this.onBodyChange = this.onBodyChange.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
+
+  /**
+   *This method updates the article body based on what
+   the user had inputed
+   * @param {string} newArticleBody this contains html from
+   * the smartEditor
+   * @returns {void}
+   */
+  onBodyChange(newArticleBody) {
+    this.setState({
+      articleBody: newArticleBody
+    });
+  }
 
   /**
    *this function is called when a new field is inserted
@@ -88,28 +109,49 @@ class EditControls extends Component {
   thus returns nothig
   @param {object} e the event handler object
    */
-  handleChange = (e, { value }) => this.setState({ currentValues: value })
+  handleChange = (e, { value }) => this.setState({ tags: value })
 
+  /**
+   *
+   * Called when the createArticle button is clicked
+   *@returns {void}
+   */
+  submit = (e) => {
+    e.preventDefault();
+    console.log(this.state, 'main');
+  }
 
   /**
    * This returns a group of custom components that
    *@returns {JSX} a JSX to be rendered
    */
   render() {
-    const { tags, currentValues } = this.state;
+    const { tags } = this.state;
     return (
       <div>
         <TagInput
-          options={tags}
+          options={this.initialTagOptions}
           hadleAddition={this.handleAddition}
           handleChange={this.handleChange}
-          currentValues={currentValues}
+          currentValues={tags}
         />
         <CategoryInput categories={this.categories} />
-        <Button primary content="Create Article" />
-        <SmartEditor />
+        <Button
+          primary
+          content="Create Article"
+          onClick={this.submit}
+        />
+        <Input
+          placeholder="Title"
+          fluid
+        />
+        <SmartEditor
+          onValueChange={this.onBodyChange}
+        />
       </div>
     );
   }
 }
+
+
 export default EditControls;
