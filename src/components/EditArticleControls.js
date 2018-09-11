@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import CategoryInput from './CategoryInput';
 import TagInput from './TagInput';
 import SmartEditor from './SmartEditor';
+import createArticle from '../actions/createArticle';
 
 const categories = [
   {
@@ -118,7 +119,14 @@ class EditControls extends Component {
    */
   submit = (e) => {
     e.preventDefault();
-    console.log(this.state, 'main');
+    const { dispatch } = this.props;
+    dispatch(createArticle({
+      article: {
+        title: 'The bad ass title',
+        description: 'what ',
+        body: 'hat the body'
+      }
+    }));
   }
 
   /**
@@ -153,5 +161,7 @@ class EditControls extends Component {
   }
 }
 
+// connect(a,)
 
-export default EditControls;
+
+export default connect(null)(EditControls);

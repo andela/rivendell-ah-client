@@ -3,7 +3,8 @@ import types from '../actions/actionTypes';
 const initialState = {
   editing: true,
   creatingArticle: false,
-  creationComplete: false
+  creationComplete: false,
+  article: {}
 
 };
 
@@ -27,6 +28,17 @@ const createArticle = (state = initialState, action = {}) => {
       ...state,
       creationComplete: true
     };
+  case `${types.CREATE_ARTICLE}_FAILURE`: {
+    console.log(action, 'this is the action');
+    return {
+      ...state,
+      isLoading: false,
+      error: {
+        status: true,
+        message: action.payload.message,
+      }
+    };
+  }
   default:
     return state;
   }
