@@ -1,3 +1,4 @@
+
 import types from '../actions/actionTypes';
 
 /**
@@ -31,6 +32,12 @@ const authMiddleware = () => next => (action) => {
   if (action.type === types.LOGOUT) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+  }
+  if (action.type === types.SOCIAL_LOGIN) {
+    const { user } = action.payload;
+    const { token } = action.payload.user;
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   }
   return next(action);
 };

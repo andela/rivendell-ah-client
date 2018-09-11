@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Page should render 1`] = `
+<div
+  id="profile-page"
+>
+  <Profile
+    errors={Object {}}
+    owner="reader11"
+    profile={
+      Object {
+        "bio": null,
+        "email": "reader11@gmail.com",
+        "firstName": "myfirs",
+        "id": 18,
+        "image": null,
+        "lastName": "mylas",
+        "username": "reader11",
+        "verified": true,
+      }
+    }
+    username="reader11"
+  />
+  <Link
+    id="profile-redirect-link"
+    replace={false}
+    to="/"
+  >
+    Back
+  </Link>
+</div>
+`;
+
+exports[`Profile component should render 1`] = `
+<div
+  className="content"
+>
+  <div
+    id="profile-header"
+  >
+    <div
+      id="profile-image-div"
+    >
+      <i
+        className="large material-icons"
+        id="alternate-profile-image"
+      >
+        account_circle
+      </i>
+    </div>
+    <h3
+      id="profile-name"
+    >
+      myfirs
+       
+      mylas
+    </h3>
+    <p
+      id="email-text"
+    >
+      reader11@gmail.com
+    </p>
+  </div>
+  <div
+    className="profile-detail-container"
+  >
+    <div
+      className="profile-details"
+    >
+      <p
+        id="bio-field"
+      >
+        Bio
+      </p>
+      <p
+        id="bio-text"
+      >
+        You have not added you biograpphy.
+    Edit your profile and add you biograhpy
+      </p>
+    </div>
+    <Link
+      id="update-profile-link"
+      replace={false}
+      to="/@reader11/edit"
+    >
+      Edit your Profile
+    </Link>
+  </div>
+</div>
+`;

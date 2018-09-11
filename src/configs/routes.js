@@ -12,7 +12,7 @@ const {
 } = articlePages;
 const { SubcategoryArticles } = subcategoryPages;
 const {
-  EditProfile, Profile, Followers, Following,
+  EditProfilePage, ProfilePage, Followers, Following,
   ForgotPassword, ResetPassword,
 } = userPages;
 const { Signup, Login } = authPages;
@@ -76,13 +76,13 @@ export default [
   {
     type: Route,
     path: '/@:username',
-    component: Profile,
+    component: ProfilePage,
     exact: true,
   },
   {
     type: PrivateRoute,
     path: '/@:username/edit',
-    component: EditProfile,
+    component: EditProfilePage,
     exact: true,
   },
   {

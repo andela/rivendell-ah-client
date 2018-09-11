@@ -2,7 +2,7 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { Router, Redirect } from 'react-router-dom';
 
-import { PrivateRoute, mapStateToProps } from '../../src/components/routes/PrivateRoute';
+import { PrivateRoute, mapStateToProps } from '../../src/components/routes/PrivateRoute.jsx';
 
 describe('The Guest Route component', () => {
   const auth = {
