@@ -6,12 +6,14 @@ import FormInputWithIcon from '../../components/form/FormInputWithIcon';
 import FormWrapper from '../../components/form/FormWrapper';
 import FormErrors from '../../components/form/errors/FormErrors';
 import ApiErrorMsg from '../../components/form/errors/ApiErrorMsg';
+import SocialLogin from '../../components/SocialLogin';
 
 const LoginForm = (props) => {
   const {
     handleChange, handleSubmit, handleErrMsgDismiss,
     isLoading, apiValidationErrors, displayErrMsg,
-    formValidationErrors, formData, visibilityIcon, visibilityIconClick
+    formValidationErrors, formData, visibilityIcon, visibilityIconClick,
+    socialMedia,
   } = props;
   return (
     <FormWrapper
@@ -21,6 +23,10 @@ const LoginForm = (props) => {
       formType="login"
       headerText="Login"
     >
+      <div id="social-login">
+        <SocialLogin socialMedia={socialMedia} />
+      </div>
+      <div className="or-separator"><i>or</i></div>
       <ApiErrorMsg
         apiValidationErrors={apiValidationErrors}
         handleErrMsgDismiss={handleErrMsgDismiss}
@@ -89,11 +95,19 @@ LoginForm.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   visibilityIcon: PropTypes.string,
   visibilityIconClick: PropTypes.func,
+  socialMedia: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    link: PropTypes.string,
+    text: PropTypes.string,
+    divClass: PropTypes.string,
+    iconClass: PropTypes.string,
+  })),
 };
 
 LoginForm.defaultProps = {
   visibilityIcon: '',
-  visibilityIconClick: () => {}
+  visibilityIconClick: () => { },
+  socialMedia: []
 };
 
 export default LoginForm;

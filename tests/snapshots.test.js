@@ -96,7 +96,8 @@ describe('The Login Form component', () => {
       formData: {
         email: '',
         password: ''
-      }
+      },
+      socialMediaPlatforms:[]
     }
     const tree = shallow(<LoginForm
       handleChange={props.handleChange}
@@ -107,6 +108,7 @@ describe('The Login Form component', () => {
       displayErrMsg={props.displayErrMsg}
       formValidationErrors={props.formValidationErrors}
       formData={props.formData}
+      socialMedia={props.socialMediaPlatforms}
     />);
     expect(tree).toMatchSnapshot();
   });
