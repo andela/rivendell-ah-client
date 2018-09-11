@@ -1,0 +1,51 @@
+#social-login {
+    .divWidth{
+        width:20%;
+        margin:0.3em;
+    }
+    .socialfont{
+        color: white;
+        font-size: 15px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+    }
+    .social-right-pad{
+        padding-right: 2.5em;
+    }
+    .facebookTextDesign{
+      background-color: $facebookColour;
+      border-radius: 1%;
+      display: inline-block;
+      min-width: 80%;
+      padding: 0.5em;
+    }
+    .facebookIconDesign{
+        background-color: darken($facebookColour,5%);
+        min-width: 20%;
+        padding: 0.5em;
+        padding-bottom:0.57em;
+      }
+    .googleTextDesign{
+        background-color: $googleColour;
+        display: inline-block;
+        min-width: 80%;  
+        padding: 0.5em;
+      }
+    .googleIconDesign{
+        background-color: darken($googleColour,10%);
+        min-width: 20%;  
+        padding: 0.5em;
+        padding-bottom:0.55em;
+      }
+    .linkedInTextDesign{
+        background-color: $linkedInColour;
+        display: inline-block;
+        min-width: 80%; 
+        padding: 0.5em;
+      }
+    .linkedInIconDesign{
+        background-color: darken($linkedInColour,10%);
+        min-width: 20%;
+        padding: 0.5em;
+        padding-bottom:0.55em;
+      }
+}

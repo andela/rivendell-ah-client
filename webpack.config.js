@@ -30,6 +30,10 @@ module.exports = (env) => {
         },
       ],
     },
+    resolve: {
+      modules: [path.resolve(__dirname), 'node_modules'],
+      extensions: ['.js', '.jsx', '.css', '.scss'],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'public', 'index.html'),

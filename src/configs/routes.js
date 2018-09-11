@@ -2,11 +2,11 @@ import { Route } from 'react-router-dom';
 import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import authPages from '../views/auth';
+import routePages from '../components/routes';
 import articlePages from '../views/articles';
 import userPages from '../views/user';
 import subcategoryPages from '../views/articles/subcategory';
 
-const { AuthRoute } = authPages;
 const {
   UserArticles, NewArticle, Article, EditArticle
 } = articlePages;
@@ -15,6 +15,7 @@ const {
   EditProfile, Profile, Followers, Following
 } = userPages;
 const { Signup, Login } = authPages;
+const { PrivateRoute, GuestRoute } = routePages;
 
 export default [
   {
@@ -26,14 +27,14 @@ export default [
   },
   {
     id: 2,
-    type: Route,
+    type: GuestRoute,
     path: '/signup',
     component: Signup,
     exact: true,
   },
   {
     id: 3,
-    type: Route,
+    type: GuestRoute,
     path: '/login',
     component: Login,
     exact: true,
@@ -47,7 +48,7 @@ export default [
   },
   {
     id: 5,
-    type: AuthRoute,
+    type: PrivateRoute,
     path: '/articles/new',
     component: NewArticle,
     exact: true,
@@ -61,7 +62,7 @@ export default [
   },
   {
     id: 7,
-    type: AuthRoute,
+    type: PrivateRoute,
     path: '/articles/:slug/edit',
     component: EditArticle,
     exact: true,
@@ -75,7 +76,7 @@ export default [
   },
   {
     id: 9,
-    type: AuthRoute,
+    type: PrivateRoute,
     path: '/@:username/edit',
     component: EditProfile,
     exact: true,

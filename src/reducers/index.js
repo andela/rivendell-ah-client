@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import helloWorld from './helloWorld';
+import auth from './authReducer';
+import redirect from './redirectReducer';
 
 export default combineReducers({
-  helloWorld,
+  auth,
+  redirect
 });
