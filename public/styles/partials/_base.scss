@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
+  }
+  body {
+    color: $text-color;
+    font-weight: normal;
+    background: $milk-background;
+  }
+  a {
+    color: $primary-blue;
+    text-decoration: none;
+  }
+  .hide {
+    display: none;
+  }

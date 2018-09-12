@@ -1,39 +1,29 @@
 import types from '../actions/actionTypes';
 
 const initialState = {
-  editing: true,
   isLoading: false,
-  success: false,
-  article: {},
+  categories: [],
   errors: {}
 };
 
-const createArticle = (state = initialState, action = {}) => {
+const loadCategories = (state = initialState, action = {}) => {
   switch (action.type) {
-  case `${types.CREATE_ARTICLE}_EDITING_ARTICLE`:
-    return {
-      ...state,
-      editing: true,
-    };
-
-  case `${types.CREATE_ARTICLE}_LOADING`:
+  case `${types.LOAD_CATEGORIES}_LOADING`:
     return {
       ...state,
       isLoading: true,
-      editing: false,
     };
-  case `${types.CREATE_ARTICLE}_SUCCESS`: {
-    const { response } = action.payload;
-    console.log(response.data);
+  case `${types.LOAD_CATEGORIES}_SUCCESS`: {
+    console.log(action.payload);
+    const { categories } = action.payload.data;
+    console.log(categories);
     return {
       ...state,
-      success: true,
-      article: response.data,
-      editing: false,
+      categories
     };
   }
 
-  case `${types.CREATE_ARTICLE}_FAILURE`: {
+  case `${types.LOAD_CATEGORIES}_FAILURE`: {
     console.log(action, 'this is the action');
     const { response } = action.payload;
     const { message } = response.data.errors;
@@ -52,4 +42,4 @@ const createArticle = (state = initialState, action = {}) => {
   }
 };
 
-export default createArticle;
+export default loadCategories;

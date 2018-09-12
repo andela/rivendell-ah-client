@@ -10,6 +10,8 @@ const BasicUserInfo = ({ username, image }) => (
       circular
       verticalAlign="middle"
       size="tiny"
+      width="50px"
+      height="auto"
     />
     <strong>{username}</strong>
   </div>

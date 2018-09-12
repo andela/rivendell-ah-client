@@ -2,14 +2,18 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import categoryInputHelper from '../helpers/categoryInputHelper';
 
-const CategoryInput = ({ categories }) => (
 
-  <Dropdown text="Select a Category" className="link item">
-    <Dropdown.Menu>
-      <Dropdown.Header>Categories</Dropdown.Header>
-      {categoryInputHelper(categories)}
-    </Dropdown.Menu>
-  </Dropdown>
+const CategoryInput = ({ categories, onChange }) => (
+
+  <Dropdown
+    placeholder="Select a Category"
+    className="link item"
+    options={categoryInputHelper(categories)}
+    selection
+    search
+    scrolling
+    onChange={onChange}
+  />
 );
 
 

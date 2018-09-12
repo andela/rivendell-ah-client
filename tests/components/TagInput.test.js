@@ -1,11 +1,11 @@
 
 /* eslint max-len: off */
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 import chai from 'chai';
 import { Dropdown } from 'semantic-ui-react';
+import jest from 'jest';
 import TagInput from '../../src/components/TagInput';
-
 
 describe('TagInput Component', () => {
   describe('the Dropdown element that is rendered without props', () => {
@@ -43,15 +43,17 @@ describe('TagInput Component', () => {
       chai.expect(mountedObj.find('Dropdown').prop('options'))
         .to.equal(options);
     });
+  });
 
-    it('should have currentValues specified in the props or should be empty by default', () => {
-      const currentValues = [
-        { key: 'tagId3', text: 'age', value: 'age' },
-      ];
-      mountedObj = shallow(<TagInput currentValues={currentValues} />);
+  describe('the event handler', () => {
+    const event = { target: { name: 'pollName', value: 'spam' } };
 
-      chai.expect(mountedObj.find('Dropdown').prop('currentValues'))
-        .to.equal(currentValues);
-    });
+    const wrapper = mount(<TagInput />);
+    const handleChangeSpy = spyOn(TagInput.prototype, 'handleChange');
+    // expect(handleChangeSpy.calledOnce).to.equal(true);
+
+    wrapper.find(Dropdown).simulate('change');
+
+    expect(handleChangeSpy.calledOnce()).to.equal(true);
   });
 });

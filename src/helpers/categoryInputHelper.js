@@ -1,34 +1,24 @@
-import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
-
-
 /**
- * This function takes an array of categories
- * and wraps these categories in a Dropdown.Item
- * with their corresponding subcategories
- * @param {Array} categories
- * @return {JSX} returns a JSX
+ *This returns an array of subcategories that the user
+ can easily select.
+ It returns an empty array when invalid data is passed
+ to it as argument
+ * @param {Array} categories the categories in the
+ * appication
+ * @returns {Array} an array that contains all
+ * the sub categories in the app
  */
-function categoryInputHelper(categories) {
-  return categories.map(category => (
-    <Dropdown.Item key={category.name}>
-      <Dropdown text={category.name.substring(0, 5)} scrolling>
-        <Dropdown.Menu>
-          <Dropdown.Header>SubCatg</Dropdown.Header>
-          {category.subcategories.map(subcategory => (
-            <Dropdown.Item
-              value={subcategory.name}
-              key={subcategory.id}
-            >
-              {subcategory.name.substring(0, 9)}
-
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-    </Dropdown.Item>
-  ));
+function categoryInputHelper(categories = []) {
+  categories = Array.isArray(categories) ? categories : [];
+  const subcategories = [];
+  categories.forEach((category) => {
+    subcategories.push(...category.subcategories);
+  });
+  return subcategories
+    .sort((a, b) => (a.name > b.name ? 1 : -1))
+    .map(subCat => ({
+      text: subCat.name,
+      value: subCat.name,
+    }));
 }
-
-
 export default categoryInputHelper;

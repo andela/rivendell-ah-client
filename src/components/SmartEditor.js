@@ -37,12 +37,60 @@ class SmartEditor extends Component {
     this.state = {
       editorState: createEditorStateWithText('')
     };
-  }
 
+
+    this.blockRenderMap = Immutable.Map({
+      center: {
+        element: 'div'
+      },
+      left: {
+        element: 'div'
+      },
+      right: {
+        element: 'div'
+      },
+      blockquote: {
+        element: 'div'
+      }
+    });
+
+    this.styleBlockHelper = this.styleBlockHelper.bind(this);
+    this.alignCenter = this.alignCenter.bind(this);
+    this.alignLeft = this.alignLeft.bind(this);
+    this.alignRight = this.alignRight.bind(this);
+    this.convertBlockToBlockqoute = this.convertBlockToBlockqoute.bind(this);
+  }
 
     handleChange = (editorState) => {
       this.setState({ editorState });
-      const html = stateToHTML(editorState.getCurrentContent());
+
+      const exportHtmlOptions = {
+        blockRenderers: {
+          center: (block) => {
+            const data = `<div class="align-center">${
+              escape(block.getText())}</div>`;
+            return data;
+          },
+          left: (block) => {
+            const data = `<div class="align-left">${
+              escape(block.getText())}</div>`;
+            return data;
+          },
+          right: (block) => {
+            const data = `<div class="align-right">${
+              escape(block.getText())}</div>`;
+            return data;
+          },
+          quote: (block) => {
+            const data = `<div class="quote">${escape(block.getText())}</div>`;
+            return data;
+          }
+        },
+        blockStyleFn: this.blockStyleFn
+
+      };
+      const html = stateToHTML(editorState.getCurrentContent(),
+        exportHtmlOptions);
       this.onValueChange(html);
     }
 
@@ -80,6 +128,9 @@ class SmartEditor extends Component {
       case 'right': {
         return 'align-right';
       }
+      case 'quote': {
+        return 'quote';
+      }
 
       default:
         return null;
@@ -114,18 +165,59 @@ class SmartEditor extends Component {
 
 
     convertBlockToHeader = () => {
-      const { editorState } = this.state;
-      const newState = RichUtils
-        .toggleBlockType(editorState, 'header-one');
-      this.handleChange(newState);
+      this.styleBlockHelper('header-one');
     }
 
     convertBlockToSubHeader = () => {
+      this.styleBlockHelper('header-three');
+    }
+
+    /**
+     * wraps a blockquote on the current block
+     * @returns {void} performs an action and return nothing
+     */
+    convertBlockToBlockqoute() {
+      this.styleBlockHelper('quote');
+    }
+
+    /**
+     * Center aligns the selected block
+     * @returns {void} performs an action and return nothing
+     */
+    alignCenter() {
+      this.styleBlockHelper('center');
+    }
+
+
+    /**
+     * Left aligns the selected block
+     * @returns {void} performs an action and return nothing
+     */
+    alignLeft() {
+      this.styleBlockHelper('left');
+    }
+
+
+    /**
+     * RIght aligns the selected block
+     * @returns {void} performs an action and return nothing
+     */
+    alignRight() {
+      this.styleBlockHelper('right');
+    }
+
+    /**
+     * Adds styles to the currently selected block
+     * @param {object} blockName
+     * @returns {void} performs an action and return nothing
+     */
+    styleBlockHelper(blockName) {
       const { editorState } = this.state;
       const newState = RichUtils
-        .toggleBlockType(editorState, 'header-three');
+        .toggleBlockType(editorState, blockName);
       this.handleChange(newState);
     }
+
 
     /**
      * @returns {JSX} when return
@@ -135,40 +227,70 @@ class SmartEditor extends Component {
 
 
       return (
-        <div className="editor">
+        <div id="smartEditor">
+
+          <Button.Group
+            as="span"
+            buttons={[
+              {
+                key: 'bold',
+                icon: 'bold',
+                onClick: this.onBoldClick,
+              },
+              { key: 'underline',
+                icon: 'underline',
+                onClick: this.onUnderline
+              },
+              {
+                key: 'italic',
+                icon: 'italic',
+                onClick: this.onItalic
+              },
+              {
+                key: 'h1',
+                content: 'heading',
+                onClick: this.convertBlockToHeader
+              },
+
+              {
+                key: 'h3',
+                content: 'sub-heading',
+                onClick: this.convertBlockToSubHeader
+              },
+              {
+                key: 'bq',
+                content: "' '",
+                onClick: this.convertBlockToBlockqoute
+              },
+
+            ]}
+          />
 
 
-          <div>
-            <Button.Group
-              buttons={[
-                {
-                  key: 'bold',
-                  icon: 'bold',
-                  onClick: this.onBoldClick
-                },
-                { key: 'underline',
-                  icon: 'underline',
-                  onClick: this.onUnderline
-                },
-                {
-                  key: 'italic',
-                  icon: 'italic',
-                  onClick: this.onItalic
-                },
-                {
-                  key: 'h1',
-                  content: 'heading',
-                  onClick: this.convertBlockToHeader
-                },
+          <Button.Group
+            buttons={[
+              { key: 'align-left',
+                icon: 'align left',
+                onClick: this.alignLeft
+              },
+              {
+                key: 'align-center',
+                icon: 'align center',
+                onClick: this.alignCenter,
+              },
 
-                {
-                  key: 'h3',
-                  content: 'sub-heading',
-                  onClick: this.convertBlockToSubHeader
-                },
+              {
+                key: 'align right',
+                icon: 'align right',
+                onClick: this.alignRight
+              },
 
-              ]}
-            />
+            ]}
+          />
+          <EmojiSuggestions />
+          <EmojiSelect />
+          <div className="editor">
+
             <Editor
               editorState={editorState}
               onChange={this.handleChange}
@@ -179,12 +301,10 @@ class SmartEditor extends Component {
               blockStyleFn={this.blockStyleFn}
               blockRenderMap={this.blockRenderMap}
             />
-            <EmojiSuggestions />
+
           </div>
 
-          <div>
-            <EmojiSelect />
-          </div>
+
         </div>
 
       );

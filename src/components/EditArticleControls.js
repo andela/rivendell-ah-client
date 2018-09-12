@@ -1,48 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Input, Container } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import CategoryInput from './CategoryInput';
 import TagInput from './TagInput';
 import SmartEditor from './SmartEditor';
 import createArticle from '../actions/createArticle';
+import loadCategories from '../actions/loadCategories';
 
-const categories = [
-  {
-    name: 'OTHERS',
-    subcategories: [
-      {
-        id: 1,
-        name: 'OTHERS'
-      }
-    ]
-  },
-  {
-    name: 'TECH',
-    subcategories: [
-      {
-        id: 2,
-        name: 'ENGINEERING'
-      },
-      {
-        id: 3,
-        name: 'SOFTWARE DEVELOPMENT'
-      },
-      {
-        id: 4,
-        name: 'ARTIFICIAL INTELLIGENCE'
-      },
-      {
-        id: 5,
-        name: 'BIOTECHNOLOGY'
-      },
-      {
-        id: 6,
-        name: 'NANO TECHNOLOGY'
-      }
-    ]
-  },
-];
+
 /**
  * This component manages the state of the input elements
  * to the edit Articles
@@ -58,7 +24,9 @@ class EditControls extends Component {
   constructor(props) {
     super(props);
 
-    this.initialTagOptions = [
+    const { loadCategories } = props;
+
+    const initialTagOptions = [
       { key: 'Art', text: 'Art', value: 'Art' },
       { key: 'Science', text: 'Science', value: 'Science' },
       { key: 'Life', text: 'Life', value: 'Life' },
@@ -66,13 +34,19 @@ class EditControls extends Component {
 
     this.state = {
       tags: [],
-      articleBody: '',
+      body: '',
       title: '',
-      category: ''
+      category: '',
+      description: '',
+      tagOptions: initialTagOptions,
     };
-    this.categories = categories;
+
+    loadCategories();
     this.onBodyChange = this.onBodyChange.bind(this);
     this.submit = this.submit.bind(this);
+    this.updateCategory = this.updateCategory.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
   }
 
 
@@ -85,7 +59,7 @@ class EditControls extends Component {
    */
   onBodyChange(newArticleBody) {
     this.setState({
-      articleBody: newArticleBody
+      body: newArticleBody
     });
   }
 
@@ -97,9 +71,9 @@ class EditControls extends Component {
   @param {object} e the event handler object
    */
   handleAddition = (e, { value }) => {
-    const { tags } = this.state;
+    const { tagOptions } = this.state;
     this.setState({
-      tags: [{ key: value, text: value, value }, ...tags],
+      tagOptions: [{ key: value, text: value, value }, ...tagOptions],
     });
   }
 
@@ -115,53 +89,114 @@ class EditControls extends Component {
   /**
    *
    * Called when the createArticle button is clicked
-   *@returns {void}
+   *@returns {void} return nothing
+    @param {function} e event handler
    */
   submit = (e) => {
     e.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(createArticle({
-      article: {
-        title: 'The bad ass title',
-        description: 'what ',
-        body: 'hat the body'
-      }
-    }));
+    const { persistArticle } = this.props;
+    const { title, body, tags, description, category } = this.state;
+
+    persistArticle({ title, description, body, tags, category });
   }
+
+  /**
+   *This updates the category once it is selected in the dropdown
+   * makes changes to the title input
+   * @param {object} e the event handler
+   * @param {object} param1 an object taht contains the value
+   * @returns {void} return nothing
+   */
+  updateCategory(e, { value }) {
+    this.setState({
+      category: value,
+    });
+  }
+
+  /**
+   *This updates the description once it is
+   changed in the description input box
+   * @param {object} e the event handler
+   * @param {object} param1 an object taht contains the value
+   * @returns {void} return nothing
+   */
+  updateDescription(e, { value }) {
+    this.setState({
+      description: value
+    });
+  }
+
+  /**
+   *This updates the title in the state when the user
+   * makes changes to the title input
+   * @param {object} e the event handler
+   * @param {object} param1 an object taht contains the value
+   * @returns {void} return nothing
+   */
+  updateTitle(e, { value }) {
+    this.setState({
+      title: value,
+    });
+  }
+
 
   /**
    * This returns a group of custom components that
    *@returns {JSX} a JSX to be rendered
    */
   render() {
-    const { tags } = this.state;
+    const { tagOptions } = this.state;
+    const { categories } = this.props;
     return (
-      <div>
-        <TagInput
-          options={this.initialTagOptions}
-          hadleAddition={this.handleAddition}
-          handleChange={this.handleChange}
-          currentValues={tags}
-        />
-        <CategoryInput categories={this.categories} />
-        <Button
-          primary
-          content="Create Article"
-          onClick={this.submit}
-        />
+      <Container>
         <Input
           placeholder="Title"
-          fluid
+          onChange={this.updateTitle}
+          error
+        />
+
+        <Input
+          placeholder="Description"
+          onChange={this.updateDescription}
+        />
+        <TagInput
+          options={tagOptions}
+          hadleAddition={this.handleAddition}
+          handleChange={this.handleChange}
+        />
+        <CategoryInput
+          categories={categories}
+          onChange={this.updateCategory}
         />
         <SmartEditor
           onValueChange={this.onBodyChange}
         />
-      </div>
+
+        <Button
+          primary
+          content="Create Article"
+          onClick={this.submit}
+          positive
+        />
+      </Container>
     );
   }
 }
 
-// connect(a,)
+
+const mapStateToProps = state => ({
+  createArticleState: state.createArticle,
+  categories: state.loadCategories.categories,
+
+});
+const mapDispatchToProps = dispatch => ({
+  persistArticle: (article) => {
+    dispatch(createArticle(article));
+  },
+  loadCategories: () => {
+    dispatch(loadCategories());
+  }
+});
 
 
-export default connect(null)(EditControls);
+export default connect(mapStateToProps, mapDispatchToProps)(EditControls);

@@ -3,8 +3,7 @@ import { Dropdown } from 'semantic-ui-react';
 
 
 const TagInput = ({
-  options, currentValues,
-  hadleAddition, handleChange
+  options, hadleAddition, handleChange
 }) => (
   <Dropdown
     options={options}
@@ -13,7 +12,6 @@ const TagInput = ({
     allowAdditions
     multiple
     placeholder="Add Tag ..."
-    currentValues={currentValues}
     onAddItem={hadleAddition}
     onChange={handleChange}
   />
