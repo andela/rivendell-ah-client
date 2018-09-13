@@ -16,13 +16,10 @@ const clearAllApiValidationErrors = () => ({
   type: types.CLEAR_ALL_API_VALIDATION_ERRS,
 });
 
-<<<<<<< HEAD
 const logout = () => ({
   type: types.LOGOUT,
 });
 
-=======
->>>>>>> feature(sociallogin): setup social login for frontend (#15)
 const socialLogin = user => ({
   type: types.SOCIAL_LOGIN,
   payload: {
@@ -30,7 +27,6 @@ const socialLogin = user => ({
   }
 });
 
-<<<<<<< HEAD
 
 const { RESET_PASSWORD_LINK, RESET_PASSWORD,
   RESET_PASSWORD_TOKEN, VALIDATE_RESET_TOKEN } = types;
@@ -66,12 +62,17 @@ export const validateResetToken = path => ({
 });
 
 
-=======
->>>>>>> feature(sociallogin): setup social login for frontend (#15)
+const signup = formData => ({
+  type: types.SIGN_UP,
+  payload: axiosInstance()
+    .post('http://localhost:3000/api/users/', { user: formData }),
+});
+
 export default {
   login,
   clearApiValidationError,
   clearAllApiValidationErrors,
   logout,
   socialLogin,
+  signup
 };

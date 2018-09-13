@@ -1,0 +1,459 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Footer component Should render as expected 1`] = `
+<footer>
+  <p>
+    © Authors Haven    
+    <Link
+      replace={false}
+      to="/"
+    >
+      About Us
+    </Link>
+  </p>
+</footer>
+`;
+
+exports[`The Form Errors component Should render as expected 1`] = `
+<ul>
+  <FormValidationErrors
+    errorType="login"
+    errors={
+      Object {
+        "errorCount": 0,
+      }
+    }
+  />
+  <ApiValidationErrors
+    errors={
+      Object {
+        "message": "",
+      }
+    }
+    field="login"
+  />
+</ul>
+`;
+
+exports[`The Form Input With Icon component Should render as expected 1`] = `
+<label
+  htmlFor="email"
+>
+  <div
+    className="form-field"
+    onClick={[Function]}
+  >
+    <span
+      className="form-icon-wrapper"
+    >
+      <i
+        className="material-icons form"
+      >
+        email
+      </i>
+    </span>
+    <input
+      name="email"
+      onChange={[Function]}
+      type="email"
+      value="validemail@gmail.com"
+    />
+  </div>
+</label>
+`;
+
+exports[`The Form Wrapper component Should render as expected 1`] = `
+<div
+  id="login"
+>
+  <Container>
+    <div
+      className="content"
+    >
+      <div
+        className="form"
+      >
+        <Form
+          as="form"
+          loading={false}
+          onSubmit={[Function]}
+        >
+          <FormHeaderIcon
+            iconName="person"
+          />
+          <h2>
+            Login
+          </h2>
+        </Form>
+      </div>
+      <AuthFormFooter
+        authType="login"
+      />
+    </div>
+  </Container>
+</div>
+`;
+
+exports[`The Login Form component Should render as expected 1`] = `
+<FormWrapper
+  formType="login"
+  handleSubmit={[Function]}
+  headerText="Login"
+  iconName="person"
+  isLoading={false}
+>
+  <div
+    id="social-login"
+  >
+    <SocialLogin
+      socialMedia={Array []}
+    />
+  </div>
+  <div
+    className="or-separator"
+  >
+    <i>
+      or
+    </i>
+  </div>
+  <ApiErrorMsg
+    apiValidationErrors={
+      Object {
+        "message": "",
+        "response": Object {},
+      }
+    }
+    displayErrMsg={true}
+    handleErrMsgDismiss={[Function]}
+  />
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="email"
+      name="email"
+      placeholder="Email"
+      type="email"
+      value=""
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="email"
+        formValidationErrors={
+          Object {
+            "email": Array [],
+            "errorCount": 0,
+            "password": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="lock"
+      name="password"
+      placeholder="Password"
+      type="password"
+      value=""
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="password"
+        formValidationErrors={
+          Object {
+            "email": Array [],
+            "errorCount": 0,
+            "password": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <Button
+    as="button"
+    fluid={true}
+    role="button"
+    size="medium"
+  >
+    Login
+  </Button>
+  <Link
+    className="forget-password"
+    replace={false}
+    to="/forget-password"
+  >
+    Forgot password?
+  </Link>
+  <div
+    className="clear-fix"
+  />
+</FormWrapper>
+`;
+
+exports[`The Signup Form component Should render as expected 1`] = `
+<FormWrapper
+  formType="signup"
+  handleSubmit={[Function]}
+  headerText="Sign up"
+  iconName="person"
+  isLoading={false}
+>
+  <div
+    id="social-login"
+  >
+    <SocialLogin
+      socialMedia={Array []}
+    />
+  </div>
+  <div
+    className="or-separator"
+  >
+    <i>
+      or
+    </i>
+  </div>
+  <ApiErrorMsg
+    apiValidationErrors={
+      Object {
+        "message": "",
+        "response": Object {},
+      }
+    }
+    displayErrMsg={true}
+    handleErrMsgDismiss={[Function]}
+  />
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="person"
+      name="firstName"
+      placeholder="First name"
+      type="text"
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="firstName"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="person"
+      name="lastName"
+      placeholder="Last name"
+      type="text"
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="lastName"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="email"
+      name="email"
+      placeholder="Email"
+      type="email"
+      value=""
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="email"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="person_pin"
+      name="username"
+      placeholder="Username"
+      type="text"
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="username"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="lock"
+      name="password"
+      placeholder="Password"
+      type="password"
+      value=""
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="password"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <FormField
+    error={false}
+  >
+    <FormInputWithIcon
+      handleChange={[Function]}
+      iconName="lock"
+      name="confirm"
+      placeholder="Confirm password"
+      type="password"
+      visibilityIcon=""
+      visibilityIconClick={[Function]}
+    >
+      <FormErrors
+        apiValidationErrors={
+          Object {
+            "message": "",
+            "response": Object {},
+          }
+        }
+        errorType="confirm"
+        formValidationErrors={
+          Object {
+            "confirm": Array [],
+            "email": Array [],
+            "errorCount": 0,
+            "firstName": Array [],
+            "lastName": Array [],
+            "password": Array [],
+            "username": Array [],
+          }
+        }
+      />
+    </FormInputWithIcon>
+  </FormField>
+  <Button
+    as="button"
+    fluid={true}
+    role="button"
+    size="medium"
+  >
+    Sign up
+  </Button>
+</FormWrapper>
+`;

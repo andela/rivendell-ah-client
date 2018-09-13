@@ -71,6 +71,31 @@ export default (state = initialState, action = {}) => {
       ...state,
       token: action.payload.user.token,
     };
+  case `${types.SIGN_UP}_LOADING`:
+    return {
+      ...state,
+      isLoading: true,
+    };
+  case `${types.SIGN_UP}_SUCCESS`:
+    return {
+      ...state,
+      isLoading: false,
+      errors: {
+        message: '',
+        response: {},
+      },
+      token: action.payload.token,
+    };
+  case `${types.SIGN_UP}_FAILURE`: {
+    return {
+      ...state,
+      isLoading: false,
+      errors: {
+        message: action.payload.message,
+        response: action.payload.response,
+      }
+    };
+  }
   default:
     return state;
   }

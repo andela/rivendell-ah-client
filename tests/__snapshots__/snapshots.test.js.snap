@@ -35,6 +35,7 @@ exports[`The Form Input With Icon component Should render as expected 1`] = `
 >
   <div
     className="form-field"
+    onClick={[Function]}
   >
     <span
       className="form-icon-wrapper"

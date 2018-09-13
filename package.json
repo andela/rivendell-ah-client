@@ -28,6 +28,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-3": "^6.24.1",
     "cloudinary": "^1.11.0",
+    "classnames": "^2.2.6",
     "dotenv": "^6.0.0",
     "draft-js": "^0.10.5",
     "draft-js-emoji-plugin": "^2.1.1",
