@@ -3,10 +3,11 @@ import types from '../actions/actionTypes';
 const initialState = {
   isLoading: false,
   categories: [],
-  errors: {}
+  errors: {},
+  success: false
 };
 
-const loadCategories = (state = initialState, action = {}) => {
+const loadCategoriesReducers = (state = initialState, action = {}) => {
   switch (action.type) {
   case `${types.LOAD_CATEGORIES}_LOADING`:
     return {
@@ -14,12 +15,11 @@ const loadCategories = (state = initialState, action = {}) => {
       isLoading: true,
     };
   case `${types.LOAD_CATEGORIES}_SUCCESS`: {
-    console.log(action.payload);
     const { categories } = action.payload.data;
-    console.log(categories);
     return {
       ...state,
-      categories
+      categories,
+      success: true
     };
   }
 
@@ -34,7 +34,8 @@ const loadCategories = (state = initialState, action = {}) => {
         status: response.status,
         message
       },
-      editing: true,
+      editing: false,
+      success: false
     };
   }
   default:
@@ -42,4 +43,4 @@ const loadCategories = (state = initialState, action = {}) => {
   }
 };
 
-export default loadCategories;
+export default loadCategoriesReducers;

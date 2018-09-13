@@ -46,14 +46,23 @@ describe('TagInput Component', () => {
   });
 
   describe('the event handler', () => {
-    const event = { target: { name: 'pollName', value: 'spam' } };
+    it('should call the change handler when a change occurs in the dropdown', () => {
+      const options = [
+        { key: 'tagId1', text: 'age', value: 'age' },
+        { key: 'tagId2', text: 'name', value: 'name' }
+      ];
 
-    const wrapper = mount(<TagInput />);
-    const handleChangeSpy = spyOn(TagInput.prototype, 'handleChange');
-    // expect(handleChangeSpy.calledOnce).to.equal(true);
+      let called = false;
+      const handleChange = () => {
+        called = true;
+      };
+      const wrapper = shallow(<TagInput
+        options={options}
+        handleChange={handleChange}
+      />);
+      wrapper.find(Dropdown).simulate('change');
 
-    wrapper.find(Dropdown).simulate('change');
-
-    expect(handleChangeSpy.calledOnce()).to.equal(true);
+      chai.expect(called).to.equal(true);
+    });
   });
 });

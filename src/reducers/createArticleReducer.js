@@ -24,17 +24,16 @@ const createArticle = (state = initialState, action = {}) => {
     };
   case `${types.CREATE_ARTICLE}_SUCCESS`: {
     const { response } = action.payload;
-    console.log(response.data);
     return {
       ...state,
       success: true,
       article: response.data,
       editing: false,
+      isLoading: false
     };
   }
 
   case `${types.CREATE_ARTICLE}_FAILURE`: {
-    console.log(action, 'this is the action');
     const { response } = action.payload;
     const { message } = response.data.errors;
     return {
@@ -44,7 +43,6 @@ const createArticle = (state = initialState, action = {}) => {
         status: response.status,
         message
       },
-      editing: true,
     };
   }
   default:

@@ -4,7 +4,7 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import '../../public/styles/SmartEditor.scss';
 import createImagePlugin from 'draft-js-image-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { stateToHTML } from 'draft-js-export-html';
 import 'draft-js-emoji-plugin/lib/plugin.css';
 import Immutable from 'immutable';
@@ -54,10 +54,21 @@ class SmartEditor extends Component {
       }
     });
 
+    this.onBoldClick = this.onBoldClick.bind(this);
+    this.onUnderline = this.onUnderline.bind(this);
+    this.onItalic = this.onItalic.bind(this);
+
+    this.blockStyleFn = this.blockStyleFn.bind(this);
+
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.styleBlockHelper = this.styleBlockHelper.bind(this);
     this.alignCenter = this.alignCenter.bind(this);
     this.alignLeft = this.alignLeft.bind(this);
     this.alignRight = this.alignRight.bind(this);
+
+    this.convertBlockToHeader = this.convertBlockToHeader.bind(this);
+    this.convertBlockToSubHeader = this.convertBlockToSubHeader.bind(this);
     this.convertBlockToBlockqoute = this.convertBlockToBlockqoute.bind(this);
   }
 
@@ -89,12 +100,18 @@ class SmartEditor extends Component {
         blockStyleFn: this.blockStyleFn
 
       };
+      if (process.env.NODE_ENV === 'test') {
+        return this.onValueChange('', exportHtmlOptions);
+      }
+
       const html = stateToHTML(editorState.getCurrentContent(),
         exportHtmlOptions);
       this.onValueChange(html);
     }
 
-    handleKeyCommnd = (command, editorState) => {
+    handleKeyCommand(command, editorState) {
+
+      console.log(command);
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.handleChange(newState);
@@ -104,20 +121,20 @@ class SmartEditor extends Component {
     }
 
 
-    onBoldClick = () => {
+    onBoldClick() {
       this.toggleInlineHelper('BOLD');
     }
 
-    onUnderline = () => {
+    onUnderline() {
       this.toggleInlineHelper('UNDERLINE');
     }
 
-    onItalic = () => {
+    onItalic() {
       this.toggleInlineHelper('ITALIC');
     }
 
 
-    blockStyleFn =(contentBlock) => {
+    blockStyleFn(contentBlock) {
       switch (contentBlock.getType()) {
       case 'center': {
         return 'align-center';
@@ -147,28 +164,13 @@ class SmartEditor extends Component {
       this.handleChange(newState);
     }
 
-    bindKey =(e) => {
-      const { editorState } = this.state;
-      if (e.keyCode === 9) { // if tab is pressed
-        const newState = RichUtils.onTab(
-          e, editorState, 5
-        ); // move the cursor 5 places
-        if (newState !== editorState) {
-          this.handleChange(newState); // update editor
-        }
-
-        return;
-      }
-
-      return getDefaultKeyBinding(e);
-    }
 
 
-    convertBlockToHeader = () => {
+    convertBlockToHeader() {
       this.styleBlockHelper('header-one');
     }
 
-    convertBlockToSubHeader = () => {
+    convertBlockToSubHeader() {
       this.styleBlockHelper('header-three');
     }
 
@@ -226,67 +228,81 @@ class SmartEditor extends Component {
       const { editorState } = this.state;
 
 
+      const textTransformButtons = [
+        {
+          id: 'bold',
+          icon: 'bold',
+          onClick: this.onBoldClick,
+        },
+        { id: 'underline',
+          icon: 'underline',
+          onClick: this.onUnderline
+        },
+        {
+          id: 'italic',
+          icon: 'italic',
+          onClick: this.onItalic
+        },
+        {
+          id: 'heading',
+          content: 'heading',
+          onClick: this.convertBlockToHeader
+        },
+
+        {
+          id: 'sub-heading',
+          content: 'sub-heading',
+          onClick: this.convertBlockToSubHeader
+        },
+        {
+          id: 'bq',
+          content: "' '",
+          onClick: this.convertBlockToBlockqoute
+        },
+
+      ];
+      const alignButtons = [
+        { id: 'align-left',
+          icon: 'align left',
+          onClick: this.alignLeft
+        },
+        {
+          id: 'align-center',
+          icon: 'align center',
+          onClick: this.alignCenter,
+        },
+
+        {
+          id: 'align-right',
+          icon: 'align right',
+          onClick: this.alignRight
+        },
+
+      ];
       return (
         <div id="smartEditor">
 
-          <Button.Group
-            as="span"
-            buttons={[
-              {
-                key: 'bold',
-                icon: 'bold',
-                onClick: this.onBoldClick,
-              },
-              { key: 'underline',
-                icon: 'underline',
-                onClick: this.onUnderline
-              },
-              {
-                key: 'italic',
-                icon: 'italic',
-                onClick: this.onItalic
-              },
-              {
-                key: 'h1',
-                content: 'heading',
-                onClick: this.convertBlockToHeader
-              },
+          <Button.Group>
+            {textTransformButtons.map(button => (
+              <Button key={button.id} icon id={button.id} onClick={button.onClick}>
+                <Icon name={button.icon} />
+              </Button>
+            ))}
+          </Button.Group>
 
-              {
-                key: 'h3',
-                content: 'sub-heading',
-                onClick: this.convertBlockToSubHeader
-              },
-              {
-                key: 'bq',
-                content: "' '",
-                onClick: this.convertBlockToBlockqoute
-              },
+          <Button.Group>
+            {alignButtons.map(button => (
+              <Button
+key ={button.id}
+icon
+id={button.id}
+                onClick={button.onClick}
+              >
+                <Icon name={button.icon} />
+              </Button>
+            ))}
+          </Button.Group>
 
-            ]}
-          />
-
-
-          <Button.Group
-            buttons={[
-              { key: 'align-left',
-                icon: 'align left',
-                onClick: this.alignLeft
-              },
-              {
-                key: 'align-center',
-                icon: 'align center',
-                onClick: this.alignCenter,
-              },
-
-              {
-                key: 'align right',
-                icon: 'align right',
-                onClick: this.alignRight
-              },
-
-            ]}
-          />
           <EmojiSuggestions />
           <EmojiSelect />
           <div className="editor">
@@ -294,9 +310,8 @@ class SmartEditor extends Component {
             <Editor
               editorState={editorState}
               onChange={this.handleChange}
-              handleKeyCommand={this.handleKeyCommnd}
+              handleKeyCommand={this.handleKeyCommand}
               spellCheck
-              keyBindingFn={this.bindKey}
               plugins={[emojiPlugin, imagePlugin]}
               blockStyleFn={this.blockStyleFn}
               blockRenderMap={this.blockRenderMap}

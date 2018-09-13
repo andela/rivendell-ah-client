@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-
+import propTypes from 'prop-types';
 
 const TagInput = ({
   options, hadleAddition, handleChange
@@ -20,6 +20,13 @@ const TagInput = ({
 
 TagInput.defaultProps = {
   options: [],
-  currentValues: []
 };
+
+
+TagInput.propTypes = {
+  options: propTypes.array,
+  hadleAddition: propTypes.func.isRequired,
+  handleChange: propTypes.func.isRequired
+};
+
 export default TagInput;

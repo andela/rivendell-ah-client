@@ -186,7 +186,7 @@ class EditControls extends Component {
 
 const mapStateToProps = state => ({
   createArticleState: state.createArticle,
-  categories: state.loadCategories.categories,
+  categories: state.loadCategoriesReducer.categories,
 
 });
 const mapDispatchToProps = dispatch => ({
