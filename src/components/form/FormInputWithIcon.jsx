@@ -17,12 +17,11 @@ import { PropTypes } from 'prop-types';
  */
 const FormInputWithIcon = (props) => {
   const {
-    handleChange, value, type, iconName,
-    name, children, placeholder, visibilityIcon, visibilityIconClick,
-  } = props;
+    handleChange, value, type, iconName, name,
+    children, placeholder, visibilityIcon, visibilityIconClick } = props;
   return (
     <label htmlFor={name}>
-      <div className="form-field">
+      <div onClick={visibilityIconClick} className="form-field">
         <span className="form-icon-wrapper">
           <i className="material-icons form">{iconName}</i>
         </span>
@@ -37,7 +36,6 @@ const FormInputWithIcon = (props) => {
           && (
             <span className="form-icon-wrapper right">
               <i
-                onClick={visibilityIconClick}
                 className="material-icons form"
               >
                 {visibilityIcon}

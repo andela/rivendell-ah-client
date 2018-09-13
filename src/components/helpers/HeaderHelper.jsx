@@ -71,7 +71,7 @@ export const DesktopNavDropDown = ({
   showDropDown ? (
     <ul className="dropdown">
       <div>
-        <li><p>{firstName}</p></li>
+        <li><p className="capitalize">{firstName}</p></li>
         <li>
           <Link to={`/@${username}`}>
             <span>Profile</span>

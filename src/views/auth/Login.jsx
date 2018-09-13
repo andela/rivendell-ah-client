@@ -161,9 +161,11 @@ export class Login extends React.Component {
 
   /**
    * handle visibility icon click
+   * @param {Object} event event
    * @returns {null} null
    */
-  visibilityIconClick() {
+  visibilityIconClick(event) {
+    if (event.target.tagName !== 'I') return;
     const { visibilityIcon } = this.state;
     if (visibilityIcon === 'visibility') {
       this.setState({ visibilityIcon: 'visibility_off' });
@@ -272,10 +274,7 @@ Login.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   errors: PropTypes.shape({
     message: PropTypes.string,
-  }).isRequired
-};
-
-Login.propTypes = {
+  }).isRequired,
   location: PropTypes.shape({
     search: PropTypes.string
   }),
