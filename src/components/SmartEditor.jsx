@@ -1,4 +1,4 @@
-import { RichUtils, getDefaultKeyBinding } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import '../../public/styles/SmartEditor.scss';
@@ -110,7 +110,6 @@ class SmartEditor extends Component {
     }
 
     handleKeyCommand(command, editorState) {
-
       console.log(command);
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
@@ -163,7 +162,6 @@ class SmartEditor extends Component {
         .toggleInlineStyle(editorState, inlineStyle.toUpperCase());
       this.handleChange(newState);
     }
-
 
 
     convertBlockToHeader() {
@@ -293,9 +291,9 @@ class SmartEditor extends Component {
           <Button.Group>
             {alignButtons.map(button => (
               <Button
-key ={button.id}
-icon
-id={button.id}
+                key={button.id}
+                icon
+                id={button.id}
                 onClick={button.onClick}
               >
                 <Icon name={button.icon} />

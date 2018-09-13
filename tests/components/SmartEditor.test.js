@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import { shallow } from 'enzyme';
 import Editor from 'draft-js-plugins-editor';
+import Immutable from 'immutable';
 import SmartEditor from '../../src/components/SmartEditor';
 
 describe('testing SmartEditor', () => {
@@ -20,7 +21,23 @@ describe('testing SmartEditor', () => {
     });
   });
 
-  describe('the functionalities of the SmartEditor', () => {
+  describe('this.blockRenderMap in the SmartEditor', () => {
+    it('should be an Immutable map', () => {
+      const wrapper = shallow(<SmartEditor />);
+      chai.expect(wrapper.instance().blockRenderMap instanceof Immutable.Map);
+    });
+
+    it('should have attribute center', () => {
+      const wrapperInstance = shallow(<SmartEditor />).instance();
+      const blockMap = wrapperInstance.blockRenderMap;
+      chai.expect(blockMap.get('center'))
+        .to.be.an('object');
+      chai.expect(blockMap.get('center'))
+        .property('element')
+        .to.equal('div');
+    });
+  });
+  describe('the functions of the SmartEditor', () => {
     it('should call the onValueChange method when a change occurs', () => {
       const mockOnChange = jest.fn();
       const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
@@ -105,7 +122,7 @@ describe('testing SmartEditor', () => {
   it('should call the alignRight when the align-right button is clicked', () => {
     const spy = jest.spyOn(SmartEditor.prototype, 'alignRight');
 
-    const blockStyleFnSpy = spyOn(SmartEditor.prototype,'blockStyleFn');
+    const blockStyleFnSpy = spyOn(SmartEditor.prototype, 'alignRight');
     const mockOnChange = jest.fn();
     const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
 
@@ -125,35 +142,27 @@ describe('testing SmartEditor', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should call the bindKey when the user types on the editor', () => {
-    const spy = jest.spyOn(SmartEditor.prototype, 'bindKey');
+  it('should return true when the UNDERLINE is passed as argument to handleKyCommand', () => {
+    const spy = jest.spyOn(SmartEditor.prototype, 'handleKeyCommand');
     const mockOnChange = jest.fn();
     const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
+    const editorState = wrapper.find(Editor).prop('editorState');
+    const success = wrapper.instance().handleKeyCommand('underline', editorState);
+    chai.expect(success)
+      .to.equal(true);
 
-    wrapper.find(Editor)
-      .simulate('keypress');
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should return true when the UNDERLINE is passed as argument to handleKyCommand', ()=>{
+  it('should return false when a bad command is passed as argument to handleKyCommand', () => {
     const spy = jest.spyOn(SmartEditor.prototype, 'handleKeyCommand');
     const mockOnChange = jest.fn();
     const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
     const editorState = wrapper.find(Editor).prop('editorState');
-    const success = wrapper.instance().handleKeyCommand('underline',editorState);
-   chai.expect(success)
-   .to.equal(true);
-  });
+    const success = wrapper.instance().handleKeyCommand('junk', editorState);
+    chai.expect(success)
+      .to.equal(false);
 
-  it('should return false when a bad command is passed as argument to handleKyCommand', ()=>{
-    const spy = jest.spyOn(SmartEditor.prototype, 'handleKeyCommand');
-    const mockOnChange = jest.fn();
-    const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
-    const editorState = wrapper.find(Editor).prop('editorState');
-    const success = wrapper.instance().handleKeyCommand('junk',editorState);
-   chai.expect(success)
-   .to.equal(false);
-
-   expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 });

@@ -16,15 +16,13 @@ import loadCategories from '../actions/loadCategories';
  * @returns {object} instance of an object
  * @param {object} e
  */
-class EditControls extends Component {
+export class EditArticleControls extends Component {
   /**
    *This instantiates the state of this component
    * @param {object} props the properties passed to it as argument
    */
   constructor(props) {
     super(props);
-
-    const { loadCategories } = props;
 
     const initialTagOptions = [
       { key: 'Art', text: 'Art', value: 'Art' },
@@ -41,14 +39,22 @@ class EditControls extends Component {
       tagOptions: initialTagOptions,
     };
 
-    loadCategories();
     this.onBodyChange = this.onBodyChange.bind(this);
     this.submit = this.submit.bind(this);
     this.updateCategory = this.updateCategory.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateDescription = this.updateDescription.bind(this);
+    this.updateTags = this.updateTags.bind(this);
   }
 
+
+  /**
+   * called immediately after the component has mounted
+   *@returns {void} performs an action and returns nothing
+   */
+  componentDidMount() {
+    this.props.loadCategories();
+  }
 
   /**
    *This method updates the article body based on what
@@ -84,19 +90,20 @@ class EditControls extends Component {
   thus returns nothig
   @param {object} e the event handler object
    */
-  handleChange = (e, { value }) => this.setState({ tags: value })
+  updateTags(e, { value }) {
+    this.setState({ tags: value });
+  }
 
   /**
    *
    * Called when the createArticle button is clicked
    *@returns {void} return nothing
-    @param {function} e event handler
    */
-  submit = (e) => {
-    e.preventDefault();
+  submit() {
     const { persistArticle } = this.props;
     const { title, body, tags, description, category } = this.state;
 
+    console.log('Finally called submit');
     persistArticle({ title, description, body, tags, category });
   }
 
@@ -162,7 +169,7 @@ class EditControls extends Component {
         <TagInput
           options={tagOptions}
           hadleAddition={this.handleAddition}
-          handleChange={this.handleChange}
+          handleChange={this.updateTags}
         />
         <CategoryInput
           categories={categories}
@@ -184,12 +191,12 @@ class EditControls extends Component {
 }
 
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   createArticleState: state.createArticle,
   categories: state.loadCategoriesReducer.categories,
 
 });
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   persistArticle: (article) => {
     dispatch(createArticle(article));
   },
@@ -199,4 +206,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditControls);
+export default connect(mapStateToProps,
+  mapDispatchToProps)(EditArticleControls);
