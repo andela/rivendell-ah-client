@@ -9,12 +9,12 @@ const SocialLogin = ({ socialMedia }) => {
   return (
     socialMedia.map(platform => (
 
-      <div key={platform.id} className="divWidth">
-        <a href={`${host}${platform.link}`} className="linkClass">
-          <span className={platform.iconSpanClass}>
+      <div key={platform.id} className={platform.divClass}>
+        <a href={`${host}${platform.link}`}>
+          <span>
             <i className={platform.iconClass} />
           </span>
-          <span className={platform.textClass}>{platform.text}</span>
+          <p>{platform.text}</p>
         </a>
       </div>
     ))
@@ -25,9 +25,7 @@ SocialLogin.propTypes = {
     id: PropTypes.number.isRequired,
     link: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    textClass: PropTypes.string.isRequired,
     iconClass: PropTypes.string.isRequired,
-    iconSpanClass: PropTypes.string.isRequired,
   }).isRequired).isRequired,
 };
 export default SocialLogin;

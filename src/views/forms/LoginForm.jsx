@@ -22,14 +22,15 @@ const LoginForm = (props) => {
       formType="login"
       headerText="Login"
     >
+      <div id="social-login">
+        <SocialLogin socialMedia={socialMedia} />
+      </div>
+      <div className="or-separator"><i>or</i></div>
       <ApiErrorMsg
         apiValidationErrors={apiValidationErrors}
         handleErrMsgDismiss={handleErrMsgDismiss}
         displayErrMsg={displayErrMsg}
       />
-      <div id="social-login">
-        <SocialLogin socialMedia={socialMedia} />
-      </div>
       <Form.Field error={formValidationErrors.email.length > 0}>
         <FormInputWithIcon
           handleChange={handleChange}

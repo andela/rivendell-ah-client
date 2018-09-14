@@ -33,25 +33,22 @@ export class Login extends React.Component {
           id: 1,
           link: '/api/auth/google',
           text: 'Sign in with Google',
-          textClass: 'googleTextDesign social-right-pad socialfont',
+          divClass: 'social_btn google',
           iconClass: 'google icon',
-          iconSpanClass: 'googleIconDesign socialfont'
         },
         {
           id: 2,
           link: '/api/auth/linkedin',
           text: 'Sign in with Linkedin',
-          textClass: 'linkedInTextDesign social-right-pad socialfont',
+          divClass: 'social_btn linkedin',
           iconClass: 'linkedin icon',
-          iconSpanClass: 'linkedInIconDesign socialfont'
         },
         {
           id: 3,
           link: '/api/auth/facebook',
           text: 'Sign in with Facebook',
-          textClass: 'facebookTextDesign social-right-pad socialfont',
+          divClass: 'social_btn facebook',
           iconClass: 'facebook f icon',
-          iconSpanClass: 'facebookIconDesign socialfont'
         }
       ],
     };

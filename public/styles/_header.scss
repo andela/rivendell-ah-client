@@ -1,0 +1,249 @@
+#header {
+  width: 100%;
+  padding: 15px 0 0 0;
+  .container {
+    position: relative;
+  }
+  .logo {
+    width: 10%;
+  }
+  svg {
+    width: 70px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .hamburger-menu {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    i {
+      font-size: 250%;
+      cursor: pointer;
+    }
+  }
+  .side-menu {
+    a {
+      color: $white;
+    }
+    opacity: 0.91;
+    min-width: 15.625em;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    background-color: $primary-blue;
+    height: 100vh;
+    z-index: 2;
+    color: $white;
+    animation-duration: 0.4s;
+    @keyframes slide-in {
+      from {
+        right: -300px;
+      }
+      to {
+        right: 0px;
+      }
+    }
+    @keyframes slide-out {
+      from {
+        right: 0px;
+      }
+      to {
+        right: -300px;
+      }
+    }
+    .close-menu {
+      margin: 5px;
+      i {
+        font-size: 250%;
+        cursor: pointer;
+      }
+    }
+    ul {
+      list-style: none;
+    }
+    li {
+      padding: 13px 7px;
+      border-top: 2px solid darken($primary-blue, 10);
+    }
+  }
+  .search-box {
+    position: relative;
+    padding: 0 7px 13px 7px;
+    input {
+      padding: 5px;
+      padding-right: 15px;
+      width: 90%;
+    }
+    Button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      padding: 4.5px;
+      margin: 0;
+      border-radius: 0;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background-color: lighten($primary-blue, 10);
+    }
+    i {
+      font-size: 150%;
+      color: $white;
+    }
+  }
+  @include media-query-above(sm) {
+    .mobile {
+      display: none;
+    }
+    svg {
+      margin: 5px auto;
+    }
+  }
+  @include media-query-below(sm) {
+    .not-mobile {
+      display: none;
+    }
+  }
+  .main-nav {
+    width: 100%;
+    .logo {
+      float: left;
+    }
+    .right-menu {
+      float: right;
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    li {
+      display: inline-block;
+      padding: 10px;
+    }
+    .nav-item {
+      Button {
+        background-color: $primary-blue;
+        color: $white;
+        &:hover {
+          background-color: darken($primary-blue, 5);
+        }
+      }
+    }
+    .search-box {
+      width: 300px;
+      margin-top: 10px;
+      input {
+        padding: 5px 10px;
+      }
+      li {
+        margin: 10px 7px 0 7px;
+      }
+      Button {
+        width: 11%;
+      }
+    }
+    .login-signup {
+      margin-top: 10px;
+    }
+    ul {
+      list-style: none;
+    }
+    .dropdown-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+    .dropdown {
+      right: 0;
+      top: 60px;
+      position: absolute;
+      min-width: 150px;
+      border: 1px solid $border-ash;
+      box-shadow: 0 0 1px $shadow-ash;
+    }
+    .dropdown > div {
+      border-bottom: 1px solid $border-ash;
+      li {
+        padding: 0;
+        display: block;
+      }
+      p {
+        padding: 15px 15px
+      }
+      a {
+        display: block;
+        padding: 15px 15px;
+        &:hover {
+          background-color: lighten($primary-blue, 10);
+          color: $white;
+        }
+      }
+    }
+    .dropdown:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        right: 25px;
+        border-width: 0 6px 6px 6px;
+        border-style: solid;
+        border-color: $milk-background transparent;    
+    }
+  
+    .dropdown:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 100%;
+        right: 23px;
+        border-width: 0 8px 8px 8px;
+        border-style: solid;
+        border-color: rgba(0,0,0,0.1) transparent;    
+    }
+    .profile-img {
+      cursor: pointer;
+      font-size: 300%;
+    }
+  }
+}
+
+.clear-fix {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@include media-query-below(sm) {
+  #overlay {
+    position: fixed;
+    display: none;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    animation-duration: 0.4s;
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes disappear {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  }
+}
