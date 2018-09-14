@@ -4,11 +4,10 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import chai from 'chai';
 import { Button } from 'semantic-ui-react';
-import Editor from 'draft-js-plugins-editor';
 import { EditArticleControls, mapDispatchToProps, mapStateToProps } from '../../src/components/EditArticleControls';
 import CategoryInput from '../../src/components/CategoryInput';
 import TagInput from '../../src/components/TagInput';
-import SmartEditor from '../../src/components/SmartEditor';
+import ErrorMessagePortal from '../../src/components/ErrorMessagePortal';
 
 describe('Testing EditArticleControls', () => {
   let mountedObj;
@@ -23,14 +22,16 @@ describe('Testing EditArticleControls', () => {
   };
   const getMountedObj = (
     articleState = initialArticleState,
-    categories = []
+    categories = [],
+    clearErrors,
   ) => {
     const emptyFunction = () => {};
     return shallow(<EditArticleControls
       persistArticle={emptyFunction}
       loadCategories={emptyFunction}
-      createArticleState={articleState}
+      clearErrors={clearErrors}
       categories={categories}
+      {...articleState}
     />);
   };
   describe('basic elements rendered in the component', () => {
@@ -45,24 +46,49 @@ describe('Testing EditArticleControls', () => {
         .to.equal(1);
     });
     it('should contain a semantic-ui-react Button', () => {
-      mountedObj = getMountedObj();
       chai.expect(mountedObj.find(Button).length)
+        .to.equal(1);
+    });
+
+    it('should render an ErrorMessagePortal', () => {
+      chai.expect(mountedObj.find(ErrorMessagePortal).length)
         .to.equal(1);
     });
   });
 
+  describe('the props of ErrorMessagePortal it renders', () => {
+    it('should contain an error message of length 0 when no error occured', () => {
+      const errorPortal = mountedObj.find(ErrorMessagePortal);
+      chai.expect(errorPortal.prop('errorMessages'))
+        .to.be.an('array')
+        .lengthOf(0);
+    });
+    it('should contain an error message of length greater than 0 when an error occured', () => {
+      const mountedObjWithErrors = getMountedObj({
+        ...initialArticleState,
+        errors: {
+          title: ['error'],
+          body: ['arr', 'of'],
+          description: ['arr']
+        }
+      });
+      const errorPortal = mountedObjWithErrors.find(ErrorMessagePortal);
+      chai.expect(errorPortal.prop('errorMessages').length)
+        .to.be.greaterThan(0);
+    });
+  });
 
   describe('the  mapStateToProps and mapDispatchToProps', () => {
     it('mapStateToProps should correctly map the state passed as argument', () => {
       const state = {
-        createArticle: 'dummyValue',
+        createArticleReducer: { data: 'dummyValue' },
         loadCategoriesReducer: { categories: [] }
       };
       const mappedState = mapStateToProps(state);
-      chai.expect(mappedState.createArticleState)
-        .to.equal(state.createArticle);
       chai.expect(mappedState.categories)
         .to.equal(state.loadCategoriesReducer.categories);
+      chai.expect(mappedState.data)
+        .to.equal(state.createArticleReducer.data);
     });
 
     it('mapDispatchToProps should map the correct values', () => {
@@ -73,7 +99,8 @@ describe('Testing EditArticleControls', () => {
       const mappedObj = mapDispatchToProps(dispatchObj.dispatch);
       mappedObj.persistArticle();
       mappedObj.loadCategories();
-      expect(dispatchSpy).toHaveBeenCalledTimes(2);
+      mappedObj.clearErrors();
+      expect(dispatchSpy).toHaveBeenCalledTimes(3);
     });
   });
   describe('the functions contained in the object', () => {
@@ -122,6 +149,15 @@ describe('Testing EditArticleControls', () => {
       });
     });
 
+    describe('switchToEditing()', () => {
+      it('shouldcall editing', () => {
+        const spy = jest.fn();
+        mountedObj = getMountedObj(undefined, undefined, spy);
+        const instance = mountedObj.instance();
+        instance.switchToEditing();
+        expect(spy).toHaveBeenCalled();
+      });
+    });
     describe('updateCategory', () => {
       mountedObj = getMountedObj();
       it('should update the body in the state when', () => {

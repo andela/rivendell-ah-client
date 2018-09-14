@@ -38,6 +38,53 @@ describe('testing SmartEditor', () => {
     });
   });
   describe('the functions of the SmartEditor', () => {
+    describe('blockStyleFn()', () => {
+      it('should return align-center when the blockType is center', () => {
+        const contentBlock = {
+          getType: () => 'center',
+        };
+        const wrapperInstance = shallow(<SmartEditor />).instance();
+        const value = wrapperInstance.blockStyleFn(contentBlock);
+        chai.expect(value)
+          .to.equal('align-center');
+      });
+      it('should return align-left when the blockType is left', () => {
+        const contentBlock = {
+          getType: () => 'left',
+        };
+        const wrapperInstance = shallow(<SmartEditor />).instance();
+        const value = wrapperInstance.blockStyleFn(contentBlock);
+        chai.expect(value)
+          .to.equal('align-left');
+      });
+      it('should return align-right when the blockType is right', () => {
+        const contentBlock = {
+          getType: () => 'right',
+        };
+        const wrapperInstance = shallow(<SmartEditor />).instance();
+        const value = wrapperInstance.blockStyleFn(contentBlock);
+        chai.expect(value)
+          .to.equal('align-right');
+      });
+      it('should return quote when the blockType is quote', () => {
+        const contentBlock = {
+          getType: () => 'quote',
+        };
+        const wrapperInstance = shallow(<SmartEditor />).instance();
+        const value = wrapperInstance.blockStyleFn(contentBlock);
+        chai.expect(value)
+          .to.equal('quote');
+      });
+      it('should return null when an blockType is not caught', () => {
+        const contentBlock = {
+          getType: () => 'notInBlock',
+        };
+        const wrapperInstance = shallow(<SmartEditor />).instance();
+        const value = wrapperInstance.blockStyleFn(contentBlock);
+        chai.expect(value)
+          .to.equal(null);
+      });
+    });
     it('should call the onValueChange method when a change occurs', () => {
       const mockOnChange = jest.fn();
       const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
@@ -119,17 +166,15 @@ describe('testing SmartEditor', () => {
     });
   });
 
-  it('should call the alignRight when the align-right button is clicked', () => {
-    const spy = jest.spyOn(SmartEditor.prototype, 'alignRight');
 
-    const blockStyleFnSpy = spyOn(SmartEditor.prototype, 'alignRight');
+  it('should call the alignRight when the align-center button is clicked', () => {
+    const spy = jest.spyOn(SmartEditor.prototype, 'alignRight');
     const mockOnChange = jest.fn();
     const wrapper = shallow(<SmartEditor onValueChange={mockOnChange} />);
 
     wrapper.find('Button#align-right')
       .simulate('click');
     expect(spy).toHaveBeenCalled();
-    expect(blockStyleFnSpy).toHaveBeenCalled();
   });
 
   it('should call the alignCenter when the align-center button is clicked', () => {

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Input, Container } from 'semantic-ui-react';
+import { Button, Input, Container, Loader }
+  from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import CategoryInput from './CategoryInput';
 import TagInput from './TagInput';
 import SmartEditor from './SmartEditor';
 import createArticle from '../actions/createArticle';
-import loadCategories from '../actions/loadCategories';
-
+import loadCategoriesAction from '../actions/loadCategories';
+import ErrorMessagePortal from './ErrorMessagePortal';
 
 /**
  * This component manages the state of the input elements
@@ -39,6 +40,7 @@ export class EditArticleControls extends Component {
       tagOptions: initialTagOptions,
     };
 
+    this.switchToEditing = this.switchToEditing.bind(this);
     this.onBodyChange = this.onBodyChange.bind(this);
     this.submit = this.submit.bind(this);
     this.updateCategory = this.updateCategory.bind(this);
@@ -53,7 +55,8 @@ export class EditArticleControls extends Component {
    *@returns {void} performs an action and returns nothing
    */
   componentDidMount() {
-    this.props.loadCategories();
+    const { loadCategories } = this.props;
+    loadCategories();
   }
 
   /**
@@ -148,23 +151,55 @@ export class EditArticleControls extends Component {
 
 
   /**
+   * This dispatches an action to switch the state of this page
+   * to editing mode
+   * @returns {void} performs an action and returns void
+   */
+  switchToEditing() {
+    const { clearErrors } = this.props;
+    clearErrors();
+  }
+
+  /**
    * This returns a group of custom components that
    *@returns {JSX} a JSX to be rendered
    */
   render() {
     const { tagOptions } = this.state;
-    const { categories } = this.props;
+    const { categories, isLoading, errors } = this.props;
+
+    const errorMessages = [];
+    if (errors.title) {
+      errorMessages.push(...errors.title);
+    }
+
+    if (errors.description) {
+      errorMessages.push(...errors.description);
+    }
+
+    if (errors.body) {
+      errorMessages.push(...errors.body);
+    }
     return (
       <Container>
+
+        <ErrorMessagePortal
+
+          onHide={this.switchToEditing}
+          open={!!errors.status}
+          errorTitle="An error occured while making request"
+          errorMessages={errorMessages}
+        />
         <Input
           placeholder="Title"
           onChange={this.updateTitle}
-          error
+          error={!!errors.title}
         />
 
         <Input
           placeholder="Description"
           onChange={this.updateDescription}
+          error={!!errors.description}
         />
         <TagInput
           options={tagOptions}
@@ -175,6 +210,7 @@ export class EditArticleControls extends Component {
           categories={categories}
           onChange={this.updateCategory}
         />
+        <Loader active={isLoading} inline content="Loading" />
         <SmartEditor
           onValueChange={this.onBodyChange}
         />
@@ -192,7 +228,7 @@ export class EditArticleControls extends Component {
 
 
 export const mapStateToProps = state => ({
-  createArticleState: state.createArticle,
+  ...state.createArticleReducer,
   categories: state.loadCategoriesReducer.categories,
 
 });
@@ -201,7 +237,10 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(createArticle(article));
   },
   loadCategories: () => {
-    dispatch(loadCategories());
+    dispatch(loadCategoriesAction());
+  },
+  clearErrors: () => {
+    dispatch({ type: 'CREATE_ARTICLE_EDITING' });
   }
 });
 

@@ -24,7 +24,7 @@ TagInput.defaultProps = {
 
 
 TagInput.propTypes = {
-  options: propTypes.array,
+  options: propTypes.arrayOf(propTypes.object),
   hadleAddition: propTypes.func.isRequired,
   handleChange: propTypes.func.isRequired
 };

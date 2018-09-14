@@ -8,7 +8,7 @@ import helloWorld from './actions/helloWorld';
 import '../public/styles/App.scss';
 import types from './actions/actionTypes';
 
-import App from './App';
+import App from './App.jsx';
 
 // testing redux-promise-middleware and redux-saga
 setTimeout(() => {

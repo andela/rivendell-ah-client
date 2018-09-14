@@ -1,13 +1,14 @@
 import { RichUtils } from 'draft-js';
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import '../../public/styles/SmartEditor.scss';
+import Immutable from 'immutable';
 import createImagePlugin from 'draft-js-image-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import { Button, Icon } from 'semantic-ui-react';
 import { stateToHTML } from 'draft-js-export-html';
 import 'draft-js-emoji-plugin/lib/plugin.css';
-import Immutable from 'immutable';
+import propTypes from 'prop-types';
+import '../../public/styles/SmartEditor.scss';
 
 // declaring plugins
 const emojiPlugin = createEmojiPlugin({
@@ -19,8 +20,33 @@ const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
 
 
 /**
- *@param  editorState  state value
- *@returns {void} description
+ *
+ * @param {object} contentBlock the currently selected block
+ * @returns {void}
+ */
+const blockStyleFn = (contentBlock) => {
+  switch (contentBlock.getType()) {
+  case 'center': {
+    return 'align-center';
+  }
+  case 'left': {
+    return 'align-left';
+  }
+  case 'right': {
+    return 'align-right';
+  }
+  case 'quote': {
+    return 'quote';
+  }
+
+  default:
+    return null;
+  }
+};
+/**
+ * This class is a Component that encapsulates the logic of the
+ *  SnartEditor
+ * @class SmartEditor
  */
 class SmartEditor extends Component {
   /**
@@ -54,11 +80,10 @@ class SmartEditor extends Component {
       }
     });
 
+    this.blockStyleFn = blockStyleFn;
     this.onBoldClick = this.onBoldClick.bind(this);
     this.onUnderline = this.onUnderline.bind(this);
     this.onItalic = this.onItalic.bind(this);
-
-    this.blockStyleFn = this.blockStyleFn.bind(this);
 
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -72,7 +97,58 @@ class SmartEditor extends Component {
     this.convertBlockToBlockqoute = this.convertBlockToBlockqoute.bind(this);
   }
 
-    handleChange = (editorState) => {
+
+  /**
+     * makes the currently selected text bold and returns void
+     *@returns {void} makes the inline bold and returns nothing
+     */
+  onBoldClick() {
+    this.toggleInlineHelper('BOLD');
+  }
+
+
+  /**
+     * makes the currently selected text underline and returns void
+     *@returns {void} makes the inline underline and returns nothing
+     */
+  onUnderline() {
+    this.toggleInlineHelper('UNDERLINE');
+  }
+
+  /**
+     * makes the currently selected text italic and returns void
+     *@returns {void} makes the inline italic and returns nothing
+     */
+  onItalic() {
+    this.toggleInlineHelper('ITALIC');
+  }
+
+
+    /**
+     *
+     * This helper function adds inline styles to the currently selected
+     * block. These inline styles include bold, underline and italic.
+     * Note that these are triggered by a button
+     * @param {string} inlineStyle the inlineStyle name
+     * this can be either UNDERLINE, BOLD or ITALIC
+     * @returns {void} performs an action an
+     */
+    toggleInlineHelper = (inlineStyle) => {
+      const { editorState } = this.state;
+      const newState = RichUtils
+        .toggleInlineStyle(editorState, inlineStyle.toUpperCase());
+      this.handleChange(newState);
+    }
+
+
+    /**
+   * this method updates the editorState of the draftjs Editor.
+   * Note that the draftJS Editor is immutable thus be
+   * updated anytime a change occurd
+   * @param {object} editorState
+   * @returns {void} updates the editorState and returns void
+   */
+    handleChange(editorState) {
       this.setState({ editorState });
 
       const exportHtmlOptions = {
@@ -109,8 +185,14 @@ class SmartEditor extends Component {
       this.onValueChange(html);
     }
 
+    /**
+     * this function is called when keyboard combinations like
+     * ctrl-b, ctrl-u and  cmd-i are pressed
+     * @param {string} command the name of the command
+     * @param {EditorState} editorState the editorState object
+     * @returns {void} performs an action an
+     */
     handleKeyCommand(command, editorState) {
-      console.log(command);
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.handleChange(newState);
@@ -119,55 +201,18 @@ class SmartEditor extends Component {
       return false;
     }
 
-
-    onBoldClick() {
-      this.toggleInlineHelper('BOLD');
-    }
-
-    onUnderline() {
-      this.toggleInlineHelper('UNDERLINE');
-    }
-
-    onItalic() {
-      this.toggleInlineHelper('ITALIC');
-    }
-
-
-    blockStyleFn(contentBlock) {
-      switch (contentBlock.getType()) {
-      case 'center': {
-        return 'align-center';
-      }
-      case 'left': {
-        return 'align-left';
-      }
-      case 'right': {
-        return 'align-right';
-      }
-      case 'quote': {
-        return 'quote';
-      }
-
-      default:
-        return null;
-      }
-    }
-
     /**
-     * @param {string} inlineStyle
+     *wraps the currently selected block  with a h1
+     @returns {void} creates a header and rurns nothing
      */
-    toggleInlineHelper = (inlineStyle) => {
-      const { editorState } = this.state;
-      const newState = RichUtils
-        .toggleInlineStyle(editorState, inlineStyle.toUpperCase());
-      this.handleChange(newState);
-    }
-
-
     convertBlockToHeader() {
       this.styleBlockHelper('header-one');
     }
 
+    /**
+     *wraps the currently selected block  with a h3
+     @returns {void} creates a sub-header and rurns nothing
+     */
     convertBlockToSubHeader() {
       this.styleBlockHelper('header-three');
     }
@@ -218,7 +263,6 @@ class SmartEditor extends Component {
       this.handleChange(newState);
     }
 
-
     /**
      * @returns {JSX} when return
      */
@@ -226,7 +270,7 @@ class SmartEditor extends Component {
       const { editorState } = this.state;
 
 
-      const textTransformButtons = [
+      const iconButtons = [
         {
           id: 'bold',
           icon: 'bold',
@@ -241,25 +285,6 @@ class SmartEditor extends Component {
           icon: 'italic',
           onClick: this.onItalic
         },
-        {
-          id: 'heading',
-          content: 'heading',
-          onClick: this.convertBlockToHeader
-        },
-
-        {
-          id: 'sub-heading',
-          content: 'sub-heading',
-          onClick: this.convertBlockToSubHeader
-        },
-        {
-          id: 'bq',
-          content: "' '",
-          onClick: this.convertBlockToBlockqoute
-        },
-
-      ];
-      const alignButtons = [
         { id: 'align-left',
           icon: 'align left',
           onClick: this.alignLeft
@@ -277,27 +302,50 @@ class SmartEditor extends Component {
         },
 
       ];
+
+      const textButtons = [
+        {
+          id: 'heading',
+          content: 'heading',
+          onClick: this.convertBlockToHeader
+        },
+
+        {
+          id: 'sub-heading',
+          content: 'sub-heading',
+          onClick: this.convertBlockToSubHeader
+        },
+        {
+          id: 'bq',
+          content: "' '",
+          onClick: this.convertBlockToBlockqoute
+        },
+      ];
       return (
         <div id="smartEditor">
 
           <Button.Group>
-            {textTransformButtons.map(button => (
-              <Button key={button.id} icon id={button.id} onClick={button.onClick}>
+            {iconButtons.map(button => (
+              <Button
+                content={button.content}
+                key={button.id}
+                icon={!button.content}
+                id={button.id}
+                onClick={button.onClick}
+              >
                 <Icon name={button.icon} />
               </Button>
             ))}
           </Button.Group>
 
           <Button.Group>
-            {alignButtons.map(button => (
+            {textButtons.map(button => (
               <Button
+                content={button.content}
                 key={button.id}
-                icon
                 id={button.id}
                 onClick={button.onClick}
-              >
-                <Icon name={button.icon} />
-              </Button>
+              />
             ))}
           </Button.Group>
 
@@ -323,5 +371,10 @@ class SmartEditor extends Component {
       );
     }
 }
+
+
+SmartEditor.propTypes = {
+  onValueChange: propTypes.func.isRequired
+};
 
 export default SmartEditor;

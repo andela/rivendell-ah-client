@@ -20,7 +20,7 @@ const App = () => (
   <div>
     <Header />
     <Main />
-    <button onClick={makeRequest}>Get articles</button>
+    <button type="button" onClick={makeRequest}>Get articles</button>
     <Footer />
   </div>
 );

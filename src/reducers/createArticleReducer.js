@@ -10,39 +10,43 @@ const initialState = {
 
 const createArticle = (state = initialState, action = {}) => {
   switch (action.type) {
-  case `${types.CREATE_ARTICLE}_EDITING_ARTICLE`:
+  case `${types.CREATE_ARTICLE}_EDITING`:
     return {
       ...state,
+      isLoading: false,
       editing: true,
+      errors: {},
     };
-
   case `${types.CREATE_ARTICLE}_LOADING`:
     return {
       ...state,
       isLoading: true,
       editing: false,
+      errors: {},
     };
   case `${types.CREATE_ARTICLE}_SUCCESS`: {
-    const { response } = action.payload;
+    const { data } = action.payload;
     return {
       ...state,
       success: true,
-      article: response.data,
+      article: data,
       editing: false,
-      isLoading: false
+      isLoading: false,
+      errors: {}
     };
   }
 
   case `${types.CREATE_ARTICLE}_FAILURE`: {
     const { response } = action.payload;
-    const { message } = response.data.errors;
+    const { errors } = response.data;
     return {
       ...state,
       isLoading: false,
-      error: {
+      errors: {
+        ...errors,
         status: response.status,
-        message
       },
+      editing: true,
     };
   }
   default:

@@ -12,13 +12,14 @@ const initialState = {
 };
 describe('testing createArticleReducer', () => {
   it('should return the initial state when no action is passed ', () => {
-    chai.expect(createArticleReducer(undefined))
-      .eql(initialState);
+    const newState = createArticleReducer(undefined);
+    chai.expect(newState)
+      .to.eql(initialState);
   });
 
   it(`should return a new state with editing equal to true when ${types.CREATE_ARTICLE}_EDITING_ARTICLE is passed`, () => {
     const action = {
-      type: `${types.CREATE_ARTICLE}_EDITING_ARTICLE`
+      type: `${types.CREATE_ARTICLE}_EDITING`
     };
     const newState = createArticleReducer(undefined, action);
     chai.expect(newState.editing)
@@ -41,7 +42,7 @@ describe('testing createArticleReducer', () => {
     const action = {
       type: `${types.CREATE_ARTICLE}_SUCCESS`,
       payload: {
-        response: { data: 'bad data' }
+        data: 'bad data'
       }
     };
     const newState = createArticleReducer(undefined, action);
@@ -50,7 +51,7 @@ describe('testing createArticleReducer', () => {
     chai.expect(newState.editing)
       .to.equal(false);
     chai.expect(newState.article)
-      .to.equal(action.payload.response.data);
+      .to.equal(action.payload.data);
   });
 
 
@@ -66,9 +67,9 @@ describe('testing createArticleReducer', () => {
     const newState = createArticleReducer(undefined, action);
     chai.expect(newState.isLoading)
       .to.equal(false);
-    chai.expect(newState.error.status)
+    chai.expect(newState.errors.status)
       .to.equal(action.payload.response.status);
-    chai.expect(newState.error.message)
+    chai.expect(newState.errors.message)
       .to.equal(action.payload.response.data.errors.message);
   });
 
