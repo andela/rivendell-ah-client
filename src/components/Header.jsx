@@ -3,6 +3,7 @@ import { Container, Form, Button, Icon, Dropdown } from 'semantic-ui-react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import authActions from '../actions/authAction';
 // import Logout from './Logout';
 
 /**
@@ -16,7 +17,10 @@ class Header extends React.Component {
   componentDidMount = () => {
     const { history } = this.props;
     history.listen(() => {
-      document.querySelector('.dropdown').classList.add('hide');
+      const dropdownElement = document.querySelector('.dropdown');
+      if (dropdownElement) {
+        dropdownElement.classList.add('hide');
+      }
       if (document.querySelector('.side-menu').hasAttribute('style')) {
         this.slideOut();
       }
@@ -35,6 +39,9 @@ class Header extends React.Component {
     document.getElementById('overlay').style.opacity = 1;
   }
 
+  /**
+   * @returns {null} null
+   */
   profileImgClick = () => {
     document.querySelector('.dropdown').classList.toggle('hide');
   }
@@ -53,11 +60,17 @@ class Header extends React.Component {
     document.getElementById('overlay').style.opacity = 0;
   }
 
+  logout = () => {
+    const { logout } = this.props;
+    logout();
+  }
+
   /**
    * @returns {Function} jsx
    */
   render() {
-    const { token } = this.props;
+    const { token, firstName, image } = this.props;
+    console.log(image);
     return (
       <nav id="header">
         <Container>
@@ -112,10 +125,13 @@ class Header extends React.Component {
                       <div>
                         <li><i className="material-icons">notifications_none</i></li>
                         <li className="dropdown-wrapper">
-                          <i className="material-icons profile-img" onClick={this.profileImgClick}>account_circle</i>
+                        {
+                          image ? <img className="img" src={image} onClick={this.profileImgClick}/> : <i className="material-icons profile-img" onClick={this.profileImgClick}>account_circle</i>
+                        }
+                          
                           <ul className="dropdown hide">
                             <div>
-                              <li><p>Name</p></li>
+                              <li><p>{firstName}</p></li>
                               <li>
                                 <Link to="/">
                                   {/* <i className="material-icons">person_outline</i> */}
@@ -124,7 +140,7 @@ class Header extends React.Component {
                               </li>
                             </div>
                             <div>
-                              <li><Link to="#">logout</Link></li>
+                              <li><Link to="#" onClick={this.logout}>logout</Link></li>
                             </div>
                           </ul>
                         </li>
@@ -183,12 +199,16 @@ class Header extends React.Component {
                       )
                       : (
                         <div>
-                          <Link to="/">
+                          {/* <Link to="/"> */}
+                            <li>{
+                          image ? <img className="img" src={image}/> : <i className="material-icons profile-img" onClick={this.profileImgClick}>account_circle</i>
+                        }<span className="first-name">{firstName}</span></li>
+                          {/* </Link> */}
+                          <Link to="/articles">
                             <li><i className="material-icons">notifications_none</i></li>
                           </Link>
-                          <Link to="/articles">
-                            <li><i className="material-icons">account_circle</i></li>
-                          </Link>
+                          <li><Link to="#" onClick={this.logout}>logout</Link>
+                            </li>
                         </div>
                       )
                   }
@@ -211,9 +231,14 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => {
   const { token } = state.auth;
+  const { firstName, image } = state.auth.user;
   return {
-    token
+    token,
+    firstName,
+    image
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, {
+  logout: authActions.logout
+})(Header);

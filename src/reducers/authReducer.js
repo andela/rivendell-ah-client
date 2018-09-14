@@ -7,14 +7,21 @@ export const initialState = {
     message: '',
     response: {},
   },
+  user: {},
   token: '',
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+  case types.LOGOUT:
+    return {
+      ...state,
+      token: ''
+    };
   case types.SOCIAL_LOGIN:
     return {
       ...state,
+      user: action.payload.user,
       token: action.payload.user.token,
     };
   case types.PERSIST_LOGIN:
@@ -55,6 +62,7 @@ export default (state = initialState, action = {}) => {
         message: '',
         response: {},
       },
+      user: action.payload.user,
       token: action.payload.token,
     };
   case `${types.LOGIN}_FAILURE`: {

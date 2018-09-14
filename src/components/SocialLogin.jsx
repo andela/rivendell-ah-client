@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const SocialLogin = ({ socialMedia }) => {
   let host = 'https://authorhaven.herokuapp.com';
-  if (process.env.NODE_ENV === 'development') {
-    host = 'http://localhost:3000';
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   host = 'http://localhost:3000';
+  // }
   return (
     socialMedia.map(platform => (
 
