@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import articleAction from '../../actions/articleAction';
 import likeAction from '../../actions/likeAction';
 import ArticleView from '../../components/ArticleView';
+
 /**
  * Article Component
  */

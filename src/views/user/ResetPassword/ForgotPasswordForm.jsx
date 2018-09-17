@@ -90,7 +90,6 @@ export function ForgotPasswordForm(props) {
               Send Reset Password Link
             </button>
           </div>
-
         </Form>
       </div>
 

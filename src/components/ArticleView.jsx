@@ -8,6 +8,7 @@ import loadAricleAction from '../actions/loadArticleAction';
 import TagView from './TagView';
 import deleteArticleAction from '../actions/deleteArticle';
 import Like from './Like';
+import ArticleRating from '../views/articles/rating/ArticleRating';
 
 const htmlToReactParser = new HtmlToReactParser();
 /**
@@ -70,7 +71,6 @@ export class ArticleView extends Component {
       likeProps
     } = this.props;
     const { showEditPage } = this.state;
-
     if (deleted) {
       return (
         <Redirect to="/" />
@@ -136,6 +136,7 @@ export class ArticleView extends Component {
           <TagView
             tagNames={article.tags}
           />
+          {article.slug ? <ArticleRating articleSlug={article.slug} /> : ''}
         </Container>
 
       </div>
