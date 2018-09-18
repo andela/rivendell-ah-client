@@ -1,0 +1,48 @@
+// styles available for the set breakpoint and above
+@mixin media-query-above($breakpoint) {
+  // Check to see if the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    // Log a warning is it doesn't exist
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// styles available for the set breakpoint and below
+@mixin media-query-below($breakpoint) {
+  // Check to see if the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    // Log a warning is it doesn't exist
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// styles available between the set break points
+@mixin media-query-between($lower, $upper) {
+  // check to see if both the lower and upper breakpoints exist in the map.
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+  } @else {
+    // If lower breakpoint is invalid, log a warning
+    @if (map-has-key($breakpoints, $lower) == false) {
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+    // If upper breakpoint is invalid, log a warning
+    @if (map-has-key($breakpoints, $upper) == false) {
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}

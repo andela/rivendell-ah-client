@@ -7,12 +7,13 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './reducers';
 import errorMiddleware from './middleware/errorMiddleware';
 import rootSaga from './sagas';
+import authMiddleware from './middleware/authMiddleware';
 
 const promiseTypeSuffixes = ['LOADING', 'SUCCESS', 'FAILURE'];
 const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
-  createLogger({ collapsed: true }), thunk, errorMiddleware,
+  createLogger({ collapsed: true }), thunk, errorMiddleware, authMiddleware,
   promiseMiddleware({ promiseTypeSuffixes }), sagaMiddleware,
 ];
 const initialState = {};

@@ -25,6 +25,7 @@
         "no-param-reassign": 0,
         "comma-dangle": 0,
         "import/extensions": 0,
+        "some": [ "nesting", "id" ],
         "import/first": [ "error", "DISABLE-absolute-first" ],
         "curly": [2, "multi-line"],
         "no-shadow": [2, { "allow": ["req", "res", "err"] }],
@@ -46,6 +47,9 @@
         "react/prefer-stateless-function":"off",
         "react/no-array-index-key":"off",
         "react/no-unescaped-entities":"off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/anchor-is-valid": "off"
       }
 }
