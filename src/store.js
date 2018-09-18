@@ -8,6 +8,7 @@ import rootReducer from './reducers';
 import errorMiddleware from './middleware/errorMiddleware';
 import rootSaga from './sagas';
 import authMiddleware from './middleware/authMiddleware';
+// import initSagas from './sagas';
 
 const promiseTypeSuffixes = ['LOADING', 'SUCCESS', 'FAILURE'];
 const sagaMiddleware = createSagaMiddleware();
@@ -25,5 +26,5 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
-
+// initSagas(sagaMiddleware);
 export default store;

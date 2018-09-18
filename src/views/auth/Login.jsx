@@ -60,7 +60,7 @@ export class Login extends React.Component {
 
 
   /**
-  * ComponentWillMount lifecycle
+  * ComponentDidMount lifecycle
   * @returns {string} - HTML Markup for the component
   */
   componentDidMount() {
@@ -74,7 +74,7 @@ export class Login extends React.Component {
 
 
   /**
-  * ComponentWillMount lifecycle
+  * ComponentWillUnMount lifecycle
   * @returns {string} - HTML Markup for the component
   */
   componentWillUnmount() {
@@ -97,6 +97,7 @@ export class Login extends React.Component {
     const retrievedParams = localStorage.getItem('urlParams');
     if (retrievedParams) {
       const user = {
+        id: '',
         email: '',
         image: '',
         firstName: '',
