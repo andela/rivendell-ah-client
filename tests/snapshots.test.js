@@ -16,7 +16,6 @@ describe('The Form Input With Icon component', () => {
       name: "email",
       placeholder: "Email"
     };
-    // const output = FormInputWithIcon(props).toJson();
     const tree = shallow(<FormInputWithIcon
         handleChange={props.handleChange}
         value={props.value}
