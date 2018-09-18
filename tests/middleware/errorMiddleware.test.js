@@ -18,15 +18,6 @@ describe('Testing errorMiddleware', () => {
     const result = await errorMiddleware()(next)(action);
     expect(result).toEqual(error);
   });
-  // it('should call the next function if the payload is not a promise', () => {
-  //   const next = action => action;
-  //   const action = {
-  //     type: '_FAILURE',
-  //     payload: 'hello',
-  //   }
-  //   const result = errorMiddleware()(next)(action);
-  //   expect(result.payload).toEqual(action.payload);
-  // });
   it('should decongest the nested error response on login failure', () => {
     const action = {
       type: 'LOGIN_FAILURE',
