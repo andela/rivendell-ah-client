@@ -1,10 +1,4 @@
 import store from '../../src/store';
-import {
-  saveProfileOnLoginSuccess,
-  saveProfileOnPersistLogin,
-  saveProfileOnSocialLogin,
-  updateUserOnProfileUpdate,
-} from '../../src/sagas/profileSaga';
 import types from '../../src/actions/actionTypes';
 
 describe('Testing profile saga', () => {
@@ -15,6 +9,22 @@ describe('Testing profile saga', () => {
     const state = store.getState();
     const profile = state.profile.userProfile;
     expect(profile.username).toEqual('megame');
+  });
+  it ('should take the profile and dispatch on login success', () => {
+    store.dispatch({ type: `${types.SIGN_UP}_SUCCESS`, payload:
+      { data: { user: { username: 'megame1' } } }
+    });
+    const state = store.getState();
+    const profile = state.profile.userProfile;
+    expect(profile.username).toEqual('megame1');
+  });
+  it ('should take the profile and dispatch on login success', () => {
+    store.dispatch({ type: types.SOCIAL_LOGIN, payload:
+      {  user: { username: 'megame2', token: 'token'  } }
+    });
+    const state = store.getState();
+    const profile = state.profile.userProfile;
+    expect(profile.username).toEqual('megame2');
   });
   it ('should take the profile and dispatch on persist login action dispatch', () => {
     store.dispatch({ type: types.PERSIST_LOGIN, payload:

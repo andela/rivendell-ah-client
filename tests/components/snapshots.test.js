@@ -15,14 +15,15 @@ describe('The Form Input With Icon component', () => {
       type: "email",
       iconName: "email",
       name: "email",
+      placeholder: 'email'
     };
-    // const output = FormInputWithIcon(props).toJson();
     const tree = shallow(<FormInputWithIcon
         handleChange={props.handleChange}
         value={props.value}
         type={props.type}
         iconName={props.iconName}
         name={props.name}
+        placeholder={props.placeholder}
       />);
     expect(tree).toMatchSnapshot();
   });

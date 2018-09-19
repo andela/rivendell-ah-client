@@ -14,6 +14,9 @@ import like from './likeReducer';
 import deleteArticleReducer from './deleteArticleReducer';
 import { articleRatings, rateArticle }
   from './ratingReducer';
+import {
+  featuredArticles, categories, topRated, feed, favoriteArticles,
+} from './homepageReducer';
 
 export default combineReducers({
   auth,
@@ -32,4 +35,9 @@ export default combineReducers({
   deleteArticleReducer,
   articleRatings,
   rateArticle,
+  featuredArticles,
+  categories,
+  topRated,
+  feed,
+  favoriteArticles,
 });

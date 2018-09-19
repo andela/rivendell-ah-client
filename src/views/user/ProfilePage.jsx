@@ -44,7 +44,6 @@ export class ProfilePage extends Component {
           owner={this.props.userProfile.username}
           errors={this.props.errors}
         />
-        <Link id="profile-redirect-link" to="/">Back</Link>
       </div>
     );
   }

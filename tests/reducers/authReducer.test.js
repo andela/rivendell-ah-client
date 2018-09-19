@@ -132,5 +132,20 @@ describe('Testing authReducer', () => {
         }
         const state = authReducer(initialState)
         expect(state).toEqual(newState);
-    })
+    });
+    it('should set isLoading to true when SIGN_UP_LOADING is dispatched', () => {
+      const action = { type: `${actions.SIGN_UP}_LOADING`};
+      const state = authReducer(initialState, action);
+      expect(state.isLoading).toEqual(true);
+    });
+    it('should save an error message to the state when SIGN_UP_FAILURE is dispatched', () => {
+      const action = {
+        type: `${actions.SIGN_UP}_FAILURE`,
+        payload: {
+          message: 'ERROR!!'
+        }
+      }
+      const state = authReducer(initialState, action);
+      expect(state.errors.message).toEqual(action.payload.message);
+    });
 });

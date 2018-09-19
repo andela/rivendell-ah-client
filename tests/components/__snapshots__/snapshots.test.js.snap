@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Footer component Should render as expected 1`] = `
-<div>
-  <h2>
-    Author's Haven Footer 
-  </h2>
-</div>
+<footer>
+  <p>
+    © Authors Haven    
+    <Link
+      replace={false}
+      to="/"
+    >
+      About Us
+    </Link>
+  </p>
+</footer>
 `;
 
 exports[`The Form Errors component Should render as expected 1`] = `
@@ -49,6 +55,7 @@ exports[`The Form Input With Icon component Should render as expected 1`] = `
     <input
       name="email"
       onChange={[Function]}
+      placeholder="email"
       type="email"
       value="validemail@gmail.com"
     />

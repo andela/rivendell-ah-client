@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <div>
-    <h2>Author's Haven Footer </h2>
-  </div>
+  <footer>
+    <p>
+      &copy; Authors Haven
+      &nbsp; &nbsp;
+      <Link to="/">About Us</Link>
+    </p>
+  </footer>
 );
 
 

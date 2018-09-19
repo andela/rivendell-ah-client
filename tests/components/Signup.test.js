@@ -233,7 +233,6 @@ describe("The Signup component", () => {
         expect(signupComponentInstance.state.formData.confirm).toEqual(
           event.target.value
         );
-        console.log(signupComponentInstance.state.validationErrors.confirm);
         expect(
           signupComponentInstance.state.validationErrors.confirm.length
         ).toEqual(0);
