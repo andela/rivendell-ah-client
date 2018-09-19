@@ -16,6 +16,10 @@ const clearAllApiValidationErrors = () => ({
   type: types.CLEAR_ALL_API_VALIDATION_ERRS,
 });
 
+const logout = () => ({
+  type: types.LOGOUT,
+});
+
 const socialLogin = user => ({
   type: types.SOCIAL_LOGIN,
   payload: {
@@ -27,5 +31,6 @@ export default {
   login,
   clearApiValidationError,
   clearAllApiValidationErrors,
+  logout,
   socialLogin,
 };

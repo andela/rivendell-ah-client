@@ -13,9 +13,13 @@ const promiseTypeSuffixes = ['LOADING', 'SUCCESS', 'FAILURE'];
 const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
-  createLogger({ collapsed: true }), thunk, errorMiddleware, authMiddleware,
+  thunk, errorMiddleware, authMiddleware,
   promiseMiddleware({ promiseTypeSuffixes }), sagaMiddleware,
 ];
+
+if (process.env.NODE_ENV === 'development') {
+  middleware.push(createLogger({ collapsed: true }));
+}
 const initialState = {};
 
 const store = createStore(

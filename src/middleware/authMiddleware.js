@@ -7,9 +7,22 @@ import types from '../actions/actionTypes';
  */
 const authMiddleware = () => next => (action) => {
   if (action.type === `${types.LOGIN}_SUCCESS`) {
-    const { token } = action.payload.data.user;
-    action.payload.token = action.payload.data.user.token;
+    let { user } = action.payload.data;
+    const { token } = user;
+    action.payload.user = user;
+    action.payload.token = user.token;
     localStorage.setItem('token', token);
+    const {
+      bio, email, firstName, id, image, lastName, username, verified
+    } = user;
+    user = JSON.stringify({
+      bio, email, firstName, id, image, lastName, username, verified
+    });
+    localStorage.setItem('user', user);
+  }
+  if (action.type === types.LOGOUT) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
   if (action.type === types.SOCIAL_LOGIN) {
     const { token } = action.payload.user;

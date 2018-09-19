@@ -12,10 +12,14 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+  case types.LOGOUT:
+    return {
+      ...state,
+      token: ''
+    };
   case types.PERSIST_LOGIN:
     return {
       ...state,
-      user: action.payload.user,
       token: action.payload.token,
     };
   case types.CLEAR_API_VALIDATION_ERR:
