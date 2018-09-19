@@ -1,4 +1,7 @@
 #edit-profile-page {
+  input[type=file] {
+    display: block;
+  }
   /* border:2px solid red; */
   padding-top: 20px;
   .content {

@@ -267,7 +267,7 @@ export class Article extends React.Component {
  */
   render() {
     const { likeAttributes } = this.state;
-    const { likesCount, likes, match: { params } } = this.props;
+    const { likesCount, likes, match: { params }, history } = this.props;
     const likeProps = {
       likeAttributes,
       likesCount,
@@ -278,7 +278,11 @@ export class Article extends React.Component {
     };
     return (
       <div>
-        <ArticleView slug={params.slug} likeProps={likeProps} />
+        <ArticleView
+          history={history}
+          slug={params.slug}
+          likeProps={likeProps}
+        />
       </div>
     );
   }

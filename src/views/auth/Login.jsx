@@ -132,6 +132,8 @@ export class Login extends React.Component {
         bio: '',
         token: '',
         username: '',
+        id: '',
+        verified: '',
       };
 
       Object.keys(user).forEach((element) => {

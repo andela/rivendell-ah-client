@@ -1,9 +1,9 @@
 import GuestRoute from './GuestRoute';
 import PrivateRoute from './PrivateRoute';
-import VerifyRoute from './VerifyRoute';
+import VerifiedRoute from './VerifiedRoute';
 
 export default {
   GuestRoute,
   PrivateRoute,
-  VerifyRoute,
+  VerifiedRoute,
 };

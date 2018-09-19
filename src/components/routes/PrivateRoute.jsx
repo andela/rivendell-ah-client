@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const PrivateRoute = ({ token, verified, component: Component, ...rest
+export const ProfileRoute = ({ token, verified, component: Component, ...rest
 }) => (
   <Route
     {...rest}
@@ -22,7 +22,7 @@ export const mapStateToProps = (state) => {
     token,
   };
 };
-PrivateRoute.propTypes = {
+ProfileRoute.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string
   }),
@@ -30,7 +30,7 @@ PrivateRoute.propTypes = {
   token: PropTypes.string,
   verified: PropTypes.bool,
 };
-PrivateRoute.defaultProps = {
+ProfileRoute.defaultProps = {
   location: PropTypes.shape({
     pathname: ''
   }),
@@ -38,4 +38,4 @@ PrivateRoute.defaultProps = {
   verified: false,
 };
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(ProfileRoute);

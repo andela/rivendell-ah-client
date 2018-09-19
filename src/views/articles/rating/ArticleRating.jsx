@@ -228,7 +228,7 @@ export class ArticleRating extends Component {
               rating={myRating}
               maxRating={5}
               onRate={this.handleArticleRating}
-              size="large"
+              size="massive"
             />
             <RatingStats
               myRatingPopup={myRatingPopup}

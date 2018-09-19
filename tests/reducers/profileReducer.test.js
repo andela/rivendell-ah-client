@@ -47,6 +47,10 @@ describe('Testing profileReducer', () => {
     const state = profileReducer(initialState, { type: 'INVALID' });
     expect(state).toEqual(initialState);
   });
+  it('should the redirect param in the state when UPDATE_REDIRECT is dispatched', () => {
+    const state = profileReducer(initialState, { type: 'UPDATE_REDIRECT' });
+    expect(state.redirect).toEqual(false);
+  });
   it('should set the profile to an empty object when LOGOUT is dispatched', () => {
     const action = { type: actions.LOGOUT};
     const state = profileReducer(initialState, action);

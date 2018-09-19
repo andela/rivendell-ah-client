@@ -428,8 +428,6 @@ class SmartEditor extends Component {
     return (
       <div
         id="smart-editor"
-        onClick={this.focusEditor}
-
       >
 
         <input

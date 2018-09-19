@@ -45,8 +45,9 @@ export class ArticleView extends Component {
    * returns nothing
    */
   deleteArticle() {
-    const { deleteArticle, article } = this.props;
+    const { deleteArticle, article, history } = this.props;
     deleteArticle(article);
+    history.push('/');
   }
 
   /**
@@ -83,15 +84,10 @@ export class ArticleView extends Component {
    */
   render() {
     const { article, errors,
-      currentUsername, deleted,
+      currentUsername,
       likeProps
     } = this.props;
     const { showEditPage } = this.state;
-    if (deleted) {
-      return (
-        <Redirect to="/" />
-      );
-    }
     if (showEditPage) {
       return (
         <Redirect to={`/articles/${article.slug}/edit`} />
@@ -161,11 +157,8 @@ export class ArticleView extends Component {
           <TagView
             tagNames={article.tags}
           />
-<<<<<<< HEAD
           {article.slug ? <ArticleRating articleSlug={article.slug} /> : ''}
-=======
           <SocialShare articleURL={this.articleURL} />
->>>>>>> feat(share-article): users should share article
         </Container>
 
       </div>
