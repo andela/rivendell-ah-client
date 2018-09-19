@@ -1,4 +1,5 @@
 import React from 'react';
+import { Header, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Like from '../../components/Like';
 import articleAction from '../../actions/articleAction';
@@ -21,6 +22,8 @@ export class Article extends React.Component {
       },
     };
     this.handleClick = this.handleClick.bind(this);
+    this.checkUserLikes = this.checkUserLikes.bind(this);
+    this.handleCountClick = this.handleCountClick.bind(this);
   }
 
   /**
@@ -42,7 +45,9 @@ export class Article extends React.Component {
   componentWillReceiveProps(nextProps) {
     console.log('props', this.props);
     console.log('nextProps', nextProps);
-    if (nextProps.like) {
+    const { user } = this.props;
+
+    if (nextProps.like || this.checkUserLikes(nextProps.likes)) {
       this.setState({ likeAttributes: {
         divClass: 'ui labeled button',
         buttonClass: 'ui blue button',
@@ -59,6 +64,7 @@ export class Article extends React.Component {
     }
   }
 
+
   /**
   * ComponentDidUpdate lifecycle
   * @returns {string} - HTML Markup for the component
@@ -73,21 +79,47 @@ export class Article extends React.Component {
   }
 
   /**
+  * checkUserLikes
+  * @returns {boolean} - HTML Markup for the component
+  * @param {Array} likes
+  */
+  checkUserLikes(likes) {
+    const { user } = this.props;
+    return likes.some(like => like.userId === user.id);
+  }
+
+  /**
    * handle form submit
    * @param {Object} event event object
    * @returns {null} null
    */
   handleClick(event) {
-    const { match, article, user, likeArticle, unlikeArticle, getArticle, like } = this.props;
+    const { match, token, history, user, likeArticle, unlikeArticle, like, likes } = this.props;
     const { params } = match;
-    if (!like) {
-      likeArticle(params.slug, user.token);
+    console.log(user);
+    if (token) {
+      if (!like && !this.checkUserLikes(likes)) {
+        likeArticle(params.slug, user.token);
+      } else {
+        unlikeArticle(params.slug, user.token);
+      }
     } else {
-      unlikeArticle(params.slug, user.token);
+      history.push('/login');
     }
     // getArticle(params.slug);
   }
 
+  /**
+   * handle form submit
+   * @param {Object} event event object
+   * @returns {null} null
+   */
+  handleCountClick(event) {
+    const { token, history } = this.props;
+    if (!token) {
+      history.push('/login');
+    }
+  }
 
   /**
  * render function
@@ -132,14 +164,15 @@ export class Article extends React.Component {
           likeAttributes={likeAttributes}
           likesCount={likesCount}
           handleClick={this.handleClick}
+          handleCountClick={this.handleCountClick}
         />
       </div>
     );
   }
 }
 export const mapStateToProps = (state) => {
-  const { article} = state.article;
-  const { user } = state.auth;
+  const { article } = state.article;
+  const { user, token } = state.auth;
   const { likes, like, likesCount } = state.like;
   return {
     article,
@@ -147,6 +180,7 @@ export const mapStateToProps = (state) => {
     likes,
     like,
     likesCount,
+    token,
   };
 };
 export default connect(mapStateToProps, {

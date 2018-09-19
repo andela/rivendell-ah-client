@@ -10,7 +10,6 @@ export const initialState = {
   likes: [],
   like: false,
   likesCount: 0,
-  successDone: null
 };
 
 export default (state = initialState, action = {}) => {
@@ -27,10 +26,15 @@ export default (state = initialState, action = {}) => {
       isLoading: true,
     };
   case `${types.LIKE_ARTICLE}_SUCCESS`: {
+    const prevLikesCount = state.likesCount;
+    const prevLikes = state.likes;
+    const user = JSON.parse(localStorage.getItem('user'));
+    // console.log('payloaddddd', action.payload);
     return {
       ...state,
       like: true,
-      successDone: true
+      likesCount: prevLikesCount + 1,
+      likes: [...prevLikes, { userId: user.id }]
     };
   }
   case `${types.LIKE_ARTICLE}_FAILURE`:
@@ -48,9 +52,14 @@ export default (state = initialState, action = {}) => {
       isLoading: true,
     };
   case `${types.UNLIKE_ARTICLE}_SUCCESS`: {
+    const prevLikesCount = state.likesCount;
+    const prevLikes = [...state.likes];
+    const newLikes = prevLikes.splice(0, prevLikesCount - 1);
     return {
       ...state,
       like: false,
+      likesCount: prevLikesCount - 1,
+      likes: newLikes,
     };
   }
   case `${types.UNLIKE_ARTICLE}_FAILURE`:

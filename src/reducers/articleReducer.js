@@ -21,6 +21,7 @@ export default (state = initialState, action = {}) => {
     return {
       ...state,
       article: action.payload.data.article,
+    //   likes: action.payload.data.article.likes
     };
   case `${types.GET_ARTICLE}_FAILURE`:
     return {
