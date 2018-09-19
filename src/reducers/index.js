@@ -12,6 +12,9 @@ import { resetPassword, resetPasswordLink, validateResetToken }
 import article from './articleReducer';
 import like from './likeReducer';
 import deleteArticleReducer from './deleteArticleReducer';
+import {
+  featuredArticles, categories, topRated, feed, favoriteArticles,
+} from './homepageReducer';
 
 export default combineReducers({
   auth,
@@ -27,5 +30,10 @@ export default combineReducers({
   loadArticleReducer,
   uploadImageReducer,
   updateArticleReducer,
-  deleteArticleReducer
+  deleteArticleReducer,
+  featuredArticles,
+  categories,
+  topRated,
+  feed,
+  favoriteArticles,
 });

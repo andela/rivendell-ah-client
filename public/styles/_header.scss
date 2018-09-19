@@ -29,7 +29,7 @@
     right: -300px;
     background-color: $primary-blue;
     height: 100vh;
-    z-index: 2;
+    z-index: 3;
     color: $white;
     animation-duration: 0.4s;
     a {
@@ -164,6 +164,7 @@
       border: 1px solid $border-ash;
       box-shadow: 0 0 1px $shadow-ash;
       background-color: $milk-background;
+      z-index: 10;
     }
     .dropdown > div {
       border-bottom: 1px solid $border-ash;
@@ -238,7 +239,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index: 1;
+    z-index: 2;
     animation-duration: 0.4s;
     @keyframes appear {
       from {

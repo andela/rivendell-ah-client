@@ -49,6 +49,7 @@ exports[`The Form Input With Icon component Should render as expected 1`] = `
     <input
       name="email"
       onChange={[Function]}
+      placeholder="email"
       type="email"
       value="validemail@gmail.com"
     />

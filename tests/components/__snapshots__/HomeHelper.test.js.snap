@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the ArticleWithImg component Should render as expected 1`] = `
+<Link
+  replace={false}
+  to="/articles/undefined"
+>
+  <div
+    id="article-with-img"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundImage": "image",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="img-content"
+      style={Object {}}
+    >
+      <div
+        className="title-container"
+      >
+        <h4
+          className="title"
+        >
+          title
+        </h4>
+      </div>
+      <p
+        className="desc"
+      >
+        description
+      </p>
+      <p
+        className="author"
+      >
+        username
+      </p>
+      <p
+        className="date"
+      >
+        Invalid Date
+      </p>
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`Testing the Banner component Should render as expected 1`] = `
+<div
+  className="hero"
+>
+  <div
+    className="text container"
+  >
+    <h1>
+      AUTHORS HAVEN,
+    </h1>
+    <h1>
+      A WHOLE NEW WORLD
+    </h1>
+    <Link
+      replace={false}
+      to="/signup"
+    >
+      <Button
+        as="button"
+        role="button"
+      >
+        Get started
+      </Button>
+    </Link>
+  </div>
+  <div
+    className="hero-overlay"
+  />
+</div>
+`;
+
+exports[`Testing the CategoriesMenu component Should render as expected 1`] = `
+<ul
+  className="category-menu"
+>
+  <li
+    key="0"
+  >
+    <ButtonToolbar
+      bsClass="btn-toolbar"
+    >
+      <DropdownButton
+        bsStyle="link"
+        id="dropdown-no-caret"
+        noCaret={true}
+        title="name"
+      >
+        <MenuItem
+          bsClass="dropdown"
+          disabled={false}
+          divider={false}
+          eventKey="id"
+          header={false}
+          key="id"
+          onClick={[Function]}
+        >
+          name
+        </MenuItem>
+      </DropdownButton>
+    </ButtonToolbar>
+  </li>
+</ul>
+`;
+
+exports[`Testing the FavoriteArticles component Should render as expected 1`] = `
+<div
+  className="favorite-articles-container"
+>
+  <h3>
+    Favorite articles
+  </h3>
+  <ul>
+    <li
+      className="favorite-article"
+      key="id"
+      style={Object {}}
+    >
+      <FavoriteArticleImg
+        favoriteArticle={
+          Object {
+            "article": Object {
+              "author": Object {
+                "username": "username",
+              },
+              "slug": "slug",
+              "title": "title",
+            },
+            "id": "id",
+          }
+        }
+      />
+      <div
+        className="article-content"
+      >
+        <Link
+          replace={false}
+          to="/articles/slug"
+        >
+          <h4
+            className="title"
+          >
+            title
+          </h4>
+          <p
+            className="desc"
+          />
+          <p
+            className="author"
+          >
+            username
+          </p>
+          <p
+            className="date"
+          >
+            Invalid Date
+          </p>
+        </Link>
+      </div>
+      <Button
+        as="button"
+        className="next-article"
+        onClick={[Function]}
+        role="button"
+      >
+        Next article
+      </Button>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Testing the PaginatedArticles component Should render as expected 1`] = `
+<div
+  className="articles"
+>
+  <h3>
+    Feed
+  </h3>
+  <ul>
+    <Articles
+      articleImgStyles={Object {}}
+      articles={
+        Array [
+          Object {
+            "slug": "slug",
+          },
+        ]
+      }
+      slideDown={[Function]}
+      slideUp={[Function]}
+    />
+  </ul>
+  <div
+    id="pagination-container"
+  >
+    <Pagination
+      activePage={12}
+      aria-label="Pagination Navigation"
+      boundaryRange={1}
+      className="pagination"
+      ellipsisItem="..."
+      firstItem={
+        Object {
+          "aria-label": "First item",
+          "content": "«",
+        }
+      }
+      lastItem={
+        Object {
+          "aria-label": "Last item",
+          "content": "»",
+        }
+      }
+      nextItem={
+        Object {
+          "aria-label": "Next item",
+          "content": "⟩",
+        }
+      }
+      onPageChange={[Function]}
+      pageItem={Object {}}
+      prevItem={
+        Object {
+          "aria-label": "Previous item",
+          "content": "⟨",
+        }
+      }
+      siblingRange={1}
+      totalPages={22}
+    />
+  </div>
+</div>
+`;
+
+exports[`Testing the TopRated component Should render as expected 1`] = `
+<div
+  className="top-rated"
+>
+  <h3>
+    Top rated
+  </h3>
+  <ul>
+    <li
+      key="slug"
+    >
+      <Link
+        replace={false}
+        to="/articles/slug"
+      >
+        <span>
+          <i
+            className="material-icons"
+          >
+            star
+          </i>
+        </span>
+        <div
+          className="article-content"
+        >
+          <h4
+            className="title"
+          />
+          <p
+            className="desc"
+          />
+          <p
+            className="author"
+          />
+          <p
+            className="date"
+          >
+            Invalid Date
+          </p>
+        </div>
+      </Link>
+    </li>
+  </ul>
+</div>
+`;

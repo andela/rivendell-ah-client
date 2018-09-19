@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+import { watchGetArticles, watchGetFeed, watchLogout } from './articlesSaga';
 import {
   saveProfileOnLoginSuccess,
   saveProfileOnPersistLogin,
@@ -21,6 +22,9 @@ export default function* rootSaga() {
     saveProfileOnSocialLoginSuccess(),
     saveProfileOnSocialLogin(),
     updateUserOnProfileUpdate(),
-    watchUnlikeArticle()
+    watchUnlikeArticle(),
+    watchGetArticles(),
+    watchGetFeed(),
+    watchLogout(),
   ]);
 }
