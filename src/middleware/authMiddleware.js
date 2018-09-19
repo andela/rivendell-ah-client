@@ -24,6 +24,10 @@ const authMiddleware = () => next => (action) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }
+  if (action.type === types.SOCIAL_LOGIN) {
+    const { token } = action.payload.user;
+    localStorage.setItem('token', token);
+  }
   return next(action);
 };
 

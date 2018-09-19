@@ -3,6 +3,7 @@ import types from '../actions/actionTypes';
 export const initialState = {
   isLoading: false,
   errors: {
+    status: false,
     message: '',
     response: {},
   },
@@ -65,6 +66,11 @@ export default (state = initialState, action = {}) => {
       }
     };
   }
+  case types.SOCIAL_LOGIN:
+    return {
+      ...state,
+      token: action.payload.user.token,
+    };
   default:
     return state;
   }
