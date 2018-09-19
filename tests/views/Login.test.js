@@ -1,63 +1,82 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-
 import { Login, mapStateToProps } from '../../src/views/auth/Login';
+import mockData from '../config/mockData';
+
+const { searchParams } = mockData;
+const location = { search: searchParams };
+const history = {
+  replace: (string) => {
+    return null;
+  }
+}
+const props = {
+  login: () => { },
+  clearAllApiValidationErrors: () => { },
+  isLoading: false,
+  errors: {
+    message: '',
+    response: {
+      email: ['invalid']
+    }
+  }
+}
+const shallowRender = () => (
+  shallow(<Login
+    history={history}
+    socialLoginRedirect={() => { }}
+    socialLogin={() => { }}
+    location={location}
+    login={props.login}
+    clearAllApiValidationErrors={props.clearAllApiValidationErrors}
+    isLoading={props.isLoading}
+    errors={props.errors}
+  />)
+)
 
 describe('The Login component', () => {
   describe('Testing mapStateToProps', () => {
     it('should map the state to the props correctly', () => {
-      const auth = {
-        isLoading: true,
-        errors: {
-          message: '',
-          response: {}
+      const state = {
+        auth: {
+          isLoading: true,
+          errors: {
+            message: '',
+            response: {}
+          },
+          token: '',
+        },
+        redirect: {
+          redirectUrl: '/'
         }
-      }
-      const state = { auth };
+      };
       const componentState = mapStateToProps(state);
-      expect(componentState).toEqual(auth);
+      expect(componentState).toEqual({ isLoading: state.auth.isLoading, errors: state.auth.errors, redirectUrl: state.redirect.redirectUrl, token: state.auth.token });
     });
   });
   describe('Testing component methods', () => {
-    const props = {
-      login: () => {},
-      clearAllApiValidationErrors: () => {},
-      isLoading: false,
-      errors: {
-        message: '',
-        response: {
-          email: ['invalid']
-        }
-      }
-    }
-    const loginComponent = shallow(<Login
-        login={props.login}
-        clearAllApiValidationErrors={props.clearAllApiValidationErrors}
-        isLoading={props.isLoading}
-        errors={props.errors}
-      />);
+    const loginComponent = shallowRender();
     describe('Testing componentDidMount', () => {
       it('should call componentDidMount on loading the page', () => {
         jest.spyOn(Login.prototype, 'componentDidMount');
-        shallow(<Login
-          login={props.login}
-          clearAllApiValidationErrors={props.clearAllApiValidationErrors}
-          isLoading={props.isLoading}
-          errors={props.errors}
-        />);
+        shallowRender();
         expect(Login.prototype.componentDidMount.mock.calls.length).toEqual(1);
       });
     });
+    describe('Testing componentWillUnmount', () => {
+      jest.spyOn(Login.prototype, 'componentWillUnmount')
+      const wrapper = shallowRender();
+      expect(Login.prototype.componentWillUnmount.mock.calls.length).toBe(0)
+      wrapper.unmount(<Login history={history} socialLoginRedirect={() => { }} socialLogin={() => { }} location={location}
+        login={props.login} clearAllApiValidationErrors={props.clearAllApiValidationErrors} isLoading={props.isLoading}
+        errors={props.errors} />)
+      expect(Login.prototype.componentWillUnmount.mock.calls.length).toBe(1)
+    })
     describe('Testing componentDidMount', () => {
       it('should call componentDidMount on loading the page', () => {
         props.errors.response = {};
         jest.spyOn(Login.prototype, 'componentDidMount');
-        shallow(<Login
-          login={props.login}
-          clearAllApiValidationErrors={props.clearAllApiValidationErrors}
-          isLoading={props.isLoading}
-          errors={props.errors}
-        />);
+        shallowRender();
         expect(Login.prototype.componentDidMount.mock.calls.length).toEqual(2);
       });
     });
@@ -89,7 +108,7 @@ describe('The Login component', () => {
         }
         const spy = jest.spyOn(loginComponentInstance, 'validate');
         loginComponentInstance.state.displayErrMsg = false;
-        loginComponentInstance.handleSubmit({ preventDefault: () => {} });
+        loginComponentInstance.handleSubmit({ preventDefault: () => { } });
         expect(spy).toHaveBeenCalled();
         expect(loginComponentInstance.state.displayErrMsg).toEqual(true);
       });
@@ -103,7 +122,7 @@ describe('The Login component', () => {
         }
         const spy = jest.spyOn(loginComponentInstance, 'validate');
         loginComponentInstance.state.displayErrMsg = false;
-        loginComponentInstance.handleSubmit({ preventDefault: () => {} });
+        loginComponentInstance.handleSubmit({ preventDefault: () => { } });
         expect(spy).toHaveBeenCalled();
         expect(loginComponentInstance.state.displayErrMsg).toEqual(false);
       });
@@ -145,5 +164,8 @@ describe('The Login component', () => {
         expect(loginComponentInstance.state.formData.password).toEqual(event.target.value);
       });
     });
+  });
+  it('Should render all elements properly', () => {
+    shallowRender();
   });
 });

@@ -7,7 +7,7 @@ const errorMiddleware = () => next => (action) => {
   // return a well structured error on failure
   if (action.type.includes('_FAILURE')) {
     const errors = {
-      statusCode: null,
+      statusCode: 0,
       message: action.payload.message,
       response: {}
     };
