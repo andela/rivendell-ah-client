@@ -12,6 +12,9 @@ body {
 a {
   color: $primary-blue;
   text-decoration: none;
+  &:hover, &:active {
+    text-decoration: none;
+  }
 }
 .hide {
   display: none;
@@ -27,4 +30,28 @@ footer {
   display: table;
   content: "";
   clear: both;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ui.form, .ui.buttons, .ui.button {
+  font-size: 1em;
+}
+
+.ui.tiny.button, .ui.tiny.buttons .button, .ui.tiny.buttons .or {
+  font-size: .85714286em;
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
 }

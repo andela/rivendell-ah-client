@@ -1,7 +1,4 @@
 import store from '../../src/store';
-import {
-  saveProfileOnLoginSuccess, saveProfileOnPersistLogin
-} from '../../src/sagas/profileSaga';
 import types from '../../src/actions/actionTypes';
 
 describe('Testing profile saga', () => {

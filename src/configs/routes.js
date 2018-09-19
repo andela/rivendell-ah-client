@@ -1,5 +1,6 @@
 import { Route } from 'react-router-dom';
-import Home from '../views/Home';
+import Home from // eslint-disable-line import/no-named-as-default
+  '../views/Home';
 import NotFound from '../views/NotFound';
 import authPages from '../views/auth';
 import routePages from '../components/routes';
@@ -62,13 +63,13 @@ export default [
     exact: true,
   },
   {
-    type: Route,
+    type: GuestRoute,
     path: '/forgot-password',
     component: ForgotPassword,
     exact: true,
   },
   {
-    type: Route,
+    type: GuestRoute,
     path: '/reset-password',
     component: ResetPassword,
     exact: true,
