@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom';
 import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import authPages from '../views/auth';
+import routePages from '../components/routes';
 import articlePages from '../views/articles';
 import userPages from '../views/user';
 import subcategoryPages from '../views/articles/subcategory';
@@ -13,7 +14,8 @@ const { SubcategoryArticles } = subcategoryPages;
 const {
   EditProfile, Profile, Followers, Following
 } = userPages;
-const { Signup, Login, PrivateRoute, GuestRoute } = authPages;
+const { Signup, Login } = authPages;
+const { PrivateRoute, GuestRoute } = routePages;
 
 export default [
   {

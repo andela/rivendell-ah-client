@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the CloseSideMenuButton component Should render as expected 1`] = `
+<div
+  className="close-menu"
+>
+  <i
+    className="material-icons"
+    onClick={[Function]}
+  >
+    close
+  </i>
+</div>
+`;
+
+exports[`Testing the HamburgerMenu component Should render as expected 1`] = `
+<div
+  className="mobile hamburger-menu"
+>
+  <i
+    className="material-icons"
+    onClick={[Function]}
+  >
+    menu
+  </i>
+</div>
+`;
+
+exports[`Testing the Logo component Should render as expected 1`] = `
+<div
+  className="logo"
+>
+  <Link
+    replace={false}
+    to="/"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 129 80"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clipRule="evenodd"
+        d="M64.5 0L129 80H95.0999L78.6047 60.1212H45.8921L62.3872 80H0L30.7449 41.8669L41.0642 54.303H73.7769L46.8657 21.8718L64.5 0Z"
+        fill="#3498DB"
+        fillRule="evenodd"
+      />
+    </svg>
+  </Link>
+</div>
+`;
+
+exports[`Testing the SearchBar component Should render as expected 1`] = `
+<div
+  className="search-box"
+>
+  <Form
+    as="form"
+  >
+    <FormField>
+      <input
+        placeholder="search articles"
+        type="search"
+      />
+    </FormField>
+    <Button
+      as="button"
+      role="button"
+    >
+      <i
+        className="material-icons"
+      >
+        search
+      </i>
+    </Button>
+  </Form>
+</div>
+`;

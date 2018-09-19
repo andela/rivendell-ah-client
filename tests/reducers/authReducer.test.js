@@ -6,6 +6,10 @@ describe('Testing authReducer', () => {
     const state = authReducer(initialState);
     expect(state).toEqual(initialState);
   });
+  it('should return the initial state if no initial state is passed', () => {
+    const state = authReducer();
+    expect(state).toEqual(initialState);
+  });
   it('should return the initial state if no invalid action type is passed', () => {
     const state = authReducer(initialState, { type: 'INVALID' });
     expect(state).toEqual(initialState);
@@ -19,6 +23,11 @@ describe('Testing authReducer', () => {
     }
     const expectedState = {
       ...initialState,
+      isLoading: false,
+      errors: {
+        message: '',
+        response: {},
+      },
       token: action.payload.token
     }
     const state = authReducer(initialState, action);
@@ -72,6 +81,11 @@ describe('Testing authReducer', () => {
     const state = authReducer(initialState, action);
     expect(state.isLoading).toEqual(true);
   });
+  it('should set token to an empty string when LOGOUT is dispatched', () => {
+    const action = { type: actions.LOGOUT};
+    const state = authReducer(initialState, action);
+    expect(state.token).toEqual('');
+  });
   it('should save an error message to the state when LOGIN_FAILURE is dispatched', () => {
     const action = {
       type: `${actions.LOGIN}_FAILURE`,
@@ -82,4 +96,41 @@ describe('Testing authReducer', () => {
     const state = authReducer(initialState, action);
     expect(state.errors.message).toEqual(action.payload.message);
   });
+
+    it('should return the state when no matching action type', () => {
+        const randomAction = {
+            type: 'SOME_RANDOM_TYPE',
+            payload: {
+                data: [1, 2, 3]
+            }
+        }
+        const currentState = authReducer(initialState, randomAction)
+        expect(currentState).toEqual(initialState);
+
+    })
+    it('should return the state when an action type matches', () => {
+        const action = {
+            type: 'SOCIAL_LOGIN',
+            payload: {
+                user: {
+                    username:'username',
+                    lastName:'lastname',
+                    token: ''
+                }, 
+            }
+        }
+        const newState = {
+            ...initialState,
+            token: action.payload.user.token
+        }
+        const state = authReducer(initialState, action)
+        expect(state).toEqual(newState);
+    })
+    it('should return the state when an action type matches is not specified', () => {
+        const newState = {
+            ...initialState,
+        }
+        const state = authReducer(initialState)
+        expect(state).toEqual(newState);
+    })
 });

@@ -1,0 +1,44 @@
+#social-login {
+   
+    .social_btn {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 15px;
+        a {
+            align-items: center;
+            color: #fff;
+            display: flex;
+            height: 35px;
+            text-decoration: none;
+            span {
+                align-items: center;
+                align-self: stretch;
+                display: flex;
+                font-size: 17px;
+                justify-content: center;
+                margin-right: 10px;
+                text-align: center;
+                width: 35px;
+            }
+        }
+        &.facebook {
+        background: $facebook-colour;
+        span {
+          background: darken($facebook-colour,7%);
+        }
+      }
+        &.linkedin {
+        background: $linked-in-colour;
+        span {
+          background: darken($linked-in-colour,7%);
+        }
+      }
+        &.google {
+        background: $google-colour;
+        span {
+          background: darken($google-colour,7%);
+        }
+      }
+    }
+
+}

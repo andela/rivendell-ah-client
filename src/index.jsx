@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -15,7 +14,9 @@ if (localStorage.token) {
   const currentTime = Math.floor(Date.now() / 1000);
   if (currentTime < decoded.exp) {
     const token = localStorage.getItem('token');
-    store.dispatch({ type: types.PERSIST_LOGIN, payload: { token } });
+    let user = localStorage.getItem('user');
+    user = JSON.parse(user);
+    store.dispatch({ type: types.PERSIST_LOGIN, payload: { user, token } });
   }
 }
 

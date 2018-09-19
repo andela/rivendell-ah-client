@@ -16,7 +16,6 @@ describe('The Form Input With Icon component', () => {
       name: "email",
       placeholder: "Email"
     };
-    // const output = FormInputWithIcon(props).toJson();
     const tree = shallow(<FormInputWithIcon
         handleChange={props.handleChange}
         value={props.value}
@@ -96,7 +95,8 @@ describe('The Login Form component', () => {
       formData: {
         email: '',
         password: ''
-      }
+      },
+      socialMediaPlatforms:[]
     }
     const tree = shallow(<LoginForm
       handleChange={props.handleChange}
@@ -107,6 +107,7 @@ describe('The Login Form component', () => {
       displayErrMsg={props.displayErrMsg}
       formValidationErrors={props.formValidationErrors}
       formData={props.formData}
+      socialMedia={props.socialMediaPlatforms}
     />);
     expect(tree).toMatchSnapshot();
   });

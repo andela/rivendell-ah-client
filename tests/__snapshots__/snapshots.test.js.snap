@@ -102,6 +102,20 @@ exports[`The Login Form component Should render as expected 1`] = `
   iconName="person"
   isLoading={false}
 >
+  <div
+    id="social-login"
+  >
+    <SocialLogin
+      socialMedia={Array []}
+    />
+  </div>
+  <div
+    className="or-separator"
+  >
+    <i>
+      or
+    </i>
+  </div>
   <ApiErrorMsg
     apiValidationErrors={
       Object {
