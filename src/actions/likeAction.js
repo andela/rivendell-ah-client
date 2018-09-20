@@ -2,12 +2,9 @@ import types from './actionTypes';
 import axiosInstance from '../services/requestHandler';
 
 
-const storeLikes = article => ({
-  type: types.STORE_LIKES,
-  payload: {
-    likes: article.likes,
-    likesCount: article.likesCount
-  },
+const getLikes = slug => ({
+  type: types.GET_LIKES,
+  payload: axiosInstance().get(`/articles/${slug}/like`)
 });
 
 const likeArticle = (slug, token) => ({
@@ -23,6 +20,6 @@ const unlikeArticle = (slug, token) => ({
 });
 export default {
   likeArticle,
-  storeLikes,
+  getLikes,
   unlikeArticle
 };

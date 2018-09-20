@@ -1,9 +1,10 @@
 import React from 'react';
-import { Header, Modal } from 'semantic-ui-react';
+import { Item, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Like from '../../components/Like';
 import articleAction from '../../actions/articleAction';
 import likeAction from '../../actions/likeAction';
+
 /**
  * Article Component
  */
@@ -20,10 +21,13 @@ export class Article extends React.Component {
         iconClass: 'heart icon',
         linkClass: 'ui basic left pointing label'
       },
+      limit: 1,
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkUserLikes = this.checkUserLikes.bind(this);
     this.handleCountClick = this.handleCountClick.bind(this);
+    this.onLoadMore = this.onLoadMore.bind(this);
+    this.renderLikeBy = this.renderLikeBy.bind(this);
   }
 
   /**
@@ -48,19 +52,23 @@ export class Article extends React.Component {
     const { user } = this.props;
 
     if (nextProps.like || this.checkUserLikes(nextProps.likes)) {
-      this.setState({ likeAttributes: {
-        divClass: 'ui labeled button',
-        buttonClass: 'ui blue button',
-        iconClass: 'heart icon',
-        linkClass: 'ui basic left pointing label'
-      } });
+      this.setState({
+        likeAttributes: {
+          divClass: 'ui labeled button',
+          buttonClass: 'ui blue button',
+          iconClass: 'heart icon',
+          linkClass: 'ui basic left pointing label'
+        }
+      });
     } else {
-      this.setState({ likeAttributes: {
-        divClass: 'ui labeled button',
-        buttonClass: 'ui button',
-        iconClass: 'heart icon',
-        linkClass: 'ui basic left pointing label'
-      } });
+      this.setState({
+        likeAttributes: {
+          divClass: 'ui labeled button',
+          buttonClass: 'ui button',
+          iconClass: 'heart icon',
+          linkClass: 'ui basic left pointing label'
+        }
+      });
     }
   }
 
@@ -72,20 +80,35 @@ export class Article extends React.Component {
   * @param {object} prevState
   */
   componentDidUpdate(prevProps, prevState) {
-    const { article, storeLikes } = this.props;
-    if (article.likes !== prevProps.article.likes) {
-      storeLikes(article);
+    const { article, getLikes, like, match } = this.props;
+    const { params } = match;
+    if (article.likes !== prevProps.article.likes
+      || like !== prevProps.like) {
+      getLikes(params.slug);
     }
   }
 
+
   /**
-  * checkUserLikes
-  * @returns {boolean} - HTML Markup for the component
-  * @param {Array} likes
+  * onloadmore
+  * @returns {null} - HTML Markup for the component
   */
+  onLoadMore() {
+    const { limit } = this.state;
+    this.setState({
+      limit: limit + 1
+    });
+  }
+
+
+  /**
+    * checkUserLikes
+    * @returns {boolean} - HTML Markup for the component
+    * @param {Array} likes
+    */
   checkUserLikes(likes) {
     const { user } = this.props;
-    return likes.some(like => like.userId === user.id);
+    return likes.some(like => like.user.id === user.id);
   }
 
   /**
@@ -109,6 +132,7 @@ export class Article extends React.Component {
     // getArticle(params.slug);
   }
 
+
   /**
    * handle form submit
    * @param {Object} event event object
@@ -122,12 +146,57 @@ export class Article extends React.Component {
   }
 
   /**
+  * renderLikeby
+  * @returns {jsx} - HTML Markup for the component
+  */
+  renderLikeBy() {
+    const { likes } = this.props;
+    const { limit } = this.state;
+    const list = likes.length > 0 ? likes.slice(0, limit).map((likedBy, index) => (
+      <Item key={index}>
+        <Item.Image
+          size="tiny"
+          src={likedBy.user.image
+            ? likedBy.user.image
+            : 'https://react.semantic-ui.'
+            + 'com/images/wireframe/image.png'}
+        />
+
+        <Item.Content>
+          <Item.Header as="a">
+            {`${likedBy.user.firstName} ${likedBy.user.lastName}`}
+          </Item.Header>
+          <Item.Meta>Bio</Item.Meta>
+          <Item.Description>
+            {likedBy.user.bio ? likedBy.user.bio : 'No Bio Info'}
+
+          </Item.Description>
+          <Item.Extra>
+            {`Liked: ${likedBy.timeLiked.substring(0, 10)}`}
+          </Item.Extra>
+        </Item.Content>
+      </Item>
+    )) : ' ';
+    return typeof list === 'object'
+      ? (
+        <div>
+          <Item.Group>
+            {list}
+            <Button className="ui blue button" onClick={this.onLoadMore}>
+              Load More
+            </Button>
+          </Item.Group>
+        </div>
+      ) : 'No Likes';
+  }
+
+  /**
  * render function
  * @returns {Function} jsx
  */
   render() {
     const { likeAttributes } = this.state;
-    const { article, user, likesCount, like, getArticle, storeLikes, status } = this.props;
+    const { article, likesCount, likes } = this.props;
     console.log('component rendered with ', article);
 
     return (
@@ -165,6 +234,9 @@ export class Article extends React.Component {
           likesCount={likesCount}
           handleClick={this.handleClick}
           handleCountClick={this.handleCountClick}
+          likes={likes}
+          renderLikeBy={this.renderLikeBy}
+          onLoadMore={this.onLoadMore}
         />
       </div>
     );
@@ -185,8 +257,7 @@ export const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   getArticle: articleAction.getArticle,
-  storeLikes: likeAction.storeLikes,
-  setLike: likeAction.setLike,
+  getLikes: likeAction.getLikes,
   likeArticle: likeAction.likeArticle,
   unlikeArticle: likeAction.unlikeArticle,
 })(Article);

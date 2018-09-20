@@ -14,11 +14,25 @@ export const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-  case types.STORE_LIKES:
+  case `${types.GET_ARTICLE}_LOADING`:
     return {
       ...state,
-      likes: action.payload.likes,
-      likesCount: action.payload.likesCount
+      isLoading: true,
+    };
+  case `${types.GET_LIKES}_SUCCESS`:
+    return {
+      ...state,
+      likes: action.payload.data.data,
+      likesCount: action.payload.data.totalLikes
+    };
+  case `${types.GET_ARTICLE}_FAILURE`:
+    return {
+      ...state,
+      isLoading: false,
+      errors: {
+        message: action.payload.message,
+        response: action.payload.response,
+      }
     };
   case `${types.LIKE_ARTICLE}_LOADING`:
     return {
@@ -26,15 +40,9 @@ export default (state = initialState, action = {}) => {
       isLoading: true,
     };
   case `${types.LIKE_ARTICLE}_SUCCESS`: {
-    const prevLikesCount = state.likesCount;
-    const prevLikes = state.likes;
-    const user = JSON.parse(localStorage.getItem('user'));
-    // console.log('payloaddddd', action.payload);
     return {
       ...state,
       like: true,
-      likesCount: prevLikesCount + 1,
-      likes: [...prevLikes, { userId: user.id }]
     };
   }
   case `${types.LIKE_ARTICLE}_FAILURE`:
@@ -53,13 +61,13 @@ export default (state = initialState, action = {}) => {
     };
   case `${types.UNLIKE_ARTICLE}_SUCCESS`: {
     const prevLikesCount = state.likesCount;
-    const prevLikes = [...state.likes];
-    const newLikes = prevLikes.splice(0, prevLikesCount - 1);
+    const newLikes = [...state.likes].slice(1, prevLikesCount);
+    // const newLikes = prevLikes.splice(1, prevLikesCount);
     return {
       ...state,
       like: false,
-      likesCount: prevLikesCount - 1,
       likes: newLikes,
+      likesCount: prevLikesCount - 1,
     };
   }
   case `${types.UNLIKE_ARTICLE}_FAILURE`:
