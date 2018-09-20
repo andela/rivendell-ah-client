@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Modal } from 'semantic-ui-react';
+import { Popup } from 'semantic-ui-react';
 
 const Like = (props) => {
   const { likeAttributes, likesCount, handleClick, handleCountClick } = props;
@@ -12,21 +12,18 @@ const Like = (props) => {
         <i className={iconClass} />
         Likes
       </div>
-      <Modal trigger={(
-        <a className={linkClass} onClick={handleCountClick}>
-          {likesCount}
-        </a>
-      )}
+      <Popup
+        trigger={(
+          <a className={linkClass} onClick={handleCountClick}>
+            {likesCount}
+          </a>
+        )}
       >
-        <Modal.Header>Users who liked</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <Header> Users </Header>
-            <p>showing the users</p>
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
-
+        <Popup.Header>User who liked</Popup.Header>
+        <Popup.Content>
+          List of users who liked
+        </Popup.Content>
+      </Popup>
     </div>
   );
 };
