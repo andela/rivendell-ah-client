@@ -27,6 +27,41 @@ const socialLogin = user => ({
   }
 });
 
+
+const { RESET_PASSWORD_LINK, RESET_PASSWORD,
+  RESET_PASSWORD_TOKEN, VALIDATE_RESET_TOKEN } = types;
+
+export const resetPassword = (path, password) => (
+  {
+    type: RESET_PASSWORD,
+    payload: axiosInstance().put(
+      path,
+      { user: { password, confirm: password } },
+    ),
+  }
+);
+
+export const resetPasswordLink = (path, email) => (
+  {
+    type: RESET_PASSWORD_LINK,
+    payload: axiosInstance().post(path, { user: { email } }),
+  }
+);
+
+
+export const setToken = resetToken => (
+  {
+    type: RESET_PASSWORD_TOKEN,
+    resetToken,
+  }
+);
+
+export const validateResetToken = path => ({
+  type: VALIDATE_RESET_TOKEN,
+  payload: axiosInstance().get(path),
+});
+
+
 export default {
   login,
   clearApiValidationError,

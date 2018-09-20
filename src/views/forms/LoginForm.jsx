@@ -70,7 +70,7 @@ const LoginForm = (props) => {
         </FormInputWithIcon>
       </Form.Field>
       <Button size="medium" fluid>Login</Button>
-      <Link to="/forget-password" className="forget-password">
+      <Link to="/forgot-password" className="forget-password">
         Forgot password?
       </Link>
       <div className="clear-fix">{}</div>

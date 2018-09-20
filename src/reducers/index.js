@@ -7,6 +7,8 @@ import updateArticleReducer from './updateArticleReducer';
 import auth from './authReducer';
 import profile from './profileReducer';
 import redirect from './redirectReducer';
+import { resetPassword, resetPasswordLink, validateResetToken }
+  from './resetPasswordReducers';
 
 export default combineReducers({
   auth,
@@ -16,5 +18,8 @@ export default combineReducers({
   loadCategoriesReducer,
   loadArticleReducer,
   uploadImageReducer,
-  updateArticleReducer
+  updateArticleReducer,
+  resetPassword,
+  resetPasswordLink,
+  validateResetToken,
 });
