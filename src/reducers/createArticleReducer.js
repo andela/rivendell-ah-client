@@ -37,14 +37,13 @@ const createArticle = (state = initialState, action = {}) => {
   }
 
   case `${types.CREATE_ARTICLE}_FAILURE`: {
-    const { response } = action.payload;
-    const { errors } = response.data;
+    const { response: errors } = action.payload;
     return {
       ...state,
       isLoading: false,
       errors: {
         ...errors,
-        status: response.status,
+        status: errors.statusCode,
       },
       editing: true,
     };

@@ -166,9 +166,9 @@ export default Header;
     let disable = true;
 
     const isEmptyPasswordInput = input.name === 'password'
-    && !input.value;
+      && !input.value;
     const isEmptyConfirmInput = input.name === 'confirm'
-    && !input.value;
+      && !input.value;
 
     if (passwordIsValid || isEmptyPasswordInput) {
       this.frontendValidations.password.length = 0;
@@ -220,7 +220,7 @@ export default Header;
     if (!passwordIsValid && password) {
       this.frontendValidations.password
         .push('Password must contain a special character, '
-           + 'uppercase, lowercase, number and atleast 8 characters');
+          + 'uppercase, lowercase, number and atleast 8 characters');
     }
 
     if (!passwordIsConfirmed && confirm) {
@@ -257,26 +257,32 @@ export default Header;
       serverResponse.style = 'successMessage';
     }
 
-    return isValidToken ? (
-      <div>
-        <ResetPasswordForm
-          handleSubmit={this.handleSubmit}
-          handleInput={this.handleInput}
-          isLoading={isLoading}
-          serverResponse={serverResponse}
-          success={success.status}
-          handleMouseLeave={this.handleMouseLeave}
-          disabled={disabled}
-          password={password}
-          confirm={confirm}
-          handlePasswordVisibility={this.handlePasswordVisibility}
-          frontendValidations={
-            { passwordErrorMessage, confirmErrorMessage }
-          }
-        />
+    return (
+      <div id="reset-password">
+        {
+          isValidToken ? (
+            <div>
+              <ResetPasswordForm
+                handleSubmit={this.handleSubmit}
+                handleInput={this.handleInput}
+                isLoading={isLoading}
+                serverResponse={serverResponse}
+                success={success.status}
+                handleMouseLeave={this.handleMouseLeave}
+                disabled={disabled}
+                password={password}
+                confirm={confirm}
+                handlePasswordVisibility={this.handlePasswordVisibility}
+                frontendValidations={
+                  { passwordErrorMessage, confirmErrorMessage }
+                }
+              />
+            </div>
+          )
+            : (<div><InvalidTokenMessage /></div>)
+        }
       </div>
-    )
-      : (<div><InvalidTokenMessage /></div>);
+    );
   }
 }
 

@@ -4,7 +4,6 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Parser as HtmlToReactParser } from 'html-to-react';
 import loadAricleAction from '../actions/loadArticleAction';
-import '../../public/styles/SmartEditor.scss';
 import TagView from './TagView';
 
 
@@ -33,37 +32,39 @@ export class ArticleView extends Component {
     const { article } = this.props;
 
     const imageSrc = article.image
-    || 'https://image.flaticon.com/icons/svg/254/254030.svg';
+      || 'https://image.flaticon.com/icons/svg/254/254030.svg';
 
     const ReactElement = htmlToReactParser
       .parse(unescape(article.body));
     return (
-      <Container id="articleView">
-        <Header size="huge" textAlign="center">
+      <div id="smart-editor">
+        <Container id="articleView">
+          <Header size="huge" textAlign="center">
 
-          <h1 className="header">{article.title}</h1>
-          <Header.Subheader className="sub-header">
-            Created By: @
-            {article.author ? article.author.username : ''}
-            {'  '}
-            on
-            {'  '}
-            {new Date(article.createdAt).toUTCString()}
-          </Header.Subheader>
-        </Header>
-        <Image
-          centered
-          fluid
-          size="huge"
-          src={imageSrc}
-        />
-        <Container className="articleView">
-          { ReactElement}
+            <h1 className="header">{article.title}</h1>
+            <Header.Subheader className="sub-header">
+              Created By: @
+              {article.author ? article.author.username : ''}
+              {'  '}
+                on
+              {'  '}
+              {new Date(article.createdAt).toUTCString()}
+            </Header.Subheader>
+          </Header>
+          <Image
+            centered
+            fluid
+            size="huge"
+            src={imageSrc}
+          />
+          <Container className="articleView">
+            {ReactElement}
+          </Container>
+          <TagView
+            tagNames={article.tags}
+          />
         </Container>
-        <TagView
-          tagNames={article.tags}
-        />
-      </Container>
+      </div>
 
     );
   }
@@ -78,7 +79,7 @@ ArticleView.propTypes = {
 
 ArticleView.defaultProps = {
   article: { author: {} },
-  loadArticle: () => {}
+  loadArticle: () => { }
 };
 
 export const mapStateToProps = state => ({

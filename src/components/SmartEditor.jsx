@@ -8,7 +8,7 @@ import { Button, Icon } from 'semantic-ui-react';
 import { stateToHTML } from 'draft-js-export-html';
 import 'draft-js-emoji-plugin/lib/plugin.css';
 import propTypes from 'prop-types';
-import '../../public/styles/SmartEditor.scss';
+// import '../../public/styles/SmartEditor.scss';
 
 
 // declaring plugins
@@ -328,7 +328,8 @@ class SmartEditor extends Component {
         icon: 'bold',
         onClick: this.onBoldClick,
       },
-      { id: 'underline',
+      {
+        id: 'underline',
         icon: 'underline',
         onClick: this.onUnderline
       },
@@ -337,7 +338,8 @@ class SmartEditor extends Component {
         icon: 'italic',
         onClick: this.onItalic
       },
-      { id: 'align-left',
+      {
+        id: 'align-left',
         icon: 'align left',
         onClick: this.alignLeft
       },
@@ -374,73 +376,75 @@ class SmartEditor extends Component {
       },
     ];
     return (
-      <div
-        className="smartEditor"
-        onMouseEnter={this.focusEditor}
+      <div id="smart-editor">
+        <div
+          className="smartEditor"
+          onMouseEnter={this.focusEditor}
 
-      >
+        >
 
-        <input
-          type="file"
-          id="bkj"
-          hidden
-          accept=".txt"
-          onChange={this.handleTextUpload}
-          ref={this.createTextFileRef}
-        />
-
-
-        <Button.Group>
-          <Button
-            id="textfile-button"
-            icon="file"
-            content="Upload Text File"
-            as="a"
-            onClick={this.selectTextFile}
+          <input
+            type="file"
+            id="bkj"
+            hidden
+            accept=".txt"
+            onChange={this.handleTextUpload}
+            ref={this.createTextFileRef}
           />
 
-          {iconButtons.map(button => (
-            <Button
-              content={button.content}
-              key={button.id}
-              icon={!button.content}
-              id={button.id}
-              onClick={button.onClick}
-            >
-              <Icon name={button.icon} />
-            </Button>
-          ))}
-        </Button.Group>
 
-        <Button.Group>
-          {textButtons.map(button => (
+          <Button.Group>
             <Button
-              content={button.content}
-              key={button.id}
-              id={button.id}
-              onClick={button.onClick}
+              id="textfile-button"
+              icon="file"
+              content="Upload Text File"
+              as="a"
+              onClick={this.selectTextFile}
             />
-          ))}
-        </Button.Group>
 
-        <EmojiSuggestions />
-        <EmojiSelect />
-        <div className="articleView">
+            {iconButtons.map(button => (
+              <Button
+                content={button.content}
+                key={button.id}
+                icon={!button.content}
+                id={button.id}
+                onClick={button.onClick}
+              >
+                <Icon name={button.icon} />
+              </Button>
+            ))}
+          </Button.Group>
 
-          <Editor
-            editorState={editorState}
-            onChange={this.handleChange}
-            handleKeyCommand={this.handleKeyCommand}
-            spellCheck
-            plugins={[emojiPlugin, imagePlugin]}
-            blockStyleFn={this.blockStyleFn}
-            blockRenderMap={this.blockRenderMap}
-            ref={this.setEditorRef}
-          />
+          <Button.Group>
+            {textButtons.map(button => (
+              <Button
+                content={button.content}
+                key={button.id}
+                id={button.id}
+                onClick={button.onClick}
+              />
+            ))}
+          </Button.Group>
+
+          <EmojiSuggestions />
+          <EmojiSelect />
+          <div className="articleView">
+
+            <Editor
+              editorState={editorState}
+              onChange={this.handleChange}
+              handleKeyCommand={this.handleKeyCommand}
+              spellCheck
+              plugins={[emojiPlugin, imagePlugin]}
+              blockStyleFn={this.blockStyleFn}
+              blockRenderMap={this.blockRenderMap}
+              ref={this.setEditorRef}
+            />
+
+          </div>
+
 
         </div>
-
-
       </div>
 
     );

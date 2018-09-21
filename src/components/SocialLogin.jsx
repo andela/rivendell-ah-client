@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SocialLogin = ({ socialMedia }) => {
-  let host = 'https://authorhaven.herokuapp.com';
+  const host = 'https://authorhaven.herokuapp.com';
   // if (process.env.NODE_ENV === 'development') {
   //   host = 'http://localhost:3000';
   // }

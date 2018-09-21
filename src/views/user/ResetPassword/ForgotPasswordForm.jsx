@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Form, Icon } from 'semantic-ui-react';
 import ServerResponse from '../../../components/items/ServerResponse';
-import '../../../../public/styles/reset-password.scss';
 
 /**
  * ForgotPassword form
@@ -38,61 +37,63 @@ export function ForgotPasswordForm(props) {
   );
 
   return (
-    <div className={isLoading ? 'wait' : 'pointer'}>
+    <div id="forgot-password">
+      <div className={isLoading ? 'wait' : 'pointer'}>
 
-      <div className="user-form">
-        <Form
-          loading={isLoading}
-          onSubmit={handleSubmit}
-        >
-          <div className="text-center">
-            <span className="formTitleIcon">
-              {formTitleIcon}
-            </span>
-          </div>
-          <h4 className="text-center">
-          Enter Email
-          </h4>
-          <p className="text-center">
-          to recieve password reset link
-          </p>
-          <div className="seperator" />
-          <div className="responseMessage">
-            {serverResponse.message ? response : ''}
-          </div>
-          <div className="form-group">
-            <div className="input-group">
-              <span className="input-group-addon">
-                <i className="fa fa-envelope" />
+        <div className="user-form">
+          <Form
+            loading={isLoading}
+            onSubmit={handleSubmit}
+          >
+            <div className="text-center">
+              <span className="formTitleIcon">
+                {formTitleIcon}
               </span>
-              <input
-                id="email"
-                type="email"
-                onChange={handleInput}
-                value={email}
-                className="form-control"
-                placeholder="Email"
-                required="required"
-              />
             </div>
-          </div>
-          <div className="form-group">
-            <ul className="errorMessage">
-              { emailErrorMessage }
-            </ul>
-          </div>
-          <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-block user-btn"
-            >
-              Send Reset Password Link
-            </button>
-          </div>
+            <h4 className="text-center">
+              Enter Email
+            </h4>
+            <p className="text-center">
+              to recieve password reset link
+            </p>
+            <div className="seperator" />
+            <div className="responseMessage">
+              {serverResponse.message ? response : ''}
+            </div>
+            <div className="form-group">
+              <div className="input-group">
+                <span className="input-group-addon">
+                  <i className="fa fa-envelope" />
+                </span>
+                <input
+                  id="email"
+                  type="email"
+                  onChange={handleInput}
+                  value={email}
+                  className="form-control"
+                  placeholder="Email"
+                  required="required"
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <ul className="errorMessage">
+                {emailErrorMessage}
+              </ul>
+            </div>
+            <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-block user-btn"
+              >
+                Send Reset Password Link
+              </button>
+            </div>
 
-        </Form>
+          </Form>
+        </div>
+
       </div>
-
     </div>
 
   );

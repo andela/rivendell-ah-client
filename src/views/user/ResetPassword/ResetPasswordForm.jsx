@@ -59,7 +59,7 @@ export function ResetPasswordForm(props) {
             </span>
           </div>
           <h3 className="text-center">
-          Enter New Password
+            Enter New Password
           </h3>
           <div className="seperator" />
           <div className="responseMessage">
@@ -89,7 +89,7 @@ export function ResetPasswordForm(props) {
           </div>
           <div className="form-group">
             <ul className="errorMessage">
-              { passwordErrorMessage[0] }
+              {passwordErrorMessage[0]}
             </ul>
           </div>
           <div className="form-group">
@@ -115,7 +115,7 @@ export function ResetPasswordForm(props) {
           </div>
           <div className="form-group">
             <ul className="errorMessage">
-              { confirmErrorMessage[0] }
+              {confirmErrorMessage[0]}
             </ul>
           </div>
           <div className="form-group">

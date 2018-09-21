@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Footer component Should render as expected 1`] = `
-<div>
-  <h2>
-    Author's Haven Footer 
-  </h2>
-</div>
+<footer>
+  <p>
+    © Authors Haven    
+    <Link
+      replace={false}
+      to="/"
+    >
+      About Us
+    </Link>
+  </p>
+</footer>
 `;
 
 exports[`The Form Errors component Should render as expected 1`] = `
@@ -194,7 +200,7 @@ exports[`The Login Form component Should render as expected 1`] = `
   <Link
     className="forget-password"
     replace={false}
-    to="/forget-password"
+    to="/forgot-password"
   >
     Forgot password?
   </Link>
