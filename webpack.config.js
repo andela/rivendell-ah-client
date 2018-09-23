@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+
+const { DefinePlugin } = require('webpack');
+require('dotenv').config();
 
 module.exports = (env) => {
   const common = {
@@ -47,7 +49,14 @@ module.exports = (env) => {
         dry: false,
         verbose: true,
       }),
-      new Dotenv(),
+      new DefinePlugin({
+
+      }),
+      new DefinePlugin({
+        'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
+        'process.env.API_SECRET': JSON.stringify(process.env.API_SECRET),
+        'process.env.CLOUD_NAME': JSON.stringify(process.env.CLOUD_NAME),
+      }),
     ],
   };
   if (env.mode === 'development') {
