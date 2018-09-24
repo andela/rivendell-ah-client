@@ -4,12 +4,14 @@
   "description": "A Social platform for the creative at heart",
   "main": "src/index.jsx",
   "scripts": {
-    "build": "webpack --mode production --env.mode=production --open",
+    "build": "webpack --mode production --env.mode=production ",
     "dev": "NODE_ENV=development webpack-dev-server --mode development --env.mode=development --open --hot",
     "lint": "eslint src",
     "test": "NODE_ENV=test jest ",
     "coverage": "NODE_ENV=test jest --coverage",
-    "test-watch": "jest --coverage --watch"
+    "test-watch": "jest --coverage --watch",
+    "start": "node server.js",
+    "heroku-postbuild":"npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-3": "^6.24.1",
     "dotenv": "^6.0.0",
+    "express": "^4.16.3",
     "is-promise": "^2.1.0",
     "jwt-decode": "^2.2.0",
     "normalize-scss": "^7.0.1",
@@ -45,6 +48,7 @@
     "semantic-ui-react": "^0.82.3",
     "validator": "^10.7.1"
   },
+
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
