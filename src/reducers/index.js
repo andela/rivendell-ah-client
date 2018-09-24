@@ -4,6 +4,8 @@ import profile from './profileReducer';
 import redirect from './redirectReducer';
 import { resetPassword, resetPasswordLink, validateResetToken }
   from './resetPasswordReducers';
+import article from './articleReducer';
+import like from './likeReducer';
 
 export default combineReducers({
   auth,
@@ -12,4 +14,6 @@ export default combineReducers({
   resetPassword,
   resetPasswordLink,
   validateResetToken,
+  article,
+  like
 });

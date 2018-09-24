@@ -159,6 +159,7 @@ const handlePasswordVisibility = () => {};
 const handleMouseLeave = () => {};
 const handleSubmit = () => {};
 const handleInput = () => {};
+const disableAction = () => {};
 
 
 const frontendValidations = {
@@ -175,6 +176,7 @@ success={success.status}
 handleMouseLeave={handleMouseLeave}
 handlePasswordVisibility={handlePasswordVisibility}
 handleSubmit={handleSubmit}
+disableAction={disableAction}
 password={password}
 confirm={confirm}
 disabled={disabled}
@@ -191,6 +193,7 @@ const resetPasswordForm2 = shallow(
 handleMouseLeave={handleMouseLeave}
 handlePasswordVisibility={handlePasswordVisibility}
 handleSubmit={handleSubmit}
+disableAction={disableAction}
 isLoading={isLoading}
 password={password}
 confirm={confirm}
@@ -213,7 +216,7 @@ describe('ForgotPasswordForm Component', () => {
       handleInput={handleInput}
       serverResponse={serverResponse}
       />).find('#email').exists()).toBe(true);
-  })
+  }) 
   it('renders an email input', () => {
     expect(shallow(<ForgotPasswordForm
       isLoading={true}
