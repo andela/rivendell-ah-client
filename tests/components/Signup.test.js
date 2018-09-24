@@ -337,14 +337,5 @@ describe("The Signup component", () => {
         });
       });
     });
-
-    // describe('Test validate func', () => {
-    //   const objField = {};
-    //   it('validate stuff', () => {
-    //     const signupComponentInstance = signupComponent.instance();
-    //       signupComponentInstance.validate(objField);
-    //       expect(signupComponentInstance.state.passwordVisibilityIcon).toEqual('visibility_off');
-    //   })
-    // })
   });
 });

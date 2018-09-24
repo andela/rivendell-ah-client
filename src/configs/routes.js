@@ -9,7 +9,7 @@ import userPages from '../views/user';
 import subcategoryPages from '../views/articles/subcategory';
 
 const {
-  UserArticles, NewArticle, Article, EditArticle
+  UserArticles, NewArticle, Article, EditArticle, ArticleTags
 } = articlePages;
 const { SubcategoryArticles } = subcategoryPages;
 const {
@@ -72,6 +72,12 @@ export default [
     type: GuestRoute,
     path: '/reset-password',
     component: ResetPassword,
+    exact: true,
+  },
+  {
+    type: Route,
+    path: '/article-tags/:tag',
+    component: ArticleTags,
     exact: true,
   },
   {
