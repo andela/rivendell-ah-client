@@ -428,7 +428,7 @@ class SmartEditor extends Component {
     return (
       <div
         id="smart-editor"
-        onMouseEnter={this.focusEditor}
+        onClick={this.focusEditor}
 
       >
 

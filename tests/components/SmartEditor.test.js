@@ -45,7 +45,7 @@ describe('testing SmartEditor', () => {
         const mountedObj = shallow(<SmartEditor />);
 
         mountedObj.find('#smart-editor')
-          .simulate('mouseEnter');
+          .simulate('click');
         expect(spy).toHaveBeenCalled();
       });
       

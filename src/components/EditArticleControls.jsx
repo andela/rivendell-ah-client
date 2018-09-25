@@ -285,7 +285,6 @@ export class EditArticleControls extends Component {
             <TextArea
               placeholder="Description"
               onChange={this.updateDescription}
-              error={!!errors.description}
               style={{ minHeight: 100 }}
               value={description}
             />

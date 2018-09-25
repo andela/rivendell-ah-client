@@ -8,6 +8,7 @@ import loadAricleAction from '../actions/loadArticleAction';
 import TagView from './TagView';
 import deleteArticleAction from '../actions/deleteArticle';
 import Like from './Like';
+import SocialShare from './SocialShare';
 
 const htmlToReactParser = new HtmlToReactParser();
 /**
@@ -27,6 +28,10 @@ export class ArticleView extends Component {
     };
 
     this.deleteArticle = this.deleteArticle.bind(this);
+
+    this.articleURL = encodeURIComponent(window.location.href);
+
+
     this.showUpdatePage = this.showUpdatePage.bind(this);
   }
 
@@ -136,6 +141,7 @@ export class ArticleView extends Component {
           <TagView
             tagNames={article.tags}
           />
+          <SocialShare articleURL={this.articleURL} />
         </Container>
 
       </div>
