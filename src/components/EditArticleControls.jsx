@@ -69,7 +69,7 @@ export class EditArticleControls extends Component {
    *@returns {void} performs an action and returns nothing
    */
   componentDidMount() {
-    const { loadCategories, uploadImage, article } = this.props;
+    const { loadCategories, uploadImage, article, update } = this.props;
     loadCategories();
     this.imageFileReader.addEventListener('load', () => {
       this.setState({
@@ -77,10 +77,12 @@ export class EditArticleControls extends Component {
       });
       uploadImage(this.imageFileReader.result);
     });
-    this.setState({
-      ...article,
-      imagePath: ''
-    });
+    if (update) {
+      this.setState({
+        ...article,
+        imagePath: ''
+      });
+    }
   }
 
   /**
@@ -92,13 +94,24 @@ export class EditArticleControls extends Component {
    */
   componentWillReceiveProps(nextProps) {
     const { article: newArticle } = nextProps;
-    const { article: currentArticle } = this.props;
+    const { article: currentArticle, update } = this.props;
 
-    if (currentArticle.slug !== newArticle.slug) {
+    if (update && currentArticle.slug !== newArticle.slug) {
       this.setState({
         ...newArticle,
       });
     }
+  }
+
+
+  /**
+   * this resets the page once the component is about
+   * to unmount
+   * @returns {void} resets the page to how it was initially
+   */
+  componentWillUnmount() {
+    const { resetPage } = this.props;
+    resetPage();
   }
 
   /**
@@ -234,7 +247,7 @@ export class EditArticleControls extends Component {
   render() {
     const {
       categories, isLoading, errors, success, article,
-      update, resetPage, saveToStore } = this.props;
+      update, saveToStore } = this.props;
 
 
     const {
@@ -252,7 +265,6 @@ export class EditArticleControls extends Component {
     });
 
     if (success) {
-      resetPage();
       saveToStore(article);
       return <Redirect to={`/articles/${article.slug}`} />;
     }
@@ -285,7 +297,6 @@ export class EditArticleControls extends Component {
             <TextArea
               placeholder="Description"
               onChange={this.updateDescription}
-              error={!!errors.description}
               style={{ minHeight: 100 }}
               value={description}
             />
@@ -333,7 +344,7 @@ export class EditArticleControls extends Component {
             />
             <SmartEditor
               onValueChange={this.onBodyChange}
-              initialHtml={article.body}
+              initialHtml={update ? article.body : undefined}
               value={currentBodyValue}
             />
           </Form>
