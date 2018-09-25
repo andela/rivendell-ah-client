@@ -16,6 +16,7 @@ const createArticle = (state = initialState, action = {}) => {
       isLoading: false,
       editing: true,
       errors: {},
+      success: false,
     };
   case `${types.CREATE_ARTICLE}_LOADING`:
     return {

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the SocialShare component the components rendered should match snapshots 1`] = `
+<div
+  id="social-share"
+>
+  <div>
+    <a
+      href="https://twitter.com/intent/tweet?url=undefined
+&text=Here%20is%20a%20cool%20article%20I%20just%20found%20in%20author's
+&hashtags=AuthorsHaven"
+    >
+      <Button
+        as="button"
+        color="twitter"
+        content="Share on Twitter"
+        icon="twitter"
+        key="twitter-btn"
+        name="twitter"
+        role="button"
+      />
+    </a>
+    <a
+      href="https://www.facebook.com/dialog/share?
+app_id=undefined
+&display=page
+&href=undefined&redirect_uri=undefined"
+    >
+      <Button
+        as="button"
+        color="facebook"
+        content="Share on Facebook"
+        icon="facebook"
+        key="facebook-btn"
+        name="facebook"
+        role="button"
+      />
+    </a>
+    <a
+      href="https://www.linkedin.com/shareArticle?mini=true&
+url=undefined&summary=Here%20is%20a%20cool%20article%20I%20just%20found%20in%20author's&source=Author'sHaven"
+    >
+      <Button
+        as="button"
+        color="linkedin"
+        content="Share on Linkedin"
+        icon="linkedin"
+        key="linkedin-btn"
+        name="linkedin"
+        role="button"
+      />
+    </a>
+  </div>
+</div>
+`;

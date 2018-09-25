@@ -11,10 +11,9 @@ const TagView = ({ tagNames, colors }) => (
         icon="tag"
         as="a"
         size="big"
+        content={{ tag }}
         color={colors[Math.floor(Math.random() * colors.length)]}
-      >
-        {tag}
-      </Label>
+      />
     ))}
   </div>
 
