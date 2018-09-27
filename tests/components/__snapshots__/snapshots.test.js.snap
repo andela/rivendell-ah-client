@@ -1,17 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Footer component Should render as expected 1`] = `
-<footer>
-  <p>
-    © Authors Haven    
-    <Link
-      replace={false}
-      to="/"
-    >
-      About Us
-    </Link>
-  </p>
-</footer>
+<div>
+  <h2>
+    Author's Haven Footer 
+  </h2>
+</div>
 `;
 
 exports[`The Form Errors component Should render as expected 1`] = `
