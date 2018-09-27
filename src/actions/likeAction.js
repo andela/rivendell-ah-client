@@ -17,10 +17,10 @@ const likeArticle = (slug, token) => ({
 
 const unlikeArticle = (slug, token) => ({
   type: types.UNLIKE_ARTICLE,
-  payload: axiosInstance().delete(
-    `/articles/${slug}/like`,
-    { headers: { Authorization: `${token}` } }
-  )
+  payload: {
+    slug,
+    token,
+  }
 });
 export default {
   likeArticle,

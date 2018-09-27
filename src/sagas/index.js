@@ -7,6 +7,7 @@ import {
   saveProfileOnSocialLogin,
   updateUserOnProfileUpdate,
 } from './profileSaga';
+import { watchUnlikeArticle } from './likeSaga';
 
 /**
  * export all the watchers to the sagaMiddleware
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     saveProfileOnSocialLoginSuccess(),
     saveProfileOnSocialLogin(),
     updateUserOnProfileUpdate(),
+    watchUnlikeArticle()
   ]);
 }

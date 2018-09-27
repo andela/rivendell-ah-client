@@ -8,7 +8,9 @@ export const initialState = {
     response: {},
   },
   likes: [],
-  like: false,
+  like: {
+
+  },
   likesCount: 0,
 };
 
@@ -42,7 +44,10 @@ export default (state = initialState, action = {}) => {
   case `${types.LIKE_ARTICLE}_SUCCESS`: {
     return {
       ...state,
-      like: true,
+      like: {
+        ...state.like,
+        [action.payload.data.data.slug]: true
+      },
     };
   }
   case `${types.LIKE_ARTICLE}_FAILURE`:
@@ -64,7 +69,10 @@ export default (state = initialState, action = {}) => {
     const newLikes = [...state.likes].slice(1, prevLikesCount);
     return {
       ...state,
-      like: false,
+      like: {
+        ...state.like,
+        [action.payload.slug]: false
+      },
       likes: newLikes,
       likesCount: prevLikesCount - 1,
     };
