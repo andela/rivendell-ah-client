@@ -43,6 +43,7 @@ const updateArticleReducer = (state = initialState, action = {}) => {
       isLoading: false,
       errors: {
         ...errors,
+        message: [action.payload.message],
         status: errors.statusCode,
       },
       editing: true,

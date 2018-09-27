@@ -76,6 +76,12 @@ export default [
   },
   {
     type: Route,
+    path: '/not-found',
+    component: NotFound,
+    exact: true,
+  },
+  {
+    type: Route,
     path: '/@:username',
     component: Profile,
     exact: true,
@@ -112,7 +118,7 @@ export default [
   },
   {
     type: Route,
-    path: 'not-found',
+    path: '*',
     component: NotFound,
     exact: true,
   },

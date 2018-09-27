@@ -15,7 +15,7 @@ export default (state = initialState, action = {}) => {
   case types.LOGOUT:
     return {
       ...state,
-      profile: {}
+      userProfile: {}
     };
   case types.LOGGED_IN_USER_PROFILE:
     return {

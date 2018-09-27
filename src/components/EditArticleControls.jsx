@@ -244,17 +244,12 @@ export class EditArticleControls extends Component {
     } = this.state;
 
     const errorMessages = [];
-    if (errors.title) {
-      errorMessages.push(...errors.title);
-    }
 
-    if (errors.description) {
-      errorMessages.push(...errors.description);
-    }
-
-    if (errors.body) {
-      errorMessages.push(...errors.body);
-    }
+    Object.values(errors).forEach((error) => {
+      if (Array.isArray(error)) {
+        errorMessages.push(...error);
+      }
+    });
 
     if (success) {
       resetPage();
@@ -265,6 +260,7 @@ export class EditArticleControls extends Component {
 
     const errorMessage = (
       <Message
+        author
         error
         header="There was some errors with your submission"
         list={errorMessages}
@@ -387,6 +383,7 @@ export const mapStateToProps = state => ({
   isLoading: state.uploadImageReducer.isLoading
    || state.createArticleReducer.isLoading,
   image: state.uploadImageReducer.imageUrl,
+  currentUserProfile: state.profile.userProfile,
 });
 
 export const mapDispatchToProps = dispatch => ({
