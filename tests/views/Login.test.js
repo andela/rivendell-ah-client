@@ -88,14 +88,19 @@ describe('The Login component', () => {
       });
     });
     describe('Testing visibilityIconClick function', () => {
+      const event = {
+        target: {
+          tagName: 'I'
+        }
+      }
       it('should set visibilityIcon to \'visibility_off\' when it is \'visibility\'', () => {
         const loginComponentInstance = loginComponent.instance();
-        loginComponentInstance.visibilityIconClick();
+        loginComponentInstance.visibilityIconClick(event);
         expect(loginComponentInstance.state.visibilityIcon).toEqual('visibility_off');
       });
       it('should set visibilityIcon to \'visibility\' when it is \'visibility_off\'', () => {
         const loginComponentInstance = loginComponent.instance();
-        loginComponentInstance.visibilityIconClick();
+        loginComponentInstance.visibilityIconClick(event);
         expect(loginComponentInstance.state.visibilityIcon).toEqual('visibility');
       });
     });

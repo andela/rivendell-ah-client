@@ -62,10 +62,16 @@ export const validateResetToken = path => ({
 });
 
 
+const signup = formData => ({
+  type: types.SIGN_UP,
+  payload: axiosInstance().post('/users/', { user: formData }),
+});
+
 export default {
   login,
   clearApiValidationError,
   clearAllApiValidationErrors,
   logout,
   socialLogin,
+  signup
 };

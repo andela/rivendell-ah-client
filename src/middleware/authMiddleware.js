@@ -6,8 +6,16 @@ import types from '../actions/actionTypes';
  * @returns {Function} next
  */
 const authMiddleware = () => next => (action) => {
-  if (action.type === `${types.LOGIN}_SUCCESS`) {
-    let { user } = action.payload.data;
+  if (action.type === `${types.LOGIN}_SUCCESS`
+    || action.type === `${types.SIGN_UP}_SUCCESS`
+    || action.type === types.SOCIAL_LOGIN) {
+    let payloadData;
+    if (action.type === types.SOCIAL_LOGIN) {
+      payloadData = action.payload;
+    } else {
+      payloadData = action.payload.data;
+    }
+    let { user } = payloadData;
     const { token } = user;
     action.payload.user = user;
     action.payload.token = user.token;
@@ -23,10 +31,6 @@ const authMiddleware = () => next => (action) => {
   if (action.type === types.LOGOUT) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-  }
-  if (action.type === types.SOCIAL_LOGIN) {
-    const { token } = action.payload.user;
-    localStorage.setItem('token', token);
   }
   return next(action);
 };
