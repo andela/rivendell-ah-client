@@ -1,0 +1,12 @@
+.pointer {
+    cursor: pointer;
+  }
+  .show-more {
+    display: flex;
+    justify-content: center;
+  }
+  .likes-header {
+    color: $likes-button;
+    display: flex;
+    justify-content: center;
+  }

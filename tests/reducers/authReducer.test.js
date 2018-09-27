@@ -126,7 +126,7 @@ describe('Testing authReducer', () => {
         const state = authReducer(initialState, action)
         expect(state).toEqual(newState);
     })
-    it('should return the state when an action type matches is not specified', () => {
+    it('should return the state when an action is not specified', () => {
         const newState = {
             ...initialState,
         }
