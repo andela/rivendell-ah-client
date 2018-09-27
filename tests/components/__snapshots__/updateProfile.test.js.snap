@@ -33,6 +33,7 @@ exports[`Edit Profile component should render without error 1`] = `
         >
           Firstname
         </label>
+        <br />
         <input
           className="form-field field-length-ok"
           id="firstname"
@@ -55,6 +56,7 @@ exports[`Edit Profile component should render without error 1`] = `
         >
           Lastname
         </label>
+        <br />
         <input
           className="form-field field-length-ok"
           id="lastname"
@@ -77,8 +79,10 @@ exports[`Edit Profile component should render without error 1`] = `
         >
           Email
         </label>
+        <br />
         <input
           className="form-field field-length-ok valid-email"
+          disabled="disabled"
           id="email"
           name="email"
           onBlur={[MockFunction]}
@@ -99,11 +103,11 @@ exports[`Edit Profile component should render without error 1`] = `
         >
           Photo
         </label>
+        <br />
         <input
           className="form-field"
           id="photo"
           name="image"
-          onChange={[MockFunction]}
           type="file"
         />
       </div>
@@ -115,6 +119,7 @@ exports[`Edit Profile component should render without error 1`] = `
         >
           Biography
         </label>
+        <br />
         <textarea
           className="form-field field-length-ok"
           defaultValue={null}
@@ -141,6 +146,17 @@ exports[`Edit Profile component should render without error 1`] = `
         </Button>
       </div>
     </Form>
+    <div
+      id="edit-profile-footer"
+    >
+      <Link
+        id="profile-redirect-link"
+        replace={false}
+        to="/@reader11"
+      >
+        Back
+      </Link>
+    </div>
   </div>
 </Container>
 `;
@@ -164,15 +180,9 @@ exports[`Edit Profile page should render without error 1`] = `
       }
     }
     handleChange={[Function]}
+    handleImageUpload={[Function]}
     handleSubmitForm={[Function]}
     mouseOutHandler={[Function]}
   />
-  <Link
-    id="profile-redirect-link"
-    replace={false}
-    to="/"
-  >
-    Back
-  </Link>
 </div>
 `;

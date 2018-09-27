@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import validator from 'validator';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateProfile, updateRedirect } from '../../actions/profile';
 import EditProfile from '../../components/EditProfile.jsx';
 import mouseOutHandler from '../../helpers/profileHelper';
+import uploadImage from '../../actions/uploadImageAction';
 
 /**
  * Edit profile page
@@ -21,7 +22,19 @@ export class EditProfilePage extends Component {
     this.handleUpdateProfile = this.handleUpdateProfile.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.mouseOutHandler = mouseOutHandler.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.imageFileReader = new FileReader();
     this.state = {};
+  }
+
+  /**
+   * sets state property when the page load
+   * @returns {null} no value is returned
+   */
+  componentDidMount() {
+    this.imageFileReader.addEventListener('load', () => {
+      this.props.uploadImage(this.imageFileReader.result);
+    });
   }
 
   /**
@@ -34,6 +47,20 @@ export class EditProfilePage extends Component {
     });
   }
 
+  /**
+   * set state variable when the compoent update
+   * @param {*} nextProps of the component state
+   * @returns {null} set imageUrl to state
+   */
+  componentWillReceiveProps(nextProps) {
+    const { imageUrl, imageLoading, success } = nextProps;
+    this.setState({
+      imageLoading,
+    });
+    if (success) {
+      this.state.formData.image = imageUrl;
+    }
+  }
   /**
    * @param { object } event element recieving an
    * event
@@ -87,6 +114,15 @@ export class EditProfilePage extends Component {
   }
 
   /**
+   * this function handle image upload
+   * @param {object} event html event object
+   * @returns {null} read the image data
+   */
+  handleImageUpload({ target: { files } }) {
+    this.imageFileReader.readAsDataURL(files[0]);
+  }
+
+  /**
    * render the EditprofilePage component
    * and pass down properties to the editProfile
    * component
@@ -95,6 +131,7 @@ export class EditProfilePage extends Component {
   render() {
     /* eslint-disable jsx-a11y/anchor-is-valid */
     const { isLoading, redirect } = this.props;
+    const { imageLoading } = this.state;
     if (redirect) {
       this.props.updateRedirect();
       return <Redirect to={`/@${this.props.userProfile.username}`} />;
@@ -106,9 +143,10 @@ export class EditProfilePage extends Component {
           handleChange={this.handleChange}
           mouseOutHandler={this.mouseOutHandler}
           formData={this.state.formData}
+          handleImageUpload={this.handleImageUpload}
           isLoading={isLoading}
+          imageLoading={imageLoading}
         />
-        <Link id="profile-redirect-link" to="/">Back</Link>
       </div>
     );
   }
@@ -121,6 +159,10 @@ EditProfilePage.propTypes = {
   updateProfile: PropTypes.func.isRequired,
   updateRedirect: PropTypes.func.isRequired,
   userProfile: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  imageLoading: PropTypes.bool.isRequired,
+  success: PropTypes.bool.isRequired,
+  uploadImage: PropTypes.func.isRequired,
 };
 
 // export default EditProfile;
@@ -130,15 +172,23 @@ export const mapStateToProps = (state) => {
     isLoading,
     redirect,
   } = state.profile;
+  const {
+    imageUrl,
+    isLoading: imageLoading,
+    success
+  } = state.uploadImageReducer;
   return {
     userProfile,
     profile,
     isLoading,
     redirect,
+    imageUrl,
+    imageLoading,
+    success,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateProfile, updateRedirect }
+  { updateProfile, updateRedirect, uploadImage }
 )(EditProfilePage);
