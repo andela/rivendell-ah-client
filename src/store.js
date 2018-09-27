@@ -11,7 +11,6 @@ import authMiddleware from './middleware/authMiddleware';
 
 const promiseTypeSuffixes = ['LOADING', 'SUCCESS', 'FAILURE'];
 const sagaMiddleware = createSagaMiddleware();
-
 const middleware = [
   thunk, errorMiddleware, authMiddleware,
   promiseMiddleware({ promiseTypeSuffixes }), sagaMiddleware,

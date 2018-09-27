@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit Profile component should render without error 1`] = `
+<Container>
+  <div
+    className="content"
+  >
+    <Form
+      as="form"
+    >
+      <div
+        id="edit-profile-header"
+      >
+        <h2>
+          Edit your Profile
+        </h2>
+      </div>
+      <div
+        id="profile-image-div"
+      >
+        <i
+          className="material-icons"
+          id="alternate-profile-image"
+        >
+          account_circle
+        </i>
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="firstname"
+        >
+          Firstname
+        </label>
+        <input
+          className="form-field field-length-ok"
+          id="firstname"
+          name="firstName"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onMouseOut={[MockFunction]}
+          type="text"
+          value="myfirstname"
+        />
+        <span
+          className="status-box"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="lastname"
+        >
+          Lastname
+        </label>
+        <input
+          className="form-field field-length-ok"
+          id="lastname"
+          name="lastName"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onMouseOut={[MockFunction]}
+          type="text"
+          value="mylastname"
+        />
+        <span
+          className="status-box"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <input
+          className="form-field field-length-ok valid-email"
+          id="email"
+          name="email"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onMouseOut={[MockFunction]}
+          type="email"
+          value="reader11@gmail.com"
+        />
+        <span
+          className="status-box"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="photo"
+        >
+          Photo
+        </label>
+        <input
+          className="form-field"
+          id="photo"
+          name="image"
+          onChange={[MockFunction]}
+          type="file"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="bio"
+        >
+          Biography
+        </label>
+        <textarea
+          className="form-field field-length-ok"
+          defaultValue={null}
+          id="bio"
+          name="bio"
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
+          onMouseOut={[MockFunction]}
+        />
+        <span
+          className="status-box"
+        />
+      </div>
+      <div>
+        <Button
+          as="button"
+          fluid={true}
+          id="edit-profile-button"
+          onClick={[MockFunction]}
+          role="button"
+          size="medium"
+        >
+          Update
+        </Button>
+      </div>
+    </Form>
+  </div>
+</Container>
+`;
+
+exports[`Edit Profile page should render without error 1`] = `
+<div
+  className="content"
+  id="edit-profile-page"
+>
+  <EditProfile
+    formData={
+      Object {
+        "bio": null,
+        "email": "reader11@gmail.com",
+        "firstName": "myfirstname",
+        "id": 18,
+        "image": null,
+        "lastName": "mylastname",
+        "username": "reader11",
+        "verified": true,
+      }
+    }
+    handleChange={[Function]}
+    handleSubmitForm={[Function]}
+    mouseOutHandler={[Function]}
+  />
+  <Link
+    id="profile-redirect-link"
+    replace={false}
+    to="/"
+  >
+    Back
+  </Link>
+</div>
+`;

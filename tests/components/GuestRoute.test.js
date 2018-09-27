@@ -2,7 +2,7 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { Router, Redirect } from 'react-router-dom';
 
-import { GuestRoute, mapStateToProps } from '../../src/components/routes/GuestRoute';
+import { GuestRoute, mapStateToProps } from '../../src/components/routes/GuestRoute.jsx';
 
 describe('The Guest Route component', () => {
   const state = {

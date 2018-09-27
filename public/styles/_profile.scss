@@ -1,0 +1,121 @@
+#profile-page {
+  padding-top: 20px;
+  min-height:600px;
+  padding:20px 40px;
+  .content {
+    align-items:center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px 10px;
+    background-color:white;
+    box-shadow: 2px 2px 2px $shadow-ash;
+  }
+  div#profile-image-div {
+    position:relative;
+    background-color:white;
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    padding:10px;
+    top:5px;
+    width:30%;
+    left:35%;
+  }
+  #profile-image {
+    width: 100%;
+    height:180px;
+    border-radius:10%;
+  }
+  i#alternate-profile-image {
+    color: $primary-blue;
+    font-size:80px;
+    text-align:center;
+  }
+
+  #profile-name {
+    position:relative;
+    top:-18px;
+    font-size:1.5em;
+    text-align: center;
+  }
+  #email-text {
+    position:relative;
+    top:-28px;
+    font-size:1em;
+    text-align:center;
+  }
+  div.profile-detail-container {
+    background-color:white;
+    position:relative;
+    top: 1px;
+    margin-top:10px;
+    width:100%;
+  }
+  div.profile-details {
+    position:relative;
+    top:-25px;
+    margin-top:10px;
+  }
+  div.profile-details label {
+    margin-bottom: 3px;
+    font-weight: bold;
+  }
+  #bio-text {
+    white-space: wrap;
+    min-height:30px;
+    text-overflow: auto;
+    text-align:center;
+    margin-bottom:30px;
+    padding-left:15px;
+    padding-right:15px;
+  }
+  #bio-field {
+    width:100%;
+    font-weight: bold;
+    text-align:center;
+  }
+  #update-profile-link {
+    background-color: $primary-blue;
+    position: relative;
+    top:-10px;
+    left: 33%;
+    width:15%;
+    padding:10px 10px;
+    margin:70px 2px;
+    border-radius:2px;
+    color:white;
+  }
+
+  #profile-error-message {
+    text-align:center;
+  }
+  #profile-redirect-link {
+    position:relative;
+    top:50px;
+    left: 50px;
+  }
+  @include media-query-above(sm) {
+    i#alternate-profile-image {
+      font-size:120px;
+    }
+    #update-profile-link {
+      left: 35%;
+      width:15%;
+      padding:10px 20px;
+    }
+  }
+  @include media-query-above(md) {
+    .content {
+      width: 60%;
+    }
+    i#alternate-profile-image {
+      font-size:150px;
+    }
+    #update-profile-link {
+      left: 39%;
+      width:15%;
+      padding:10px 25px;
+    }
+  }
+}

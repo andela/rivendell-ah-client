@@ -1,0 +1,101 @@
+#edit-profile-page {
+  /* border:2px solid red; */
+  padding-top: 20px;
+  .content {
+    width: 100%;
+    margin: 0 auto;
+    background-color: $white;
+    box-shadow: 3px 3px 3px $shadow-ash;
+    padding:40px;
+  }
+  #edit-profile-header h2{
+    text-align:center;
+  }
+  #profile-image-div {
+    position:relative;
+    margin-top:20px;
+    margin-bottom:20px;
+  }
+  #profile-image {
+    position:relative;
+    left: 36%;
+    width:65px;
+    height:65px;
+    border-radius:10%;
+    margin-bottom:2px;
+  }
+  i#alternate-profile-image {
+    color: $primary-blue;
+    font-size:70px;
+    position:relative;
+    left:40%;
+    text-align:center;
+  }
+
+  .form-group {
+    margin:5px 1px;
+  }
+  div.form-group > label {
+    margin:2px 1px;
+  }
+  .form-field {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding:7px 10px;
+  }
+
+  button#edit-profile-button {
+    background-color: $primary-blue;
+    color: $white;
+    width:100%;
+    margin-top:20px;
+    font-size:0.7em;
+    padding:12px 0px;
+    box-shadow: 2px 2px 2px $shadow-ash;
+    &:hover {
+      box-shadow: 3px 3px 3px $shadow-ash;
+      background-color: darken($primary-blue, 5);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+  }
+  .field-length-fail, .invalid-email {
+    border: 1px solid $error-border-red;
+    background-color: $error-border-red;
+  }
+  .status-box {
+    color: $error-red;
+  }
+  #profile-redirect-link {
+    position:relative;
+    top:50px;
+    left: 50px;
+  }
+  @include media-query-above(sm) {
+    padding-top: 40px;
+    .content {
+      width: 50%;
+    }
+    i.top {
+      font-size: 150%;
+    }
+    .icon-border {
+      width: 60px;
+      height: 60px;
+    }
+    #profile-image {
+      left: 36%;
+      width:75px;
+      height:75px;
+    }
+  }
+  @include media-query-above(md) {
+    #profile-image {
+      width:25%;
+      height:90px;
+    }
+    .content {
+      width: 40%;
+    }
+  }
+}

@@ -1,7 +1,11 @@
 import { all } from 'redux-saga/effects';
 import {
-  saveProfileOnLoginSuccess, saveProfileOnPersistLogin,
-  saveProfileOnSignupSuccess, saveProfileOnSocialLoginSuccess
+  saveProfileOnLoginSuccess,
+  saveProfileOnPersistLogin,
+  saveProfileOnSignupSuccess,
+  saveProfileOnSocialLoginSuccess,
+  saveProfileOnSocialLogin,
+  updateUserOnProfileUpdate,
 } from './profileSaga';
 
 /**
@@ -13,6 +17,8 @@ export default function* rootSaga() {
     saveProfileOnLoginSuccess(),
     saveProfileOnPersistLogin(),
     saveProfileOnSignupSuccess(),
-    saveProfileOnSocialLoginSuccess()
+    saveProfileOnSocialLoginSuccess(),
+    saveProfileOnSocialLogin(),
+    updateUserOnProfileUpdate(),
   ]);
 }

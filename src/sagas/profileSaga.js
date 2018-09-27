@@ -53,4 +53,24 @@ export function* saveProfileOnPersistLogin() {
   });
 }
 
+/**
+ * @returns {null} null
+ */
+export function* saveProfileOnSocialLogin() {
+  const persistLoginAction = yield take(types.SOCIAL_LOGIN);
+  yield put({
+    type: types.LOGGED_IN_USER_PROFILE, payload: persistLoginAction.payload.user
+  });
+}
+
+/**
+ * @returns {null} null
+ */
+export function* updateUserOnProfileUpdate() {
+  const getUserDetails = yield take(`${types.PROFILE_UPDATE}_SUCCESS`);
+  let userDetails = getUserDetails.payload.data.user;
+  userDetails = JSON.stringify(userDetails);
+  localStorage.setItem('user', userDetails);
+}
+
 export default {};
