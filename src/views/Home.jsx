@@ -57,12 +57,16 @@ export class Home extends React.Component {
     const { displayNextFavoriteArticle } = this.props;
     const favoriteArticlesDisplays = {};
     favoriteArticlesDisplays[key] = {
-      transition: 'opacity 0.5s ease-in-out',
       display: 'none',
     };
+    if (key !== 0) {
+      favoriteArticlesDisplays[0] = {
+        display: 'none',
+      };
+    }
     let nextArticleIndex = key + 1;
-    if (nextArticleIndex > arr.length) {
-      nextArticleIndex -= nextArticleIndex;
+    if (nextArticleIndex >= arr.length) {
+      nextArticleIndex = 0;
     }
     let display = 'flex';
     if (window.innerWidth < 768) display = 'block';
@@ -136,6 +140,7 @@ export class Home extends React.Component {
     }
     const page = activePage < feetArticlesPageCount
       ? activePage : feetArticlesPageCount;
+    console.log(featuredArticles);
     if (featuredArticles[page]) {
       return updateActivePage(page);
     }

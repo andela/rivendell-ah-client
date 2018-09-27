@@ -96,7 +96,7 @@ export const featuredArticles = (state = initialArticlesState, action = {}) => {
       },
       articlesCount: action.payload.data.articlesCount,
       featuredArticles: {
-        ...state.articles,
+        ...state.featuredArticles,
         [action.payload.activePage]: action.payload.data.articles
       },
       activePage: action.payload.activePage

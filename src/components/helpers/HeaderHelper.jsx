@@ -80,6 +80,9 @@ export const DesktopNavDropDown = ({
       </div>
       <div>
         <li>
+          <Link to="/articles/new">Create Article</Link>
+        </li>
+        <li>
           <Link to="#" onClick={logout}>Logout</Link>
         </li>
       </div>

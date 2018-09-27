@@ -7,6 +7,7 @@ import types from '../actions/actionTypes';
  * @returns {Function} next
  */
 const authMiddleware = () => next => (action) => {
+  if (!action) return;
   if (action.type === `${types.LOGIN}_SUCCESS`
     || action.type === `${types.SIGN_UP}_SUCCESS`
     || action.type === types.SOCIAL_LOGIN) {

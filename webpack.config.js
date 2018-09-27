@@ -28,7 +28,9 @@ module.exports = (env) => {
           test: /\.(png|jpg|jpeg|gif)$/,
           use: [{
             loader: 'url-loader',
-            options: { limit: 30000 },
+            options: {
+              limit: 300000,
+            },
           }],
         },
       ],
@@ -53,11 +55,8 @@ module.exports = (env) => {
         'process.env.API_KEY': JSON.stringify(process.env.API_KEY),
         'process.env.API_SECRET': JSON.stringify(process.env.API_SECRET),
         'process.env.CLOUD_NAME': JSON.stringify(process.env.CLOUD_NAME),
-<<<<<<< HEAD
         'process.env.BASE_URL':JSON.stringify(process.env.BASE_URL),
         'process.env.FACEBOOK_ID':JSON.stringify(process.env.FACEBOOK_ID)
-=======
->>>>>>> feat(userCreateArticle): logged in user should create article
       }),
     ],
   };
