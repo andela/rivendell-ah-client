@@ -21,13 +21,6 @@ exports[`Profile Page should render 1`] = `
     }
     username="reader11"
   />
-  <Link
-    id="profile-redirect-link"
-    replace={false}
-    to="/"
-  >
-    Back
-  </Link>
 </div>
 `;
 

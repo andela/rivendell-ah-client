@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 const App = () => (
   <div>
     <Route component={Header} />
-    <Main />
+    <Route component={Main} />
     <Footer />
   </div>
 );

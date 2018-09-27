@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Container } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Form, Button, Container, Image } from 'semantic-ui-react';
 
 /**
  * this function contain the edit profile form
@@ -16,6 +17,8 @@ const EditProfile = ({
   handleSubmitForm,
   handleChange,
   mouseOutHandler,
+  imageLoading,
+  handleImageUpload,
   isLoading }) => {
   const {
     firstName,
@@ -25,7 +28,8 @@ const EditProfile = ({
     username,
     image
   } = formData;
-  let imageEle = <img id="profile-image" src={image} alt={username} />;
+  let imageEle =
+    <Image id="profile-image" src={image} alt={username} circular />;
   if (!image) {
     imageEle = (
       <i className="material-icons" id="alternate-profile-image">
@@ -38,7 +42,7 @@ const EditProfile = ({
   return (
     <Container>
       <div className="content">
-        <Form loading={isLoading}>
+        <Form loading={isLoading || imageLoading}>
           <div id="edit-profile-header">
             <h2>Edit your Profile</h2>
           </div>
@@ -49,6 +53,7 @@ const EditProfile = ({
             <label htmlFor="firstname">
               Firstname
             </label>
+            <br />
             <input
               type="text"
               id="firstname"
@@ -65,6 +70,7 @@ const EditProfile = ({
             <label htmlFor="lastname">
               Lastname
             </label>
+            <br />
             <input
               type="text"
               id="lastname"
@@ -81,6 +87,7 @@ const EditProfile = ({
             <label htmlFor="email">
               Email
             </label>
+            <br />
             <input
               type="email"
               id="email"
@@ -89,6 +96,7 @@ const EditProfile = ({
               onMouseOut={mouseOutHandler}
               onBlur={mouseOutHandler}
               name="email"
+              disabled="disabled"
               value={email}
             />
             <span className="status-box" />
@@ -97,11 +105,12 @@ const EditProfile = ({
             <label htmlFor="photo">
               Photo
             </label>
+            <br />
             <input
               id="photo"
               type="file"
               className="form-field"
-              onChange={handleChange}
+              onChange={handleImageUpload}
               name="image"
             />
           </div>
@@ -109,6 +118,7 @@ const EditProfile = ({
             <label htmlFor="bio">
               Biography
             </label>
+            <br />
             <textarea
               id="bio"
               onChange={handleChange}
@@ -131,6 +141,9 @@ const EditProfile = ({
             </Button>
           </div>
         </Form>
+        <div id="edit-profile-footer">
+          <Link id="profile-redirect-link" to={`/@${username}`}>Back</Link>
+        </div>
       </div>
     </Container>
   );
@@ -141,6 +154,8 @@ EditProfile.propTypes = {
   handleSubmitForm: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   mouseOutHandler: PropTypes.func.isRequired,
+  handleImageUpload: PropTypes.func.isRequired,
+  imageLoading: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 

@@ -33,7 +33,7 @@ const appState = {
   ...initialState,
   profile: {
     userProfile: profile,
-  }
+  },
 }
 document.getElementById = (id) => ({
   setAttribute: jest.fn(),
@@ -81,15 +81,18 @@ describe('Edit Profile', () => {
       const handleUpdateProfile = jest.fn();
       const store = mockStore(initialState)
       const wrapper = mount(
-      <EditProfile
-        updateProfile={updateProfile}
-        store={store}
-        userProfile={profile}
-        formData={profile}
-        handleChange={handleChange}
-        handleSubmitForm={handleUpdateProfile}
-        isLoading={false}
-      />);
+        <MemoryRouter>
+          <EditProfile
+            updateProfile={updateProfile}
+            store={store}
+            userProfile={profile}
+            formData={profile}
+            handleChange={handleChange}
+            handleSubmitForm={handleUpdateProfile}
+            isLoading={false}
+          />
+        </MemoryRouter>
+      );
       const event = {
         preventDefault: ()=>{},
 
@@ -134,17 +137,19 @@ describe('Edit Profile', () => {
       username: "somebody",
       verified: true,
     }
+
     const history = {
       push: jest.fn(),
     }
+
     const wrapper = mount(
       <MemoryRouter>
         <EditProfilePage
-        updateProfile={updateProfile}
-        store={store}
-        userProfile={userProfile}
-        userRedirect={true}
-        history={history}
+          updateProfile={updateProfile}
+          store={store}
+          userProfile={userProfile}
+          userRedirect={true}
+          history={history}
         />
       </MemoryRouter>
     );
@@ -161,6 +166,16 @@ describe('Edit Profile', () => {
       })
     });
 
+    describe('component will receiveProps', () => {
+      const componentWillReceiveProps = jest.fn();
+      const nextProps = {
+          imageUrl:'true',
+          isLoading:true,
+          success:true,
+      }
+      editProfilePageWrapper.instance().componentWillReceiveProps = componentWillReceiveProps;
+      editProfilePageWrapper.instance().componentWillReceiveProps(nextProps)
+    })
     describe('mouse out handler', () => {
       const event = {
         target: {
@@ -246,13 +261,22 @@ describe('Edit Profile', () => {
           errors: {},
           profile: {},
           userProfile: {},
-        }
+
+        },
+        uploadImageReducer: {
+        imageUrl:'true',
+        isLoading:true,
+        success:true,
+      },
       }
       const componentState = mapStateToProps(appState);
       const expectedState = {
         isLoading: false,
         profile: {},
         userProfile: {},
+        imageUrl:'true',
+        imageLoading:true,
+        success:true,
       }
       expect(componentState).toEqual(expectedState);
     });

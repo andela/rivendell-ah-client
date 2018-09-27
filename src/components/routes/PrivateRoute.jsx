@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
@@ -8,8 +9,7 @@ export const PrivateRoute = ({ token, verified, component: Component, ...rest
   <Route
     {...rest}
     render={(props) => {
-      if (token && verified) return <Component {...props} />;
-      if (!verified) return <Redirect to="/@:username" />;
+      if (token) return <Component {...props} />;
       localStorage.setItem('redirectRoute', props.location.pathname);
       return <Redirect to="/login" />;
     }}
@@ -18,9 +18,8 @@ export const PrivateRoute = ({ token, verified, component: Component, ...rest
 
 export const mapStateToProps = (state) => {
   const { token } = state.auth;
-  const { verified } = state.profile.userProfile;
   return {
-    token, verified
+    token,
   };
 };
 PrivateRoute.propTypes = {

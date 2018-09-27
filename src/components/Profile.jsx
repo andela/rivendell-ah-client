@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 /**
@@ -31,7 +32,7 @@ const Profile = ({ profile, owner, errors }) => {
     biography = '404 bio not found';
   }
   let imageEle =
-    <img id="profile-image" src={image} alt={username} />;
+    <Image id="profile-image" src={image} alt={username} circular />;
   if (!image) {
     imageEle = (
       <i id="alternate-profile-image" className="large material-icons">
