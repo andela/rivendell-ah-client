@@ -9,6 +9,7 @@ import TagView from './TagView';
 import deleteArticleAction from '../actions/deleteArticle';
 import Like from './Like';
 import ArticleRating from '../views/articles/rating/ArticleRating';
+import SocialShare from './SocialShare';
 
 const htmlToReactParser = new HtmlToReactParser();
 /**
@@ -28,6 +29,10 @@ export class ArticleView extends Component {
     };
 
     this.deleteArticle = this.deleteArticle.bind(this);
+
+    this.articleURL = encodeURIComponent(window.location.href);
+
+
     this.showUpdatePage = this.showUpdatePage.bind(this);
   }
 
@@ -52,6 +57,16 @@ export class ArticleView extends Component {
     const { loadArticle, slug } = this.props;
     loadArticle(slug);
   }
+
+
+  /**
+   * @returns {void} resets the page to how it was initially
+   */
+  componentWillUnmount() {
+    const { resetPage } = this.props;
+    resetPage();
+  }
+
 
   /**
    *@returns {void} performs an action and returns void
@@ -137,6 +152,7 @@ export class ArticleView extends Component {
             tagNames={article.tags}
           />
           {article.slug ? <ArticleRating articleSlug={article.slug} /> : ''}
+          <SocialShare articleURL={this.articleURL} />
         </Container>
 
       </div>
@@ -180,7 +196,8 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   loadArticle: slug => dispatch(loadAricleAction(slug)),
-  deleteArticle: article => dispatch(deleteArticleAction(article))
+  deleteArticle: article => dispatch(deleteArticleAction(article)),
+  resetPage: () => dispatch({ type: 'DELETE_ARTICLE_RESET' })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleView);

@@ -58,7 +58,7 @@ NewArticle.propTypes = {
     editing: propTypes.bool,
     isLoading: propTypes.bool,
     success: propTypes.bool,
-    article: propTypes.shape,
+    article: propTypes.objectOf(propTypes.any),
     errors: propTypes.shape({
       description: propTypes.arrayOf(propTypes.string),
       title: propTypes.arrayOf(propTypes.string),
