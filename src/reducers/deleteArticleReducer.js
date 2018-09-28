@@ -9,6 +9,11 @@ const initialState = {
 
 const deleteArticle = (state = initialState, action = {}) => {
   switch (action.type) {
+  case `${types.DELETE_ARTICLE}_RESET`:
+    return {
+      ...state,
+      ...initialState,
+    };
   case `${types.DELETE_ARTICLE}_LOADING`:
     return {
       ...state,

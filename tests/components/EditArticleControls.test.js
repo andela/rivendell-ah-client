@@ -37,6 +37,7 @@ describe('Testing EditArticleControls', () => {
     success={success}
     onSubmit={onSubmit}
     errors={errors}
+    update
   />);
   describe('basic elements rendered in the component', () => {
     it('should contain a CategoryInput', () => {

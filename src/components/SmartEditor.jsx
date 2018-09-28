@@ -428,8 +428,6 @@ class SmartEditor extends Component {
     return (
       <div
         id="smart-editor"
-        onMouseEnter={this.focusEditor}
-
       >
 
         <input
@@ -455,7 +453,7 @@ class SmartEditor extends Component {
 
         <EmojiSuggestions />
         <EmojiSelect />
-        <div className="articleView">
+        <div className="articleView" onClick={this.focusEditor}>
 
           <Editor
             editorState={editorState}

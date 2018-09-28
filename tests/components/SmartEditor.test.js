@@ -44,8 +44,8 @@ describe('testing SmartEditor', () => {
         const spy = jest.spyOn(SmartEditor.prototype, 'focusEditor');
         const mountedObj = shallow(<SmartEditor />);
 
-        mountedObj.find('#smart-editor')
-          .simulate('mouseEnter');
+        mountedObj.find('.articleView')
+          .simulate('click');
         expect(spy).toHaveBeenCalled();
       });
       
