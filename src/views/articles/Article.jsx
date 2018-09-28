@@ -338,3 +338,23 @@ export default connect(mapStateToProps, {
   likeArticle: likeAction.likeArticle,
   unlikeArticle: likeAction.unlikeArticle,
 })(Article);
+
+
+
+// import { Label } from 'semantic-ui-react';
+
+// const Article = () => (
+//   <div>
+//     <h2>A User Article</h2>
+//     <Label.Group tag>
+//       <Label as="a">
+//         <Link to={`/article-tags/andela`}>andela</Link>
+//       </Label>
+//       <Label as="a">fatti</Label>
+//       <Label as="a">love</Label>
+//       <Label as="a">issue</Label>
+//       <Label as="a">cup</Label>
+//     </Label.Group>
+//   </div>
+// );
+// export default Article;
