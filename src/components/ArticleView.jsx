@@ -4,12 +4,14 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Parser as HtmlToReactParser } from 'html-to-react';
 import { Redirect } from 'react-router';
+import readingTime from 'reading-time';
 import loadAricleAction from '../actions/loadArticleAction';
 import TagView from './TagView';
 import deleteArticleAction from '../actions/deleteArticle';
 import Like from './Like';
 import ArticleRating from '../views/articles/rating/ArticleRating';
 import SocialShare from './SocialShare';
+
 
 const htmlToReactParser = new HtmlToReactParser();
 /**
@@ -104,6 +106,7 @@ export class ArticleView extends Component {
     }
     const ReactElement = htmlToReactParser
       .parse(unescape(article.body));
+    const stats = readingTime(unescape(article.body));
     return (
       <div id="article-page">
         <Container id="articleView">
@@ -112,12 +115,20 @@ export class ArticleView extends Component {
 
             <h1 className="header">{article.title}</h1>
             <Header.Subheader className="sub-header">
-            Created By: @
-              {article.author ? article.author.username : ''}
-              {'  '}
+              <div className="article-info-stats">
+                <p>
+               Created By: @
+                  {article.author ? article.author.username : ''}
+                  {'  '}
             on
-              {'  '}
-              {new Date(article.createdAt).toUTCString()}
+                  {'  '}
+                  {new Date(article.createdAt).toUTCString()}
+                </p>
+
+
+                <p>{stats.text}</p>
+              </div>
+
             </Header.Subheader>
           </Header>
 
