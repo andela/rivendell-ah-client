@@ -1,0 +1,22 @@
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.itemList {
+  overflow: auto;
+}
+
+.showMore {
+  display: flex;
+  justify-content: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.popupImage {
+  margin-right: 10px;
+}
