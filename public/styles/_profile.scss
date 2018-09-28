@@ -17,15 +17,17 @@
     flex-direction: column;
     align-content: center;
     justify-items: center;
+    border-radius:100%;
     padding:10px;
     top:5px;
     width:30%;
-    left:35%;
+    left:36%;
   }
   #profile-image {
-    width: 100%;
-    height:180px;
-    border-radius:10%;
+    position:relative;
+    left:10%;
+    width: 60px;
+    height:60px;
   }
   i#alternate-profile-image {
     color: $primary-blue;
@@ -104,6 +106,11 @@
       width:15%;
       padding:10px 20px;
     }
+    #profile-image {
+      left:-8%;
+      width: 120px;
+      height:120px;
+    }
   }
   @include media-query-above(md) {
     .content {
@@ -116,6 +123,11 @@
       left: 39%;
       width:15%;
       padding:10px 25px;
+    }
+    #profile-image {
+      left:16%;
+      width: 120px;
+      height:120px;
     }
   }
 }
