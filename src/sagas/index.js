@@ -1,10 +1,10 @@
 import { all } from 'redux-saga/effects';
+import { watchGetArticles, watchGetFeed, watchLogout } from './articlesSaga';
 import {
-  saveProfileOnLoginSuccess,
+  watchLoginSuccess,
   saveProfileOnPersistLogin,
-  saveProfileOnSignupSuccess,
-  saveProfileOnSocialLoginSuccess,
-  saveProfileOnSocialLogin,
+  watchSignupSuccess,
+  watchSocialLogin,
   updateUserOnProfileUpdate,
 } from './profileSaga';
 
@@ -14,11 +14,13 @@ import {
  */
 export default function* rootSaga() {
   yield all([
-    saveProfileOnLoginSuccess(),
+    watchLoginSuccess(),
     saveProfileOnPersistLogin(),
-    saveProfileOnSignupSuccess(),
-    saveProfileOnSocialLoginSuccess(),
-    saveProfileOnSocialLogin(),
+    watchSignupSuccess(),
+    watchSocialLogin(),
     updateUserOnProfileUpdate(),
+    watchGetArticles(),
+    watchGetFeed(),
+    watchLogout(),
   ]);
 }

@@ -108,7 +108,6 @@ export class EditProfilePage extends Component {
           formData={this.state.formData}
           isLoading={isLoading}
         />
-        <Link id="profile-redirect-link" to="/">Back</Link>
       </div>
     );
   }

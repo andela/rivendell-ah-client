@@ -35,25 +35,24 @@ export const SearchBar = () => (
   </div>
 );
 
-export const NavProfileImage = ({ image, profileImgClick }) => (
-  image
-    ? (
-      <img
-        alt="avatar"
-        className="img"
-        src={image}
-        onClick={profileImgClick}
-      />
-    )
-    : (
-      <i
-        className="material-icons profile-img"
-        onClick={profileImgClick}
-      >
-      account_circle
-      </i>
-    )
-);
+export const NavProfileImage = ({ image, profileImgClick }) => ((
+  <div className="profile-img-container">
+    <img
+      alt="avatar"
+      className="img"
+      src={image}
+      onClick={profileImgClick}
+      style={!image ? { opacity: '0' } : {}}
+    />
+    <i
+      className="material-icons profile-img"
+      onClick={profileImgClick}
+      style={image ? { opacity: '0' } : {}}
+    >
+    account_circle
+    </i>
+  </div>
+));
 
 NavProfileImage.propTypes = {
   image: PropTypes.string,
@@ -80,7 +79,10 @@ export const DesktopNavDropDown = ({
       </div>
       <div>
         <li>
-          <Link to="#" onClick={logout}>logout</Link>
+          <Link to="/articles/new">Create Article</Link>
+        </li>
+        <li>
+          <Link to="#" onClick={logout}>Logout</Link>
         </li>
       </div>
     </ul>

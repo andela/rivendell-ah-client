@@ -17,7 +17,7 @@ const {
   ForgotPassword, ResetPassword,
 } = userPages;
 const { Signup, Login } = authPages;
-const { PrivateRoute, GuestRoute, ProfileRoute } = routePages;
+const { PrivateRoute, GuestRoute } = routePages;
 
 export default [
   {
@@ -87,7 +87,7 @@ export default [
     exact: true,
   },
   {
-    type: ProfileRoute,
+    type: PrivateRoute,
     path: '/@:username/edit',
     component: EditProfilePage,
     exact: true,

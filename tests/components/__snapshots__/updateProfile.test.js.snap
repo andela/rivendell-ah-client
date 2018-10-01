@@ -167,12 +167,5 @@ exports[`Edit Profile page should render without error 1`] = `
     handleSubmitForm={[Function]}
     mouseOutHandler={[Function]}
   />
-  <Link
-    id="profile-redirect-link"
-    replace={false}
-    to="/"
-  >
-    Back
-  </Link>
 </div>
 `;
