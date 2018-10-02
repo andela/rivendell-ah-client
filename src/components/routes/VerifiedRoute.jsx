@@ -1,15 +1,16 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const ProfileRoute = ({ token, verified, component: Component, ...rest
+export const VerifiedRoute = ({
+  token, verified, username, component: Component, ...rest
 }) => (
   <Route
     {...rest}
     render={(props) => {
       if (token && verified) return <Component {...props} />;
+      if (token && !verified) return <Redirect to={`/@${username}`} />;
       localStorage.setItem('redirectRoute', props.location.pathname);
       return <Redirect to="/login" />;
     }}
@@ -18,24 +19,27 @@ export const ProfileRoute = ({ token, verified, component: Component, ...rest
 
 export const mapStateToProps = (state) => {
   const { token } = state.auth;
+  const { verified, username } = state.profile.userProfile;
   return {
-    token,
+    token, verified, username
   };
 };
-ProfileRoute.propTypes = {
+VerifiedRoute.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string
   }),
   component: PropTypes.func.isRequired,
   token: PropTypes.string,
   verified: PropTypes.bool,
+  username: PropTypes.string,
 };
-ProfileRoute.defaultProps = {
+VerifiedRoute.defaultProps = {
   location: PropTypes.shape({
     pathname: ''
   }),
   token: '',
   verified: false,
+  username: '',
 };
 
-export default connect(mapStateToProps)(ProfileRoute);
+export default connect(mapStateToProps)(VerifiedRoute);

@@ -46,8 +46,9 @@ export class ArticleView extends Component {
    * returns nothing
    */
   deleteArticle() {
-    const { deleteArticle, article } = this.props;
+    const { deleteArticle, article, history } = this.props;
     deleteArticle(article);
+    history.push('/');
   }
 
   /**
@@ -84,15 +85,10 @@ export class ArticleView extends Component {
    */
   render() {
     const { article, errors,
-      currentUsername, deleted,
+      currentUsername,
       likeProps
     } = this.props;
     const { showEditPage } = this.state;
-    if (deleted) {
-      return (
-        <Redirect to="/" />
-      );
-    }
     if (showEditPage) {
       return (
         <Redirect to={`/articles/${article.slug}/edit`} />
@@ -149,7 +145,6 @@ export class ArticleView extends Component {
                 content="Update Article"
                 onClick={this.showUpdatePage}
               />
-
               <Button
                 as="button"
                 negative
@@ -157,7 +152,6 @@ export class ArticleView extends Component {
                 onClick={this.deleteArticle}
               />
             </span>
-
           ) : ''}
           <TagView
             tagNames={article.tags}
