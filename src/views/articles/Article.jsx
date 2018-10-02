@@ -53,7 +53,9 @@ export class Article extends React.Component {
   * @param {object} nextProps
   */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.like
+    const { match } = this.props;
+    const { params } = match;
+    if (nextProps.like[params.slug]
       || this.checkUserLikes(nextProps.likes)) {
       this.setState({
         likeAttributes: {
@@ -164,11 +166,11 @@ export class Article extends React.Component {
     const {
       match, token, history,
       likeArticle, unlikeArticle,
-      like, likes
+      like, likes,
     } = this.props;
     const { params } = match;
     if (token) {
-      if (!like && !this.checkUserLikes(likes)) {
+      if (!like[params.slug] && !this.checkUserLikes(likes)) {
         likeArticle(params.slug, token);
       } else {
         unlikeArticle(params.slug, token);
@@ -265,7 +267,7 @@ export class Article extends React.Component {
  */
   render() {
     const { likeAttributes } = this.state;
-    const { likesCount, likes, match: { params } } = this.props;
+    const { likesCount, likes, match: { params }, history } = this.props;
     const likeProps = {
       likeAttributes,
       likesCount,
@@ -276,7 +278,11 @@ export class Article extends React.Component {
     };
     return (
       <div>
-        <ArticleView slug={params.slug} likeProps={likeProps} />
+        <ArticleView
+          history={history}
+          slug={params.slug}
+          likeProps={likeProps}
+        />
       </div>
     );
   }
@@ -302,7 +308,7 @@ Article.propTypes = {
   likesCount: PropTypes.number,
   getArticle: PropTypes.func.isRequired,
   getLikes: PropTypes.func,
-  like: PropTypes.bool.isRequired,
+  like: PropTypes.shape({}),
   userProfile: PropTypes.shape({
     id: PropTypes.string,
   }),
@@ -325,6 +331,7 @@ Article.defaultProps = {
   getLikes: () => { },
   userProfile: {},
   likes: [],
+  like: {},
   article: PropTypes.shape({
     likes: [],
   }),

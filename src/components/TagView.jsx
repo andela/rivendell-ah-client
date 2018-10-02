@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Label } from 'semantic-ui-react';
 import propTypes from 'prop-types';
@@ -11,7 +10,7 @@ const TagView = ({ tagNames, colors }) => (
         icon="tag"
         as="a"
         size="big"
-        content={{ tag }}
+        content={tag}
         color={colors[Math.floor(Math.random() * colors.length)]}
       />
     ))}

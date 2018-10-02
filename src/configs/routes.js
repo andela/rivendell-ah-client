@@ -17,7 +17,7 @@ const {
   ForgotPassword, ResetPassword,
 } = userPages;
 const { Signup, Login } = authPages;
-const { PrivateRoute, GuestRoute, ProfileRoute } = routePages;
+const { VerifiedRoute, GuestRoute, PrivateRoute } = routePages;
 
 export default [
   {
@@ -45,7 +45,7 @@ export default [
     exact: true,
   },
   {
-    type: PrivateRoute,
+    type: VerifiedRoute,
     path: '/articles/new',
     component: NewArticle,
     exact: true,
@@ -57,7 +57,7 @@ export default [
     exact: true,
   },
   {
-    type: PrivateRoute,
+    type: VerifiedRoute,
     path: '/articles/:slug/edit',
     component: EditArticle,
     exact: true,
@@ -87,7 +87,7 @@ export default [
     exact: true,
   },
   {
-    type: ProfileRoute,
+    type: PrivateRoute,
     path: '/@:username/edit',
     component: EditProfilePage,
     exact: true,

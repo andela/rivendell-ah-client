@@ -1,12 +1,17 @@
 #edit-profile-page {
+  input[type=file] {
+    display: block;
+  }
   /* border:2px solid red; */
   padding-top: 20px;
   .content {
     width: 100%;
     margin: 0 auto;
+    min-height:70vh;
     background-color: $white;
     box-shadow: 3px 3px 3px $shadow-ash;
-    padding:40px;
+    padding-top:40px;
+    /*padding:40px;*/
   }
   #edit-profile-header h2{
     text-align:center;
@@ -21,7 +26,6 @@
     left: 36%;
     width:65px;
     height:65px;
-    border-radius:10%;
     margin-bottom:2px;
   }
   i#alternate-profile-image {
@@ -37,18 +41,23 @@
   }
   div.form-group > label {
     margin:2px 1px;
+    position:relative;
+    left:5%;
   }
   .form-field {
-    width: 100%;
+    width: 90%;
     height: 100%;
     position: relative;
+    left:5%;
     padding:7px 10px;
   }
 
   button#edit-profile-button {
     background-color: $primary-blue;
     color: $white;
-    width:100%;
+    position:relative;
+    left:5%;
+    width:90%;
     margin-top:20px;
     font-size:0.7em;
     padding:12px 0px;
@@ -66,10 +75,20 @@
   .status-box {
     color: $error-red;
   }
+  #edit-profile-footer {
+    background-color:$form-footer-ash;
+    position:relative;
+    top:1px;
+    margin-top:25px;
+    height:51px;
+    width:100%;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
   #profile-redirect-link {
     position:relative;
-    top:50px;
-    left: 50px;
+    left:47%;
+    top:20px;
   }
   @include media-query-above(sm) {
     padding-top: 40px;
@@ -83,17 +102,17 @@
       width: 60px;
       height: 60px;
     }
-    #profile-image {
+     #profile-image {
       left: 36%;
       width:75px;
       height:75px;
-    }
+    } 
   }
   @include media-query-above(md) {
     #profile-image {
       width:25%;
       height:90px;
-    }
+    } 
     .content {
       width: 40%;
     }
