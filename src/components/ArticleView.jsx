@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Container, Header, Image, Button } from 'semantic-ui-react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Parser as HtmlToReactParser } from 'html-to-react';
 import { Redirect } from 'react-router';
 import readingTime from 'reading-time';
+import ReportArticle from './ReportArticle';
 import loadAricleAction from '../actions/loadArticleAction';
 import TagView from './TagView';
 import deleteArticleAction from '../actions/deleteArticle';
 import Like from './Like';
 import ArticleRating from '../views/articles/rating/ArticleRating';
 import SocialShare from './SocialShare';
-
+import { reportArticleAction } from '../actions/articleAction';
 
 const htmlToReactParser = new HtmlToReactParser();
 /**
@@ -29,13 +30,11 @@ export class ArticleView extends Component {
     this.state = {
       showEditPage: false
     };
-
     this.deleteArticle = this.deleteArticle.bind(this);
-
     this.articleURL = encodeURIComponent(window.location.href);
-
-
     this.showUpdatePage = this.showUpdatePage.bind(this);
+    this.sendArticleReport = this.sendArticleReport.bind(this);
+    this.resetReport = this.resetReport.bind(this);
   }
 
 
@@ -79,13 +78,32 @@ export class ArticleView extends Component {
   }
 
   /**
+   *this dispatches an action to report the article that is being viewed
+   * @param {object} report contains the type and description of the report
+   * @return {void} performs an action and returns nothing
+   */
+  sendArticleReport(report) {
+    const { reportArticle, article } = this.props;
+    reportArticle(article.slug, report.type, report.description);
+  }
+
+
+  /**
+   *@returns {void} resets the store and returns nothing
+   */
+  resetReport() {
+    const { resetReportStore } = this.props;
+    resetReportStore();
+  }
+
+  /**
    * Adds content of the article to the DOM using information
    * from the article that was retrieved from the database.
    *@returns {JSX} to be rendered to the DOM
    */
   render() {
     const { article, errors,
-      currentUsername,
+      currentUsername, report,
       likeProps
     } = this.props;
     const { showEditPage } = this.state;
@@ -156,6 +174,12 @@ export class ArticleView extends Component {
           <TagView
             tagNames={article.tags}
           />
+          <ReportArticle
+            onSubmit={this.sendArticleReport}
+            errors={report.errors}
+            success={report.success}
+            onClose={this.resetReport}
+          />
           {article.slug ? <ArticleRating articleSlug={article.slug} /> : ''}
           <SocialShare articleURL={this.articleURL} />
         </Container>
@@ -168,18 +192,19 @@ export class ArticleView extends Component {
 
 
 ArticleView.propTypes = {
-  article: propTypes.objectOf(propTypes.oneOfType([
-    propTypes.string,
-    propTypes.objectOf(propTypes.string),
-    propTypes.arrayOf(propTypes.string)
+  article: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.string)
   ])),
-  loadArticle: propTypes.func,
-  deleteArticle: propTypes.func,
-  slug: propTypes.string.isRequired,
-  errors: propTypes.objectOf(propTypes.any),
-  currentUsername: propTypes.string,
-  deleted: propTypes.bool,
-  likeProps: propTypes.objectOf(propTypes.any),
+  loadArticle: PropTypes.func,
+  deleteArticle: PropTypes.func,
+  slug: PropTypes.string.isRequired,
+  errors: PropTypes.objectOf(PropTypes.any),
+  currentUsername: PropTypes.string,
+  deleted: PropTypes.bool,
+  likeProps: PropTypes.objectOf(PropTypes.any),
+  reportArticle: PropTypes.func,
 };
 
 ArticleView.defaultProps = {
@@ -190,19 +215,26 @@ ArticleView.defaultProps = {
   deleteArticle: () => {},
   deleted: false,
   likeProps: {},
+  reportArticle: () => {}
 };
 
 export const mapStateToProps = state => ({
   article: state.loadArticleReducer.article,
   errors: state.loadArticleReducer.errors,
   deleted: state.deleteArticleReducer.success,
-  currentUsername: state.profile.userProfile.username
+  currentUsername: state.profile.userProfile.username,
+  report: state.reportArticle
 });
 
 export const mapDispatchToProps = dispatch => ({
   loadArticle: slug => dispatch(loadAricleAction(slug)),
   deleteArticle: article => dispatch(deleteArticleAction(article)),
-  resetPage: () => dispatch({ type: 'DELETE_ARTICLE_RESET' })
+  resetReportStore: () => dispatch({ type: 'REPORT_ARTICLE_RESET' }),
+  resetPage: () => dispatch({ type: 'DELETE_ARTICLE_RESET' }),
+  reportArticle:
+   (slug, type, description) => dispatch(
+     reportArticleAction(slug, type, description)
+   ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleView);
